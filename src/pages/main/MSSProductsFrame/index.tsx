@@ -4,7 +4,7 @@ import Arrow from "../../../assets/icons/arrow"
 import styles from "./styles.module.scss"
 import productsStyles from "../ProductsFrame/styles.module.scss"
 
-export const MSSProductsFrame = () => {
+const MSSProductsFrame = () => {
     return (
         <section className={productsStyles.products}>
         <Layout>
@@ -55,3 +55,5 @@ export const MSSProductsFrame = () => {
         </section>
     )
 }
+
+export default MSSProductsFrame

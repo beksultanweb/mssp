@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 import Arrow from "../../../assets/icons/arrow"
 import penetrationStyles from "../PenetrationTestFrame/styles.module.scss"
 
-export const DodgerFrame = () => {
+const DodgerFrame = () => {
     return (
         <section className={styles.dodger}>
             <div className={styles.bg_text}>Darknet</div>
@@ -19,3 +19,5 @@ export const DodgerFrame = () => {
         </section>
     )
 }
+
+export default DodgerFrame

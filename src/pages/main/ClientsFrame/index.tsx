@@ -6,7 +6,7 @@ import partner1 from "../../../assets/icons/partner1.svg"
 import partner2 from "../../../assets/icons/partner2.svg"
 import partner3 from "../../../assets/icons/partner3.svg"
 
-export const ClientsFrame = () => {
+const ClientsFrame = () => {
     return (
         <section className={styles.clients}>
             <Layout>
@@ -30,3 +30,5 @@ export const ClientsFrame = () => {
         </section>
     )
 }
+
+export default ClientsFrame

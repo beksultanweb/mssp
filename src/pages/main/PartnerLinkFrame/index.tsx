@@ -5,7 +5,7 @@ import Arrow from "../../../assets/icons/arrow"
 import styles from "./styles.module.scss"
 import productStyles from "../ProductsFrame/styles.module.scss"
 
-export const PartnerLinkFrame = () => {
+const PartnerLinkFrame = () => {
     return (
         <Layout>
             <div className={styles.partner}>
@@ -19,3 +19,5 @@ export const PartnerLinkFrame = () => {
         </Layout>
     )
 }
+
+export default PartnerLinkFrame

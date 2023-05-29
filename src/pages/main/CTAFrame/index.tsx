@@ -3,7 +3,7 @@ import Layout from "../../../components/Layout"
 import Arrow from "../../../assets/icons/arrow"
 import styles from "./styles.module.scss"
 
-export const CTAFrame = () => {
+const CTAFrame = () => {
     return (
         <section>
         <Layout>
@@ -14,3 +14,5 @@ export const CTAFrame = () => {
         </section>
     )
 }
+
+export default CTAFrame

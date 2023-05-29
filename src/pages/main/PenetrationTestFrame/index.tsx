@@ -7,7 +7,7 @@ import us from "../../../assets/icons/US.svg"
 import india from "../../../assets/icons/IN.svg"
 import jp from "../../../assets/icons/JP.svg"
 
-export const PenetrationTestFrame = () => {
+const PenetrationTestFrame = () => {
     return (
         <section className={styles.penetration}>
             <div className={styles.bg_text}>Report</div>
@@ -41,3 +41,5 @@ export const PenetrationTestFrame = () => {
         </section>
     )
 }
+
+export default PenetrationTestFrame

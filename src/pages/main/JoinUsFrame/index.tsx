@@ -4,7 +4,7 @@ import Layout from "../../../components/Layout"
 import styles from "./styles.module.scss"
 import productStyles from "../ProductsFrame/styles.module.scss"
 
-export const JoinUsFrame = () => {
+const JoinUsFrame = () => {
     return (
         <section className={styles.join}>
             <Layout>
@@ -17,3 +17,5 @@ export const JoinUsFrame = () => {
         </section>
     )
 }
+
+export default JoinUsFrame

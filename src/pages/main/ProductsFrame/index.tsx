@@ -7,7 +7,7 @@ import ellipse from "../../../assets/icons/ellipse.svg"
 // import "./styles.module.scss"
 import styles from "./styles.module.scss"
 
-export const ProductsFrame = () => {
+const ProductsFrame = () => {
     return (
         <section className={styles.products}>
         <Layout>
@@ -75,3 +75,5 @@ export const ProductsFrame = () => {
         </section>
     )
 }
+
+export default ProductsFrame

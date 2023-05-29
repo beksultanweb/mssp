@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 import Arrow from "../../../assets/icons/arrow"
 import newsImg from "../../../assets/images/cybernomads.jpg"
 
-export const NewsFrame = () => {
+const NewsFrame = () => {
     return (
         <Layout>
             <div className={styles.head}>
@@ -31,3 +31,5 @@ export const NewsFrame = () => {
         </Layout>
     )
 }
+
+export default NewsFrame

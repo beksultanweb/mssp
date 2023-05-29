@@ -6,7 +6,7 @@ import styles from "./styles.module.scss"
 import { Header } from "../../../components/Header"
 import mainPhoto from "../../../assets/images/main3.png"
 
-export const MainFrame = () => {
+const MainFrame = () => {
     return (
         <main>
         <img src={mainPhoto} alt="photo" className={styles.mainphoto} />
@@ -19,3 +19,5 @@ export const MainFrame = () => {
         </main>
     )
 }
+
+export default MainFrame

@@ -3,7 +3,7 @@ import Layout from "../../../components/Layout"
 import Arrow from "../../../assets/icons/arrow"
 import arrow from "../../../assets/icons/Arrow.svg"
 import ocib from "../../../assets/icons/ocib.svg"
-import ellipse from "../../../assets/icons/ellipse.svg"
+import ellipse from "../../../assets/icons/Ellipse.svg"
 // import "./styles.module.scss"
 import styles from "./styles.module.scss"
 

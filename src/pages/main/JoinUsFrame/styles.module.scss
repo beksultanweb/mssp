@@ -1,0 +1,25 @@
+@import "../../../assets/styles/variables.scss";
+
+.join {
+    background:
+    url('../../../assets/icons/Liner\ gradient.svg') left bottom no-repeat,
+    url('../../../assets/images/cybernomads.jpg') right no-repeat,
+    url('../../../assets/icons/Ellipse\ 18.svg') right 20% bottom no-repeat,
+    $primary-black;
+    background-size: contain;
+    border-radius: 30px;
+    height: 634px;
+    margin-top: 200px;
+}
+.content {
+    margin-top: 187px;
+}
+.title {
+    width: 60%;
+    margin: 0;
+}
+.paragraph {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    width: 60%;
+}

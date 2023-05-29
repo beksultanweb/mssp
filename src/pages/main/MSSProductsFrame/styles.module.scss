@@ -1,0 +1,118 @@
+@import "../../../assets/styles/variables.scss";
+
+.bubbles {
+    position: relative;
+    height: 500px;
+}
+
+.big_circle {
+    background-color:#0099CC;
+    width: 150px;
+    height: 150px;
+    box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &::before {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0099CC;
+        box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
+    }
+    div {
+        color: $primary-white;
+        text-align: center;
+    }
+    &:nth-child(1) {
+        position: absolute;
+        top: 13.62%;
+        left: -40px;
+    }
+    &:nth-child(2) {
+        position: absolute;
+        left: 29.61%;
+        top: 47.03%;
+    }
+    &:nth-child(3) {
+        position: absolute;
+        left: 33.99%;
+        top: 0.66%;
+    }
+    &:nth-child(4) {
+        position: absolute;
+        right: 33.26%;
+        top: 28.57%;
+    }
+    &:nth-child(5) {
+        position: absolute;
+        right: 17.03%;
+        top: 7.03%;
+    }
+    &:nth-child(6) {
+        position: absolute;
+        right: 7.17%;
+        top: 46.37%;
+    }
+}
+.small_circle {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #669966;
+    color: $primary-white;
+    width: 85px;
+    height: 85px;
+    box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
+    &::before {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        border: 1px solid #669966;
+        box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
+    }
+    div {
+        color: $primary-white;
+        text-align: center;
+    }
+    &:nth-child(1) {
+        position: absolute;
+        bottom: 9.03%;
+        left: 14.5%;
+    }
+    &:nth-child(2) {
+        position: absolute;
+        left: 20.87%;
+        top: 30.54%;
+    }
+    &:nth-child(3) {
+        position: absolute;
+        bottom: 7.49%;
+        left: 44.51%;
+    }
+    &:nth-child(4) {
+        position: absolute;
+        right: 34.29%;
+        top: 0%;
+    }
+    &:nth-child(5) {
+        position: absolute;
+        bottom: 7.49%;
+        right: 25.18%;
+    }
+    &:nth-child(6) {
+        position: absolute;
+        right: -0.24%;
+        top: 35.16%;
+    }
+}

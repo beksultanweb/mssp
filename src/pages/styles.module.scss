@@ -1,0 +1,33 @@
+@import '../assets/styles/variables.scss';
+
+p {
+    font-size: 24px;
+    color: $primary-black;
+    font-weight: 400;
+    display: inline-block;
+    width: 400px;
+    margin-bottom: 52px;
+}
+
+span {
+    color: $primary-black;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+button {
+    background-color: $primary-black;
+    border-radius: 32px;
+    padding: 12px 28px 12px 24px;
+    color: $primary-white;
+    display: flex;
+    gap: 17px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}

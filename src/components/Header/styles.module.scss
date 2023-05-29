@@ -1,0 +1,13 @@
+@import "../../assets/styles/variables.scss";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+a {
+    text-decoration: none;
+    color: $primary-black;
+}

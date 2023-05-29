@@ -1,0 +1,31 @@
+@import '../../../assets/styles/variables.scss';
+
+.dodger {
+    background: url('../../../assets/images/dodger.png') top 50% left no-repeat;
+    background-size: contain;
+    margin-top: 200px;
+    position: relative;
+}
+.content {
+    margin-left: 35%;
+}
+.paragraph {
+    width: 100%;
+}
+.bg_text {
+    text-shadow: -1px 0 #DBDBDB, 0 1px #DBDBDB, 1px 0 #DBDBDB, 0 -1px #DBDBDB;
+    font-size: 96px;
+    font-weight: 800;
+    color: $secondary-white;
+    &:nth-child(1) {
+        position: absolute;
+        left: 30%;
+        top: -15%;
+        z-index: -1;
+    }
+    &:nth-child(2) {
+        position: absolute;
+        right: -10px;
+        bottom: 0;
+    }
+}

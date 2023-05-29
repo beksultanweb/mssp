@@ -3,7 +3,7 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `mssp-global`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `localhost:3000`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -12,21 +12,30 @@ const config: GatsbyConfig = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": ""
+      "url": "http://localhost/wp/graphql"
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-postcss", "gatsby-plugin-google-gtag", "gatsby-plugin-sitemap", {
-    resolve: 'gatsby-plugin-manifest',
+  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sitemap", {
+    resolve: `gatsby-plugin-typescript`,
     options: {
-      "icon": "src/images/icon.png"
-    }
-  }, {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+      isTSX: true, // defaults to false
+      jsxPragma: `jsx`, // defaults to "React"
+      allExtensions: true, // defaults to false
     },
-    __key: "images"
-  }]
+  }, {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        sassOptions: {
+          includePaths: ['src'],
+        },
+        cssLoaderOptions: {
+          esModule: false,
+          modules: {
+            namedExport: false
+          }
+        },
+      },
+    },
+  ]
 };
 
 export default config;

@@ -1,0 +1,51 @@
+@import '../../../assets/styles/variables.scss';
+
+.paragraph {
+    width: 55%;
+}
+.penetration {
+    background: url('../../../assets/images/penetration.png') top 50% right no-repeat;
+    padding-top: 290px;
+    position: relative;
+}
+.countries {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.countries__flags {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 42px;
+    &_item {
+        display: flex;
+        gap: 5px;
+    }
+}
+.bg_text {
+    text-shadow: -1px 0 #DBDBDB, 0 1px #DBDBDB, 1px 0 #DBDBDB, 0 -1px #DBDBDB;
+    font-size: 96px;
+    font-weight: 800;
+    color: $secondary-white;
+    &:nth-child(1) {
+        position: absolute;
+        left: -10px;
+        top: 20%;
+    }
+    &:nth-child(2) {
+        position: absolute;
+        left: 40%;
+        top: 15%;
+        z-index: -1 ;
+    }
+    &:nth-child(3) {
+        position: absolute;
+        bottom: 10%;
+    }
+    &:nth-child(4) {
+        position: absolute;
+        left: 38%;
+        bottom: 20%;
+        z-index: -1;
+    }
+}

@@ -1,0 +1,23 @@
+@import "../../../assets/styles/variables.scss";
+
+main {
+    background: url('../../../assets/icons/maingradient.svg') left top no-repeat,
+                url('../../../assets/images/main1.png') right 140px no-repeat,
+                url('../../../assets/images/main2.png') bottom 20px right 47% no-repeat;
+}
+
+h1 {
+    margin-top: 133px;
+    margin-bottom: 20px;
+    color: $primary-black;
+    font-weight: 800;
+    font-size: 52px;
+    width: 80%;
+}
+
+.mainphoto {
+    position: absolute;
+    right: 0;
+    bottom: -101px;
+    z-index: -1;
+}

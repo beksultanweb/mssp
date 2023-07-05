@@ -1,0 +1,45 @@
+@import "../../../assets/styles/variables.scss";
+
+.about_main {
+    background-color: $primary-black;
+    padding-top: 43px;
+    padding-bottom: 43px;
+    position: relative;
+}
+.about_image {
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+}
+.about__content {
+    display: grid;
+    grid-area: "container";
+    place-items: center;
+    place-content: center;
+    & > * {
+        grid-area: container;
+    }
+}
+.title {
+    color: $primary-white;
+    text-align: center;
+    margin: 0 auto;
+    width: 70%;
+    z-index: 1;
+}
+
+@media (max-width: 550px) {
+    .about_image {
+        width: 100%;
+        height: 100%;
+    }
+    .about__content {
+        height: 635px;
+        place-items: start;
+    }
+    .title {
+        position: absolute;
+        width: 100%;
+        left: 0;
+    }
+}

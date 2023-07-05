@@ -1,28 +1,48 @@
 // import type { GatsbyNode } from "gatsby"
 // import path from "path"
+// import slugify from "slugify"
 
-// const onCreateWebpackConfig: GatsbyNode["onCreateBabelConfig"] = ({
-//     stage,
-//     rules,
-//     loaders,
-//     plugins,
-//     actions,
+// interface productsProps {
+//     allWpPost: {
+//         edges: {
+//             node: {
+//                 title: string
+//                 slug: string
+//             }
+//         }[]
+//     }
+// }
+
+// const createPages: GatsbyNode["createPages"] = async ({
+//     graphql,
+//     actions
 //   }) => {
-//     actions.setWebpackConfig({
-//         resolve: {
-//             modules: [path.resolve(__dirname, "src"), "node_modules"],
-//             },
-//       module: {
-//         rules: [
-//           {
-//             test: /\.scss$/,
-//             use: [
-//               `sass-loader`,
-//             ],
-//           },
-//         ],
-//       }
+//     const { createPage } = actions
+//     const allProducts: {
+//         errors?: any
+//         data?: productsProps
+//     } = await graphql(`
+//     query Products {
+//         allWpPost(
+//             filter: {categories: {nodes: {elemMatch: {slug: {nin: ["news", "uncategorized", "mssp-services"]}}}}}
+//           ) {
+//             edges {
+//               node {
+//                 title
+//                 slug
+//               }
+//             }
+//           }
+//     }`)
+
+
+//     allProducts.data?.allWpPost.edges.forEach(edge => {
+//         createPage({
+//             path: '/products/' + edge.node.slug,
+//             component: path.resolve('./src/templates/product-details.tsx'),
+//             context: {title: edge.node.title, slug: edge.node.slug}
+//         })
 //     })
 //   }
 
-//   export default onCreateWebpackConfig
+// export default createPages

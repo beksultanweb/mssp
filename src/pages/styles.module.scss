@@ -1,12 +1,10 @@
 @import '../assets/styles/variables.scss';
 
 p {
-    font-size: 24px;
+    font-size: 20px;
     color: $primary-black;
     font-weight: 400;
     display: inline-block;
-    width: 400px;
-    margin-bottom: 52px;
 }
 
 span {
@@ -30,4 +28,24 @@ button {
     font-weight: 600;
     cursor: pointer;
     border: none;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+main {
+    background: url('../assets/icons/maingradient.svg') left top no-repeat;
+    height: 800px;
+    position: relative;
+}
+
+@media (max-width: 500px) {
+    p {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 32px;
+    }
 }

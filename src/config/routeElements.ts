@@ -1,8 +1,5 @@
 export const routeElements = [
   {
-    url: "/"
-  },
-  {
     text: "продукты и услуги",
     url: "/products"
   },

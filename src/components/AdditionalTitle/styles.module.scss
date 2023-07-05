@@ -1,0 +1,26 @@
+@import "../../assets/styles/variables.scss";
+
+.title {
+    display: inline;
+}
+.container {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+.light {
+    color: $primary-white;
+}
+.lightBtn {
+    background-color: $primary-white;
+    color: $primary-black;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin-top: 80px;
+    }
+    .btn {
+        display: none;
+    }
+}

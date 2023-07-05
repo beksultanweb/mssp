@@ -1,0 +1,56 @@
+@import "../../../assets/styles/variables.scss";
+
+.about__content {
+    margin-top: 100px;
+}
+.results {
+    border-radius: 12px;
+    border: 1px solid #000000;
+    padding: 40px 20px 40px 14px;
+    width: 283px;
+    &__content {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.title {
+    width: 80%;
+}
+.subtitle {
+    width: 90%;
+    font-size: 16px;
+    margin-bottom: 56px;
+}
+.number {
+    font-size: 64px;
+}
+.text {
+    font-size: 16px;
+}
+.text, .number {
+    font-weight: 600;
+    color: $primary-black;
+}
+
+@media (max-width: 1400px) {
+    .results__content {
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 400px) {
+    .results {
+        width: 70vw;
+    }
+    .title {
+        font-size: 24px;
+        width: 100%;
+    }
+    .subtitle {
+        width: 100%;
+    }
+    .results__content {
+        width: 100vw;
+    }
+}

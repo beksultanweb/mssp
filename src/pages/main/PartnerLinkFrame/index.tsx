@@ -1,23 +1,45 @@
 import React from "react"
-import Layout from "../../../components/Layout"
-import img from "../../../assets/images/cybernomads.jpg"
-import Arrow from "../../../assets/icons/arrow"
-import styles from "./styles.module.scss"
-import productStyles from "../ProductsFrame/styles.module.scss"
+import { graphql, useStaticQuery } from "gatsby"
+import { IGatsbyImageData, getImage } from "gatsby-plugin-image"
+import PartnerLink from "../../../components/PartnerLink"
+
+const query = graphql`
+{
+    wpPage {
+      Additional_resources {
+        additionalBtn
+        additionalDescr
+        additionalImg {
+          gatsbyImage(width: 1200)
+        }
+        additionalLink
+        additionalTitle
+      }
+    }
+  }`
+
+interface PartnerLinkProps {
+  wpPage: {
+    Additional_resources: {
+      additionalBtn: string
+      additionalDescr: string
+      additionalImg: {
+        gatsbyImage: IGatsbyImageData
+      }
+      additionalLink: string
+      additionalTitle: string
+    }
+  }
+}
 
 const PartnerLinkFrame = () => {
-    return (
-        <Layout>
-            <div className={styles.partner}>
-                <img className={styles.img} src={img} alt="" />
-                <div className={styles.partner__content}>
-                    <h2 className={`${productStyles.white_text} ${styles.title}`}>Информационный портал кибербезопасности!</h2>
-                    <p className={`${productStyles.white_text} ${styles.paragraph}`}>Мы предлагаем практические шаги для надёжной архитектуры ИБ, список лучших экспертов и широкий выбор материалов. Будьте в курсе новейших угроз и получайте рекомендации по предотвращению. Присоединяйтесь к нам и защищайте свои ценности!</p>
-                    <button className={productStyles.tabs__btn}>Открыть сайт партнера<Arrow theme="dark"/></button>
-                </div>
-            </div>
-        </Layout>
-    )
+  const data: PartnerLinkProps = useStaticQuery(query)
+  const {additionalImg, additionalTitle, additionalDescr, additionalBtn, additionalLink} = data.wpPage.Additional_resources
+  const image = getImage(additionalImg)
+  return (
+      image ? <PartnerLink image={image} title={additionalTitle} description={additionalDescr} link={additionalLink} btn={additionalBtn}/>
+      : null
+  )
 }
 
 export default PartnerLinkFrame

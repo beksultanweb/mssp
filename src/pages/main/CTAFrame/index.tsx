@@ -2,14 +2,27 @@ import React from "react"
 import Layout from "../../../components/Layout"
 import Arrow from "../../../assets/icons/arrow"
 import styles from "./styles.module.scss"
+import { graphql, useStaticQuery } from "gatsby"
+
+const query = graphql`
+{
+    wpPage {
+      ctaframe {
+        ctabutton
+        ctasubtitle
+        ctatitle
+      }
+    }
+  }`
 
 const CTAFrame = () => {
+    const data = useStaticQuery(query)
     return (
-        <section>
+        <section className={styles.calltoaction}>
         <Layout>
-            <h2 className={styles.calltoaction__title}>Надёжная защита ваших данных и бизнеса — наша главная задача!</h2>
-            <p className={styles.calltoaction__subtitle}>Гарантируем доступ к экспертам по кибербезопасности высочайшего уровня для вашей компании, где бы она ни находилась и какого бы масштаба не была!</p>
-            <button className={styles.calltoaction__btn}>Хотите, чтобы мы связались с вами?<Arrow/></button>
+            <h2 className={styles.calltoaction__title}>{data.wpPage.ctaframe.ctatitle}</h2>
+            <p className={styles.calltoaction__subtitle}>{data.wpPage.ctaframe.ctasubtitle}</p>
+            <button className={styles.calltoaction__btn}>{data.wpPage.ctaframe.ctabutton}<Arrow theme="dark"/></button>
         </Layout>
         </section>
     )

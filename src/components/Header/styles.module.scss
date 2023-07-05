@@ -7,7 +7,112 @@ header {
     padding-top: 32px;
     padding-bottom: 32px;
 }
-a {
+.link {
     text-decoration: none;
+    font-size: 20px;
     color: $primary-black;
+    &_open {
+        color: $primary-white;
+        text-decoration: none;
+        font-size: 32px;
+        font-weight: 600;
+    }
+}
+.nav {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+}
+.light {
+    color: $primary-white;
+}
+.dark {
+    color: $primary-black;
+}
+.btnLight {
+    background-color: $secondary-white;
+    color: $primary-black;
+}
+.mobile__menu {
+    display: flex;
+    gap: 60px;
+}
+
+.mobile__burger {
+    display: none;
+    background-color: inherit;
+    text-decoration: underline;
+    font-weight: 600;
+    text-underline-offset: 3px;
+    padding: 0;
+    &_open {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        border: 2px solid $primary-white;
+        position: relative;
+        z-index: 100;
+        &::before {
+            content: 'X';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        svg {
+            display: none;
+        }
+    }
+}
+.logo {
+    width: 101px;
+    z-index: 100;
+}
+.user {
+    cursor: pointer;
+}
+.logout {
+    position: absolute;
+    padding: 20px;
+    background-color: $primary-white;
+    border-radius: 20px;
+    &__btn {
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        color: $primary-black;
+        background-color: inherit;
+    }
+}
+
+@media (max-width: 965px) {
+    .mobile__menu_hide, .btn {
+        display: none;
+    }
+    .mobile__burger {
+        display: flex;
+        gap: 8px;
+    }
+    .logo {
+        width: 60px;
+        height: 29px;
+    }
+    .mobile__menu {
+        position: fixed;
+        z-index: 2;
+        background-color: $primary-black;
+        width: 100%;
+        top: -200%;
+        left: 0;
+        padding-top: 96px;
+        padding-left: 16px;
+        height: 100vh;
+        display: flex;
+        gap: 28px;
+        flex-direction: column;
+        transition: top .3s ease;
+        &_open {
+            top: 0;
+        }
+    }
 }

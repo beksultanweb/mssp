@@ -15,10 +15,10 @@ const Arrow = (props: ArrowProps) => {
     height={13}
     fill="none"
     {...svgProps}
-    style={{ transform: `rotate(${rotate}deg)` }}
+    style={{ transform: `rotate(${rotate ? rotate : 0}deg)` }}
   >
     <path
-      stroke={theme == 'dark' ? '#1a1a1a' : '#fff'}
+      stroke={theme === 'dark' ? '#fff' : theme === 'light' ? '#1a1a1a' : ''}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

@@ -5,7 +5,6 @@
     font-size: 32px;
     font-weight: 600;
     color: #000;
-    margin-top: 12px;
     width: 95%;
 }
 .paragraph {
@@ -13,6 +12,7 @@
     font-size: 16px;
     font-weight: 400;
     width: 95%;
+    margin-top: 12px;
 }
 .partners {
     margin-top: 85px;
@@ -25,4 +25,24 @@
 }
 .title {
     display: inline;
+}
+
+@media (max-width: 1000px) {
+    .about__content {
+        grid-template-columns: 1fr;
+    }
+    .about {
+        font-size: 24px;
+        margin-top: 25px;
+    }
+    .partners {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        column-gap: 100px;
+        &__item {
+            width: 100%;
+            // object-fit: fill;
+        }
+    }
 }

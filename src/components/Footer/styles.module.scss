@@ -4,6 +4,7 @@
     font-size: 40px;
     font-weight: 600;
     color: #fff;
+    margin-top: 20px;
 }
 .routes {
     display: flex;
@@ -12,6 +13,7 @@
 }
 nav {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 footer {
@@ -23,4 +25,54 @@ footer {
 }
 .footer__item {
     color: #fff;
+    text-decoration: none;
+}
+.socmedia {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 24px;
+}
+.contacts {
+    display: grid;
+    grid-template-columns: 220px max-content;
+    column-gap: 30px;
+}
+.light {
+    background-color: $secondary-white;
+    color: $primary-black;
+}
+
+@media (max-width: 1000px) {
+    nav {
+        gap: 50px;
+        justify-content: start;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 0;
+    }
+    .routes {
+        width: 50%;
+    }
+    .socmedia, .email {
+        margin-bottom: 40px;
+    }
+    footer {
+        margin-top: 102px;
+    }
+    .contacts {
+        grid-template-columns: 180px max-content;
+        gap: 0;
+    }
+}
+
+@media (max-width: 350px) {
+    .email {
+        font-size: 32px;
+    }
 }

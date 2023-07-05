@@ -1,0 +1,55 @@
+@import "../../assets/styles/variables.scss";
+
+.img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+    z-index: -1;
+    filter: brightness(40%);
+}
+.title {
+    margin: 0;
+    color: $primary-white;
+    max-width: 949px;
+}
+.partner {
+    margin-top: 200px;
+    height: 100%;
+    position: relative;
+    &__content {
+        padding-top: 128px;
+        padding-left: 40px;
+        padding-right: 80px;
+        padding-bottom: 86px;
+    }
+}
+.paragraph {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    width: 100%;
+    color: $primary-white;
+}
+.btn {
+    background-color: $secondary-white;
+    color: $primary-black;
+}
+.link {
+    text-decoration: none;
+}
+
+@media (max-width: 500px) {
+    .partner {
+        margin-top: 120px;
+    }
+    .partner__content {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+    .title {
+        font-size: 24px;
+    }
+}

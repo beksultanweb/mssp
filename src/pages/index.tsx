@@ -8,23 +8,30 @@ import CTAFrame from "./main/CTAFrame"
 import MSSProductsFrame from "./main/MSSProductsFrame"
 import PenetrationTestFrame from "./main/PenetrationTestFrame"
 import PartnerLinkFrame from "./main/PartnerLinkFrame"
+import PartnerLinkFrame2 from "./main/PartnerLinkFrame2"
 import DodgerFrame from "./main/DodgerFrame"
-import JoinUsFrame from "./main/JoinUsFrame"
 import ClientsFrame from "./main/ClientsFrame"
 import NewsFrame from "./main/NewsFrame"
+import Header from "../components/Header"
+import PromoFrame from "./main/PromoFrame"
 
 const IndexPage: React.FC<PageProps> = () => {
+
   return (
     <>
-      <MainFrame/>
+      <main>
+        <Header theme="dark"/>
+        <MainFrame/>
+      </main>
       <ProductsFrame/>
       <CTAFrame/>
       <MSSProductsFrame/>
       <PenetrationTestFrame/>
       <PartnerLinkFrame/>
       <DodgerFrame/>
-      <JoinUsFrame/>
+      <PromoFrame/>
       <ClientsFrame/>
+      <PartnerLinkFrame2/>
       <NewsFrame/>
       <Footer/>
     </>

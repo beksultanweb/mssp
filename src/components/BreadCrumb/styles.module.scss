@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables.scss";
+
+.white_text {
+    color: $primary-white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.current {
+    opacity: 85%;
+}
+.link {
+    text-decoration: none;
+}

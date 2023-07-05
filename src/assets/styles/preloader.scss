@@ -1,0 +1,32 @@
+@import "./variables.scss";
+
+body {
+      .preloader {
+        position: fixed;
+        height: 100vh;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        padding-top: 50px;
+        padding-left: 100px;
+        padding-right: 100px;
+        justify-content: space-between;
+        background-color: $primary-black;
+        z-index: 9999;
+        overflow: hidden;
+        transition: all .3s ease;
+      }
+    }
+    .preloader_title {
+      font-size: 100px;
+      font-weight: 800;
+      color: $primary-white;
+    }
+    .preloader_calculation {
+      text-shadow: -1px 0 $primary-white, 0 1px $primary-white, 1px 0 $primary-white, 0 -1px $primary-white;
+      font-size: 100px;
+      font-weight: 700;
+      color: $primary-black;
+    }

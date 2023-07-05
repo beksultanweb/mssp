@@ -1,31 +1,48 @@
 @import '../../../assets/styles/variables.scss';
 
 .dodger {
-    background: url('../../../assets/images/dodger.png') top 50% left no-repeat;
-    background-size: contain;
     margin-top: 200px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 50px;
     position: relative;
-}
-.content {
-    margin-left: 30%;
 }
 .paragraph {
     width: 100%;
+    margin-bottom: 52px;
 }
-.bg_text {
+.security, .darknet {
+    position: absolute;
     text-shadow: -1px 0 #DBDBDB, 0 1px #DBDBDB, 1px 0 #DBDBDB, 0 -1px #DBDBDB;
     font-size: 96px;
     font-weight: 800;
     color: $secondary-white;
-    &:nth-child(1) {
-        position: absolute;
-        left: 25%;
-        top: -17%;
-        z-index: -1;
+    z-index: -1;
+}
+.security {
+    left: 35%;
+    top: -17%;
+}
+.darknet {
+    right: -10px;
+    bottom: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+@media (max-width: 1100px) {
+    .dodger {
+        display: block;
+        &__img {
+            width: 50%;
+        }
     }
-    &:nth-child(2) {
-        position: absolute;
-        right: -10px;
-        bottom: 0;
+}
+
+@media(max-width: 600px) {
+    .dodger__img {
+        width: 70%;
     }
 }

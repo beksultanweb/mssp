@@ -9,7 +9,20 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   // graphqlTypegen: true,
-  plugins: ["gatsby-plugin-image", "gatsby-transformer-sharp", {
+  plugins: [{
+    resolve: "gatsby-plugin-sass",
+    options: {
+      sassOptions: {
+        includePaths: ['src'],
+      },
+      cssLoaderOptions: {
+        esModule: false,
+        modules: {
+          namedExport: false
+        }
+      },
+    },
+  }, "gatsby-plugin-image", "gatsby-transformer-sharp", {
     resolve: `gatsby-source-wordpress`,
       options: {
         url:
@@ -46,20 +59,7 @@ const config: GatsbyConfig = {
       jsxPragma: `jsx`, // defaults to "React"
       allExtensions: true, // defaults to false
     },
-  }, {
-      resolve: "gatsby-plugin-sass",
-      options: {
-        sassOptions: {
-          includePaths: ['src'],
-        },
-        cssLoaderOptions: {
-          esModule: false,
-          modules: {
-            namedExport: false
-          }
-        },
-      },
-    },
+  },
   ]
 };
 

@@ -80,16 +80,16 @@ const ProductsFrame = () => {
                 end: "top top",
                 scrub: true
             } })
-        gsap.fromTo(text,
-            { y: 100, opacity: 0 }, {
-            y: 0,
-            opacity: 1,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: text,
-                start: "top bottom"
-            }
-        })
+        // gsap.fromTo(text,
+        //     { y: 100, opacity: 0 }, {
+        //     y: 0,
+        //     opacity: 1,
+        //     stagger: 0.2,
+        //     scrollTrigger: {
+        //         trigger: text,
+        //         start: "top bottom"
+        //     }
+        // })
     }, [])
 
     return (
@@ -101,17 +101,23 @@ const ProductsFrame = () => {
             </div>
             <span className={styles.white_text}>/002</span><p className={`${styles.white_text} ${styles.change_width}`}>{data.wpPage.ourServicesBlock.description}</p>
             <div className={styles.tabs}>
-            {data.allWpCategory.edges.map((el: any) => (
-                <>{el.node.slug === selectedCategory ?
-                    <button className={styles.tabs__btn_active}>{el.node.name}<Arrow theme="dark" rotate={180}/></button>
-                    : <button className={styles.tabs__btn} onClick={() => setSelectedCategory(el.node.slug)}>{el.node.name}<Arrow theme="light"/></button>
-                }</>
-            ))}
+            {data.allWpCategory.edges.map((el: any) => {
+                if(el.node.slug === selectedCategory) {
+                    return (
+                        <button key={el.node.name} className={styles.tabs__btn_active}>{el.node.name}<Arrow theme="dark" rotate={180}/></button>
+                    )
+                }
+                else {
+                    return (
+                        <button key={el.node.name} className={styles.tabs__btn} onClick={() => setSelectedCategory(el.node.slug)}>{el.node.name}<Arrow theme="light"/></button>
+                    )
+                }
+            })}
             </div>
             <div className={styles.tabs__content} style={{transform: `translateX(${offset}px)`}}>
                 <StaticImage className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
                 {categoryData.map((post: any) =>
-                    <Link to={`/products/${post.slug}`} className={styles.tabs__box}>
+                    <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
                         <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
                         <div className={styles.tabs__title}>{post.title}</div>
                         <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>

@@ -44,6 +44,11 @@
     appearance: none;
     outline: none;
     padding-bottom: 12px;
+    margin-top: 40px;
+}
+
+.input:first-child {
+    margin-top: 0;
 }
 
 .btn {
@@ -64,10 +69,43 @@
     width: 100%;
 }
 
-form {
+.form__inputs {
     display: flex;
-    gap: 40px;
     flex-direction: column;
+}
+
+.success {
+    background: green;
+}
+.errmsg {
+    background: red;
+}
+.success, .errmsg {
+    color: $primary-white;
+    padding-bottom: 20px;
+}
+.span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > img {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
 }
 
 .flex {

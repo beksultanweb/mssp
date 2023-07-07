@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Layout from "../../components/Layout"
-import { Header } from "../../components/Header"
+import Header from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import styles from "./styles.module.scss"
 import BreadCrumb from "../../components/BreadCrumb"

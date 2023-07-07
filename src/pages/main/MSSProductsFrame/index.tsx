@@ -108,12 +108,12 @@ const MSSProductsFrame = () => {
             </div>
             <div className={styles.bubbles}>
             {sortedNodes.slice(0, 6).map((node: any) => (
-                <div ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.big_circle} ${styles[node.slug]}`}>
+                <div key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.big_circle} ${styles[node.slug]}`}>
                     <div className="product_name">{node.title}</div>
                 </div>
             ))}
             {sortedNodes.slice(6).map((node: any) => (
-                <div ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.small_circle} ${styles[node.slug]}`}>
+                <div key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.small_circle} ${styles[node.slug]}`}>
                     <div className="product_name">{node.title}</div>
                 </div>
             ))}

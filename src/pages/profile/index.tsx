@@ -9,21 +9,53 @@ import { inject, observer } from "mobx-react"
 import { RequestsStore } from "../../store/RequestsStore"
 import { navigate } from "gatsby"
 import { AuthStore } from "../../store/AuthStore"
+import { RequestsResponse } from "../../types/RequestsResponse"
+import AuthComponent from "../../components/Modal"
+import CreateRequest from "../../components/Modal/CreateRequest"
 
-const Profile = ({authStore, requestsStore}: {authStore: AuthStore, requestsStore: RequestsStore}) => {
+interface ProfileProps {
+    authStore: AuthStore
+    requestsStore: RequestsStore
+}
+
+const Profile: React.FC<ProfileProps> = ({authStore, requestsStore}) => {
     const [dropdownOpened, setOpenedDropdown] = React.useState(false)
+    const [modalOpen, setModalOpen] = React.useState(false)
+
     const handleOpenedDropdown = () => {
         setOpenedDropdown(!dropdownOpened)
     }
 
-    if(!authStore.isAuth) {
-        navigate("/")
-        return null
+    const handleModalOpen = () => {
+        setModalOpen(!modalOpen)
     }
 
     useEffect(() => {
         requestsStore.getMyRequests()
+    }, [requestsStore.requests])
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            authStore.checkAuth()
+        }
     }, [])
+
+    if(!authStore.isAuth) {
+        navigate("/")
+    }
+
+    const requests = requestsStore.requests.map(request => {
+        const date = new Date(request.date).toLocaleDateString()
+        return (
+        <div key={request.title} className={styles.request}>
+            <div className={styles.request__item}>
+                <div>{date}</div>
+                <div className={styles.request__title}>{request.title}</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{request.status}</div>
+                <button className={styles.request__btn}>Подробнее<Arrow theme="light"/></button>
+            </div>
+        </div>)})
+
 
     return (
         <section className={styles.profile}>
@@ -31,7 +63,7 @@ const Profile = ({authStore, requestsStore}: {authStore: AuthStore, requestsStor
         <Layout>
             <div className={styles.flex}>
                 <div onClick={handleOpenedDropdown} className={styles.status__dropdown}>Статус <img src={arrow} alt="" /></div>
-                <button className={styles.btn}>Создать заявку<Arrow theme="dark"/></button>
+                <button onClick={handleModalOpen} className={styles.btn}>Создать заявку<Arrow theme="dark"/></button>
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>
@@ -41,16 +73,9 @@ const Profile = ({authStore, requestsStore}: {authStore: AuthStore, requestsStor
                 <div className={styles.status}><div className={`${styles.circle} ${styles.circle__closed}`}></div>закрыта</div>
                 <div className={styles.status}><div className={`${styles.circle} ${styles.circle__canceled}`}></div>отменена</div>
             </div>}
-            {requestsStore.requests?.map(request => (
-            <div className={styles.request}>
-                <div className={styles.request__item}>
-                    <div>{request.date}</div>
-                    <div className={styles.request__title}>{request.title}</div>
-                    <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{request.status}</div>
-                    <button className={styles.request__btn}>Подробнее<Arrow theme="light"/></button>
-                </div>
-            </div>))}
+            {requests}
         </Layout>
+        {modalOpen && <CreateRequest close={() => setModalOpen(false)}/>}
         <Footer theme="light"/>
         </section>
     )

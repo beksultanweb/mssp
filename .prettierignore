@@ -1,0 +1,9 @@
+# production
+
+.cache
+public
+node_modules
+gatsby-browser.tsx
+gatsby-config.ts
+gatsby-ssr.tsx
+tsconfig.json

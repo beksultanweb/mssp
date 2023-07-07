@@ -15,17 +15,6 @@ export class RequestsStore {
         this.requests = requests
     }
 
-    async createRequest(title: string, domain: string, comments: string) {
-        try {
-            const response = await RequestsService.createRequest(title, domain, comments)
-        } catch (error) {
-            if(error instanceof Error) {
-                console.log(error.message)
-            }
-            else console.log('Unexpected error', error)
-        }
-    }
-
     async getMyRequests() {
         try {
             const response = await RequestsService.getMyRequests()

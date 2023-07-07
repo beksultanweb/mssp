@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styles from "./styles.module.scss"
 import Layout from "../../components/Layout"
-import { Header } from "../../components/Header"
+import Header from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Link, graphql } from "gatsby"
 import Arrow from "../../assets/icons/arrow"

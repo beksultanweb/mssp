@@ -109,11 +109,11 @@
     }
     &__item {
         border-radius: 30px;
-        display: flex;
+        display: grid;
+        grid-template-columns: max-content 30% max-content max-content;
         padding: 21px 78px 21px 79px;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
         background-color: $secondary-white;
     }
     &__btn {

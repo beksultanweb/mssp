@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Header } from "../../components/Header"
+import Header from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import styles from "./styles.module.scss"
 import Layout from "../../components/Layout"

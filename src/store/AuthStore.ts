@@ -10,6 +10,7 @@ export class AuthStore {
     user = {} as IUser
     isAuth = false
     isLoading = false
+    error = ''
 
     constructor() {
         makeAutoObservable(this)
@@ -23,36 +24,12 @@ export class AuthStore {
         this.user = user
     }
 
+    setError(error: string) {
+        this.error = error
+    }
+
     setLoading(bool: boolean) {
         this.isLoading = bool
-    }
-
-    async login(email: string, password: string) {
-        try {
-            const response = await AuthService.login(email, password)
-            localStorage.setItem('token', response.data.accessToken)
-            this.setAuth(true)
-            this.setUser(response.data.user)
-        } catch (error) {
-            if(error instanceof Error) {
-                console.log(error.message)
-            }
-            else console.log('Unexpected error', error)
-        }
-    }
-
-    async registration(email: string, password: string) {
-        try {
-            const response = await AuthService.registration(email, password)
-            localStorage.setItem('token', response.data.accessToken)
-            this.setAuth(true)
-            this.setUser(response.data.user)
-        } catch (error) {
-            if(error instanceof Error) {
-                console.log(error.message)
-            }
-            else console.log('Unexpected error', error)
-        }
     }
 
     async logout() {
@@ -63,9 +40,9 @@ export class AuthStore {
             this.setUser({} as IUser)
         } catch (error) {
             if(error instanceof Error) {
-                console.log(error.message)
+                this.setError(error.message)
             }
-            else console.log('Unexpected error', error)
+            else this.setError('Unexpected error')
         }
     }
 
@@ -78,9 +55,9 @@ export class AuthStore {
             this.setUser(response.data.user)
         } catch (error) {
             if(error instanceof Error) {
-                console.log(error.message)
+                this.setError(error.message)
             }
-            else console.log('Unexpected error', error)
+            else this.setError('Unexpected error')
         } finally {
             this.setLoading(false)
         }

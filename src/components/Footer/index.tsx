@@ -58,14 +58,14 @@ export const Footer = ({theme} :{theme?: string}) => {
                     </div>
                     <div className={styles.routes}>
                         {routeElements.map(route => (
-                            <Link to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
+                            <Link key={route.url} to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
                         ))}
                         <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</div>
                         <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</div>
                     </div>
                     <div className={styles.routes}>
                     {data.allWpCategory.edges.map((el: any) => (
-                        <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{el.node.name}</div>
+                        <div key={el.node.name} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{el.node.name}</div>
                     ))}
                     </div>
                 </nav>

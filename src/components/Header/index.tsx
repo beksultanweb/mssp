@@ -6,9 +6,11 @@ import Arrow from "../../assets/icons/arrow"
 import Layout from "../Layout"
 import styles from "./styles.module.scss"
 import {RemoveScroll} from 'react-remove-scroll';
-import AuthComponent from "../AuthComponent"
+import AuthComponent from "../Modal"
 import {observer, inject} from "mobx-react"
 import { AuthStore } from "../../store/AuthStore"
+import Login from "../Modal/Login"
+import Register from "../Modal/Register"
 
 type HeaderProps = {
     theme: string
@@ -17,38 +19,48 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
+    const [loginOpen, setloginOpen] = useState(false)
+    const [registerOpen, setRegisterOpen] = useState(false)
     const [userDropdownOpen, setUserDropdownOpen] = useState(false)
 
     const handleMenuOpen = () => {
         setIsOpen(!isOpen)
     }
 
-    const handleModalOpen = () => {
-        setModalOpen(!modalOpen)
+    const handleloginOpen = () => {
+        setloginOpen(!loginOpen)
+    }
+
+    const handleRegisterOpen = () => {
+        setRegisterOpen(!registerOpen)
     }
 
     useEffect(() => {
         if(authStore?.isAuth) {
-            setModalOpen(false)
             navigate('/profile')
         }
     }, [authStore?.isAuth])
+
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+            authStore?.checkAuth()
+        }
+    }, [])
 
     const handleUserDropdownOpen = () => {
         setUserDropdownOpen(!userDropdownOpen)
     }
 
     return (
-        <RemoveScroll enabled={isOpen || modalOpen}>
+        <RemoveScroll enabled={isOpen || loginOpen || registerOpen}>
             <Layout>
                 <header>
                     <div className={styles.nav}>
                         <Link className={styles.logo} to={"/"}><Logo theme={isOpen ? 'light' : theme}/></Link>
                         <div className={`${isOpen ? styles.mobile__menu_open : ''} ${styles.mobile__menu}`}>
-                            {isOpen && <Link onClick={handleModalOpen} className={styles.link_open} to="">Профиль</Link>}
+                            {isOpen && <Link onClick={handleloginOpen} className={styles.link_open} to="">Профиль</Link>}
                         {routeElements.map(route => (
-                            <Link className={`${theme === 'light' ? styles.light : ''} ${isOpen ? styles.link_open : styles.link}`} to={route.url}>{isOpen && route.text[0].toUpperCase()}{isOpen ? route.text.slice(1) : route.text}</Link>
+                            <Link key={route.url} className={`${theme === 'light' ? styles.light : ''} ${isOpen ? styles.link_open : styles.link}`} to={route.url}>{isOpen && route.text[0].toUpperCase()}{isOpen ? route.text.slice(1) : route.text}</Link>
                         ))}
                         </div>
                     </div>
@@ -58,11 +70,12 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                             <button onClick={() => authStore?.logout()} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}
-                    {!authStore?.isAuth && <button onClick={handleModalOpen} className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`}>Войти<Arrow theme={theme}/></button>}
+                    {!authStore?.isAuth && <button onClick={handleloginOpen} className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`}>Войти<Arrow theme={theme}/></button>}
                     <button onClick={handleMenuOpen} className={`${theme === 'light' ? styles.light : styles.dark} ${isOpen ? styles.mobile__burger_open : styles.mobile__burger}`}>{!isOpen && 'Меню'}<Arrow theme={theme === 'light' ? 'dark' : 'light'}/></button>
                 </header>
             </Layout>
-            {modalOpen && <AuthComponent type="Auth" close={handleModalOpen}/>}
+            {loginOpen && <Login setRegisterOpen={handleRegisterOpen} close={handleloginOpen}/>}
+            {registerOpen && <Register setLoginOpen={handleloginOpen} close={handleRegisterOpen}/>}
         </RemoveScroll>
     )
 }

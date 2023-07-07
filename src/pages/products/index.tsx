@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import type { HeadFC, PageProps } from "gatsby"
-import { Header } from "../../components/Header"
+import Header from "../../components/Header"
 import Layout from "../../components/Layout"
 import styles from "./styles.module.scss"
 import { useStaticQuery, graphql, Link } from "gatsby"

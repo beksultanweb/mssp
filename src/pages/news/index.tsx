@@ -1,10 +1,12 @@
-import React, { useState } from "react"
-import styles from "./styles.module.scss"
-import Layout from "../../components/Layout"
-import Header from "../../components/Header"
-import { Footer } from "../../components/Footer"
-import { Link, graphql } from "gatsby"
-import Arrow from "../../assets/icons/arrow"
+import { Link, graphql } from 'gatsby'
+import React, { useState } from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import { Footer } from '../../components/Footer'
+import Header from '../../components/Header'
+import Layout from '../../components/Layout'
 
 export const query = graphql`query MyQuery {
     allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "news"}}}}}) {

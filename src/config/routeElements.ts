@@ -1,18 +1,18 @@
 export const routeElements = [
   {
-    text: "продукты и услуги",
-    url: "/products"
+    text: 'продукты и услуги',
+    url: '/products'
   },
   {
-    text: "о нас",
-    url: "/about"
+    text: 'о нас',
+    url: '/about'
   },
   {
-    text: "новости",
-    url: "/news"
+    text: 'новости',
+    url: '/news'
   },
   {
-    text: "контакты",
-    url: "/contacts"
+    text: 'контакты',
+    url: '/contacts'
   }
 ]

@@ -1,16 +1,21 @@
-import React from "react"
-import Modal from "."
-import styles from "./styles.module.scss"
-import Arrow from "../../assets/icons/arrow"
-import { inject, observer } from "mobx-react"
-import { AuthStore } from "../../store/AuthStore"
-import info from "../../assets/icons/info-circle.svg"
-import AuthService from "../../services/auth"
+import axios from 'axios'
+import { navigate } from 'gatsby'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+
+import Modal from '.'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import info from '../../assets/icons/info-circle.svg'
+import AuthService from '../../services/auth'
+import { AuthStore } from '../../store/AuthStore'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-const Login = ({close, setRegisterOpen, authStore}: {close: () => void, setRegisterOpen: () => void, authStore?: AuthStore}) => {
+const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setRegisterOpen: () => void, authStore?: AuthStore}) => {
     const emailRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
     const errRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
 
@@ -65,14 +70,16 @@ const Login = ({close, setRegisterOpen, authStore}: {close: () => void, setRegis
             localStorage.setItem('token', response.data.accessToken)
             authStore?.setAuth(true)
             authStore?.setUser(response.data.user)
+            close()
+            navigate('/profile')
         } catch (error) {
-            if(error instanceof Error) {
-                setErrMsg(error.message)
+            if(axios.isAxiosError(error) && error.response) {
+                console.log(error.response)
+                setErrMsg(error.response.data.message)
             }
             else setErrMsg('Unexpected error')
             errRef.current && errRef.current.focus()
         }
-        close()
     }
 
     return (

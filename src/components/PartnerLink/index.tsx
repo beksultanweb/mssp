@@ -1,8 +1,10 @@
-import React from "react"
-import Layout from "../Layout"
-import styles from "./styles.module.scss"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
-import Arrow from "../../assets/icons/arrow"
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import Layout from '../Layout'
 
 interface PartnerLinkProps {
     image: IGatsbyImageData
@@ -13,7 +15,7 @@ interface PartnerLinkProps {
   }
 
 const PartnerLink = (props: PartnerLinkProps) => {
-    const {image, title, description, link, btn} = props
+    const { image, title, description, link, btn } = props
     return (
         <Layout>
             <div className={styles.partner}>

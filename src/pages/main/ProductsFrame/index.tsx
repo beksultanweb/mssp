@@ -1,12 +1,14 @@
-import React, {useEffect, useRef, useState} from "react"
-import Layout from "../../../components/Layout"
-import Arrow from "../../../assets/icons/arrow"
-import arrow from "../../../assets/icons/Arrow.svg"
-import styles from "./styles.module.scss"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React, { useEffect, useRef, useState } from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import arrow from '../../../assets/icons/Arrow.svg'
+import Layout from '../../../components/Layout'
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -74,10 +76,10 @@ const ProductsFrame = () => {
         const element = ref.current
         const text = textRef.current
         gsap.fromTo(element,
-            { y: 0}, { y: -600, scrollTrigger: {
+            { y: 0 }, { y: -600, scrollTrigger: {
                 trigger: element,
-                start: "top bottom",
-                end: "top top",
+                start: 'top bottom',
+                end: 'top top',
                 scrub: true
             } })
         // gsap.fromTo(text,
@@ -114,7 +116,7 @@ const ProductsFrame = () => {
                 }
             })}
             </div>
-            <div className={styles.tabs__content} style={{transform: `translateX(${offset}px)`}}>
+            <div className={styles.tabs__content} style={{ transform: `translateX(${offset}px)` }}>
                 <StaticImage className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
                 {categoryData.map((post: any) =>
                     <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
@@ -125,7 +127,7 @@ const ProductsFrame = () => {
                 )}
             </div>
             <div className={styles.tabs__navigation}>
-                <img style={{transform: 'rotate(180deg)'}} src={arrow} onClick={handleLeftSlider} alt="" />
+                <img style={{ transform: 'rotate(180deg)' }} src={arrow} onClick={handleLeftSlider} alt="" />
                 <img src={arrow} onClick={handleRightSlider} alt="" />
             </div>
         </Layout>

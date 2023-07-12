@@ -1,15 +1,19 @@
-import React from "react"
-import styles from "./styles.module.scss"
-import Arrow from "../../assets/icons/arrow"
-import { inject, observer } from "mobx-react"
-import Modal from "."
-import { RequestsStore } from "../../store/RequestsStore"
-import info from "../../assets/icons/info-circle.svg"
-import RequestsService from "../../services/requests"
+import axios from 'axios'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
+
+import Modal from '.'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import info from '../../assets/icons/info-circle.svg'
+import RequestsService from '../../services/requests'
+import { RequestsStore } from '../../store/RequestsStore'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
-const CreateRequest = ({close, requestsStore}: {close: () => void, requestsStore?: RequestsStore}) => {
+const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsStore?: RequestsStore}) => {
     const emailRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
 
     const [domain, setDomain] = React.useState('')
@@ -43,8 +47,9 @@ const CreateRequest = ({close, requestsStore}: {close: () => void, requestsStore
         try {
             const response = await RequestsService.createRequest(service, domain, phone)
         } catch (error) {
-            if(error instanceof Error) {
-                setErrMsg(error.message)
+            if(axios.isAxiosError(error) && error.response) {
+                console.log(error.response)
+                setErrMsg(error.response.data.message)
             }
             else setErrMsg('Unexpected error')
         }

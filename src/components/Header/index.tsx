@@ -1,18 +1,21 @@
-import React, {useState, useEffect} from "react"
-import { Link, navigate } from "gatsby"
-import { routeElements } from "../../config/routeElements"
-import Logo from "../../assets/icons/logo"
-import Arrow from "../../assets/icons/arrow"
-import Layout from "../Layout"
-import styles from "./styles.module.scss"
-import {RemoveScroll} from 'react-remove-scroll';
-import AuthComponent from "../Modal"
-import {observer, inject} from "mobx-react"
-import { AuthStore } from "../../store/AuthStore"
-import Login from "../Modal/Login"
-import Register from "../Modal/Register"
+import { Link, navigate } from 'gatsby'
+import { observer, inject } from 'mobx-react'
+import React, { useState, useEffect } from 'react'
 
-type HeaderProps = {
+import { RemoveScroll } from 'react-remove-scroll';
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import Logo from '../../assets/icons/logo'
+import { routeElements } from '../../config/routeElements'
+import { AuthStore } from '../../store/AuthStore'
+import Layout from '../Layout'
+
+import Login from '../Modal/Login'
+import Register from '../Modal/Register'
+
+interface HeaderProps {
     theme: string
     authStore?: AuthStore
 }
@@ -35,20 +38,13 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
         setRegisterOpen(!registerOpen)
     }
 
-    useEffect(() => {
-        if(authStore?.isAuth) {
-            navigate('/profile')
-        }
-    }, [authStore?.isAuth])
-
-    useEffect(() => {
-        if(localStorage.getItem('token')) {
-            authStore?.checkAuth()
-        }
-    }, [])
-
     const handleUserDropdownOpen = () => {
         setUserDropdownOpen(!userDropdownOpen)
+    }
+
+    const handleQuit = () => {
+        authStore?.logout()
+        navigate('/')
     }
 
     return (
@@ -56,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
             <Layout>
                 <header>
                     <div className={styles.nav}>
-                        <Link className={styles.logo} to={"/"}><Logo theme={isOpen ? 'light' : theme}/></Link>
+                        <Link className={styles.logo} to={'/'}><Logo theme={isOpen ? 'light' : theme}/></Link>
                         <div className={`${isOpen ? styles.mobile__menu_open : ''} ${styles.mobile__menu}`}>
                             {isOpen && <Link onClick={handleloginOpen} className={styles.link_open} to="">Профиль</Link>}
                         {routeElements.map(route => (
@@ -67,7 +63,8 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                     {authStore?.isAuth && <div className={`${theme === 'light' ? styles.light : ''} ${styles.user}`} onClick={handleUserDropdownOpen}>
                         {authStore?.user.email}
                         {userDropdownOpen && <div className={styles.logout}>
-                            <button onClick={() => authStore?.logout()} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
+                            <Link to='/profile'><button className={styles.logout__btn}>В личный кабинет<Arrow theme='light'/></button></Link>
+                            <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}
                     {!authStore?.isAuth && <button onClick={handleloginOpen} className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`}>Войти<Arrow theme={theme}/></button>}

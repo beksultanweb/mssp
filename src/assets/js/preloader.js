@@ -1,12 +1,12 @@
-var body = document.querySelector("body");
+var body = document.querySelector('body');
 document.onreadystatechange = function () {
-  animateValue(".preloader_calculation", 1, 100, 1000);
-  if (document.readyState === "complete") {
-    body.style.overflow = "hidden"
+  animateValue('.preloader_calculation', 1, 100, 1000);
+  if (document.readyState === 'complete') {
+    body.style.overflow = 'hidden'
     setTimeout(function () {
       document.querySelector('.preloader').style.height = 0
       document.querySelector('.preloader').style.paddingTop = 0
-      body.style.overflow = "visible"
+      body.style.overflow = 'visible'
     }, 1500);
   }
 };

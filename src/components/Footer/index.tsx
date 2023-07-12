@@ -1,17 +1,20 @@
-import React from "react"
-import { Link } from "gatsby"
-import { routeElements } from "../../config/routeElements"
-import Logo from "../../assets/icons/logo"
-import Instagram from "../../assets/icons/instagram.svg"
-import FbIcon from "../../assets/icons/fb.svg"
-import Linkedin from "../../assets/icons/linkedin.svg"
-import InstagramDark from "../../assets/icons/instagram-dark.svg"
-import FbIconDark from "../../assets/icons/fb-dark.svg"
-import LinkedinDark from "../../assets/icons/linkedin-dark.svg"
-import Layout from "../Layout"
-import styles from "./styles.module.scss"
-import {graphql, useStaticQuery} from "gatsby"
-import { ITheme } from "../../types/ITheme"
+import { Link } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import FbIconDark from '../../assets/icons/fb-dark.svg'
+import FbIcon from '../../assets/icons/fb.svg'
+import InstagramDark from '../../assets/icons/instagram-dark.svg'
+import Instagram from '../../assets/icons/instagram.svg'
+import LinkedinDark from '../../assets/icons/linkedin-dark.svg'
+import Linkedin from '../../assets/icons/linkedin.svg'
+import Logo from '../../assets/icons/logo'
+import { routeElements } from '../../config/routeElements'
+import { ITheme } from '../../types/ITheme'
+import Layout from '../Layout'
+
 
 const query = graphql`
 {
@@ -35,7 +38,7 @@ const query = graphql`
     }
 }`
 
-export const Footer = ({theme} :{theme?: string}) => {
+export const Footer = ({ theme } :{theme?: string}) => {
     const data = useStaticQuery(query)
     return (
         <footer className={`${theme === 'light' ? styles.light : ''}`}>

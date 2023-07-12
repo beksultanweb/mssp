@@ -1,12 +1,15 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Header from "../../components/Header"
-import { Footer } from "../../components/Footer"
-import styles from "./styles.module.scss"
-import Layout from "../../components/Layout"
-import { SimilarHead } from "../../components/AdditionalTitle"
-import { NewsBox } from "../../components/NewsBox"
-import Arrow from "../../assets/icons/arrow"
+import { graphql } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import { SimilarHead } from '../../components/AdditionalTitle'
+import { Footer } from '../../components/Footer'
+import Header from '../../components/Header'
+
+import Layout from '../../components/Layout'
+import { NewsBox } from '../../components/NewsBox'
 
 export const query = graphql`
 query MyQuery($title: String) {
@@ -90,8 +93,8 @@ interface ProductPageProps {
     }
 }
 
-const NewsItem = ({data}: ProductPageProps) => {
-    const {title, date, news, author, content} = data.wpPost
+const NewsItem = ({ data }: ProductPageProps) => {
+    const { title, date, news, author, content } = data.wpPost
     const newsData = data.allWpPost.edges.map((edge: any) => edge.node)
     return (
         <section className={styles.news}>
@@ -109,7 +112,7 @@ const NewsItem = ({data}: ProductPageProps) => {
                     <div className={styles.news__date}>{news.newsReadTime}</div>
                 </div>
                 <img src={news.newsImg.sourceUrl} className={styles.main__img} alt="" />
-                <div className={styles.content} dangerouslySetInnerHTML={{__html: content}}></div>
+                <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }}></div>
                 <SimilarHead theme="light" title="Похожие новости" buttonTxt="Все новости"/>
                 <NewsBox data={newsData}/>
                 <button className={styles.btn}>Все новости<Arrow theme="light"/></button>

@@ -1,7 +1,8 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import { IGatsbyImageData, getImage } from "gatsby-plugin-image"
-import PartnerLink from "../../../components/PartnerLink"
+import { graphql, useStaticQuery } from 'gatsby'
+import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
+import React from 'react'
+
+import PartnerLink from '../../../components/PartnerLink'
 
 const query = graphql`
 {
@@ -34,7 +35,7 @@ interface PartnerLinkProps {
 
 const PartnerLinkFrame = () => {
   const data: PartnerLinkProps = useStaticQuery(query)
-  const {additionalImg, additionalTitle, additionalDescr, additionalBtn, additionalLink} = data.wpPage.Additional_resources
+  const { additionalImg, additionalTitle, additionalDescr, additionalBtn, additionalLink } = data.wpPage.Additional_resources
   const image = getImage(additionalImg)
   return (
       image ? <PartnerLink image={image} title={additionalTitle} description={additionalDescr} link={additionalLink} btn={additionalBtn}/>

@@ -1,7 +1,9 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import styles from "./styles.module.scss"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Layout from '../../../components/Layout'
 
 const query = graphql`
 query {
@@ -19,7 +21,7 @@ query {
 
 const ResultsFrame = () => {
     const data = useStaticQuery(query)
-    const {aboutNumber1, aboutNumber2, aboutNumber3, aboutNumber4, aboutTitle, aboutSubtitle} = data.wpPage.Company_numbers
+    const { aboutNumber1, aboutNumber2, aboutNumber3, aboutNumber4, aboutTitle, aboutSubtitle } = data.wpPage.Company_numbers
     const number1 = aboutNumber1.split(' ')[0]
     const number1others = aboutNumber1.slice(aboutNumber1.indexOf(' '), aboutNumber1.length)
     const number2 = aboutNumber2.split(' ')[0]

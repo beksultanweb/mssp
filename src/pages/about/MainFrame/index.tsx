@@ -1,7 +1,9 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import aboutImage from "../../../assets/images/about-main.jpg"
-import styles from "./styles.module.scss"
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import aboutImage from '../../../assets/images/about-main.jpg'
+import Layout from '../../../components/Layout'
 
 const MainFrame = () => {
   return (

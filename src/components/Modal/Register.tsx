@@ -1,21 +1,22 @@
-import React, { FormEvent } from "react"
-import styles from "./styles.module.scss"
-import Arrow from "../../assets/icons/arrow"
-import { inject, observer } from "mobx-react"
-import { AuthStore } from "../../store/AuthStore"
-import requestsStore from "../../store/RequestsStore"
-import Modal from "."
-import info from "../../assets/icons/info-circle.svg"
-import AuthService from "../../services/auth"
+import axios from 'axios'
+import { inject, observer } from 'mobx-react'
+import React, { FormEvent } from 'react'
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/
+import Modal from '.'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import info from '../../assets/icons/info-circle.svg'
+import AuthService from '../../services/auth'
+import { AuthStore } from '../../store/AuthStore'
+
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^(?!$)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 
-const Register = ({close, authStore, setLoginOpen}: {close: () => void, authStore?: AuthStore, setLoginOpen: () => void}) => {
+const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authStore?: AuthStore, setLoginOpen: () => void}) => {
     const firstNameRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
-    const errRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
 
     const [email, setEmail] = React.useState('')
     const [validEmail, setValidEmail] = React.useState(false)
@@ -81,17 +82,17 @@ const Register = ({close, authStore, setLoginOpen}: {close: () => void, authStor
             localStorage.setItem('token', response.data.accessToken)
             setSuccess(true)
         } catch (error) {
-            if(error instanceof Error) {
-                setErrMsg(error.message)
+            if(axios.isAxiosError(error) && error.response) {
+                console.log(error.response)
+                setErrMsg(error.response.data.message)
             }
-            else setErrMsg('Unexpected error')
-            errRef.current && errRef.current.focus()
+            else setErrMsg('Неопознанная ошибка, обратитесь к администратору сайта')
         }
     }
 
     return (
         <Modal title="Регистрация" subtitle="Для того чтобы отслеживать статус вашей заявки, необходимо зарегистрироваться." close={close}>
-            <p ref={errRef} className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
+            <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <p className={success ? styles.success : styles.offscreen}>
                 Регистрация прошла успешно! Можете <span className={styles.span} onClick={handleSwithchToLogin}>войти в личный кабинет</span>.
             </p>

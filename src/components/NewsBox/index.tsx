@@ -1,10 +1,12 @@
-import React from "react"
-import { INews } from "../../types/INews"
-import styles from "./styles.module.scss"
-import {Link} from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import React from 'react'
 
-export const NewsBox = ({data}: {data: INews[]}) => {
+import styles from './styles.module.scss'
+
+import { INews } from '../../types/INews'
+
+export const NewsBox = ({ data }: {data: INews[]}) => {
     return (
         <div className={styles.news}>
             {data.map((post) => {

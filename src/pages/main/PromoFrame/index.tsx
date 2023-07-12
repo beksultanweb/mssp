@@ -1,10 +1,12 @@
-import React from "react"
-import Arrow from "../../../assets/icons/arrow"
-import Layout from "../../../components/Layout"
-import styles from "./styles.module.scss"
-import productStyles from "../ProductsFrame/styles.module.scss"
-import {graphql, useStaticQuery} from "gatsby"
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from 'gatsby'
+import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import Layout from '../../../components/Layout'
+import productStyles from '../ProductsFrame/styles.module.scss'
 
 const query = graphql`
 {
@@ -37,7 +39,7 @@ interface PromoProps {
 
 const PromoFrame = () => {
     const data: PromoProps = useStaticQuery(query)
-    const {promoTitle, promoSubtitle, promoBtn, promoLink, promoImg} = data.wpPage.promo
+    const { promoTitle, promoSubtitle, promoBtn, promoLink, promoImg } = data.wpPage.promo
     const image = getImage(promoImg)
 
     return (

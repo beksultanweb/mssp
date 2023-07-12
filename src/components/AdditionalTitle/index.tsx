@@ -1,8 +1,10 @@
-import React from "react"
-import styles from "./styles.module.scss"
-import Arrow from "../../assets/icons/arrow"
+import React from 'react'
 
-export const SimilarHead = ({title, buttonTxt, order, theme}: {title: string, buttonTxt: string, order?: string, theme?: string}) => {
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+
+export const SimilarHead = ({ title, buttonTxt, order, theme }: {title: string, buttonTxt: string, order?: string, theme?: string}) => {
     return (
         <div className={styles.container}>
             <div>

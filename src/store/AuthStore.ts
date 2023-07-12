@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { makeAutoObservable } from 'mobx'
+
 import { API_URL } from '../http'
+import AuthService from '../services/auth'
 import { AuthResponse } from '../types/AuthResponse'
 import { IUser } from '../types/IUser'
-import AuthService from '../services/auth'
 
 
 export class AuthStore {

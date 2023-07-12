@@ -1,34 +1,49 @@
-import React from "react"
-import styles from "./styles.module.scss"
-import Header from "../../components/Header"
-import { Footer } from "../../components/Footer"
-import Layout from "../../components/Layout"
-import Arrow from "../../assets/icons/arrow"
-import download from "../../assets/icons/download.svg"
-import { navigate } from "gatsby"
-import { AuthModel } from "../../store/AuthStore"
-import { inject, observer } from "mobx-react"
+import { PageProps, navigate } from 'gatsby'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
-const Request = ({store}: {store: AuthModel}) => {
-    if(!store.isAuth) {
-        navigate("/")
-        return null
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import download from '../../assets/icons/download.svg'
+import { Footer } from '../../components/Footer'
+import Header from '../../components/Header'
+import Layout from '../../components/Layout'
+import { AuthStore } from '../../store/AuthStore'
+import { RequestsStore } from '../../store/RequestsStore'
+
+interface ProfileProps extends PageProps {
+    authStore: AuthStore
+    requestsStore: RequestsStore
+}
+
+const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+    if(!authStore.isAuth) {
+        navigate('/')
     }
+
+    React.useEffect(() => {
+        location.state &&
+        requestsStore.getRequest(location.state.requestId)
+    }, [requestsStore.request])
+
+    const { title, status, paid } = requestsStore.request
+
     return (
         <section className={styles.profile}>
             <Header theme="light"/>
             <Layout>
                 <div className={styles.flex}>
                     <div>
-                        <h2 className={styles.title}>Реагирование на инциденты информационной безопасности</h2>
+                        <h2 className={styles.title}>{title}</h2>
                         <div className={styles.request__status}>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус заявки</div>
-                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${styles.circle__doing}`}></div>в работе</div>
+                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{status}</div>
                             </div>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус оплаты</div>
-                                <div className={styles.title}>Оплачен</div>
+                                <div className={styles.title}>{paid === false ? 'Не оплачен' : 'Оплачен'}</div>
                             </div>
                         </div>
                     </div>
@@ -67,4 +82,4 @@ const Request = ({store}: {store: AuthModel}) => {
     )
 }
 
-export default inject('store')(observer(Request))
+export default inject('authStore', 'requestsStore')(observer(Request))

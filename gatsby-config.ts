@@ -1,4 +1,4 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   // siteMetadata: {
@@ -10,56 +10,57 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   // graphqlTypegen: true,
   plugins: [{
-    resolve: "gatsby-plugin-sass",
+    resolve: 'gatsby-plugin-sass',
     options: {
-      sassOptions: {
-        includePaths: ['src'],
-      },
       cssLoaderOptions: {
-        esModule: false,
+        importLoaders: 2,
         modules: {
+          mode: 'local',
           namedExport: false
         }
       },
-    },
-  }, "gatsby-plugin-image", "gatsby-transformer-sharp", {
-    resolve: `gatsby-source-wordpress`,
+      sassOptions: {
+        includePaths: ['src']
+      }
+    }
+  }, 'gatsby-plugin-image', 'gatsby-transformer-sharp', {
+    resolve: 'gatsby-source-wordpress',
       options: {
         url:
           process.env.WPGRAPHQL_URL ||
-          `http://localhost/wp/graphql`,
-      },
+          'http://localhost/wp/graphql'
+      }
   }, {
-    resolve: `gatsby-plugin-sharp`,
+    resolve: 'gatsby-plugin-sharp',
     options: {
       defaults: {
-        formats: [`webp`],
-        placeholder: `dominantColor`,
+        formats: ['webp'],
+        placeholder: 'dominantColor',
         quality: 50,
         breakpoints: [750, 1080, 1366, 1920],
-        backgroundColor: `transparent`,
+        backgroundColor: 'transparent',
         tracedSVGOptions: {},
         blurredOptions: {},
         jpgOptions: {},
         pngOptions: {},
         webpOptions: {},
-        avifOptions: {},
+        avifOptions: {}
       }
     }
   }, {
-    resolve: `gatsby-source-filesystem`,
+    resolve: 'gatsby-source-filesystem',
     options: {
-      name: `pages`,
-      path: `${__dirname}/src/pages/`,
-    },
+      name: 'pages',
+      path: `${__dirname}/src/pages/`
+    }
   }, {
-    resolve: `gatsby-plugin-typescript`,
+    resolve: 'gatsby-plugin-typescript',
     options: {
       isTSX: true, // defaults to false
-      jsxPragma: `jsx`, // defaults to "React"
-      allExtensions: true, // defaults to false
-    },
-  },
+      jsxPragma: 'jsx', // defaults to "React"
+      allExtensions: true // defaults to false
+    }
+  }
   ]
 };
 

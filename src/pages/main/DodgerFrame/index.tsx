@@ -1,8 +1,10 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import styles from "./styles.module.scss"
-import Arrow from "../../../assets/icons/arrow"
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage } from 'gatsby-plugin-image'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import Layout from '../../../components/Layout'
 
 const DodgerFrame = () => {
     return (

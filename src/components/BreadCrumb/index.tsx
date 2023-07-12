@@ -1,6 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
-import styles from "./styles.module.scss"
+import { Link } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
 
 interface Props {
     parent: string
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const BreadCrumb = (props: Props) => {
-    const {parent, current, className} = props
+    const { parent, current, className } = props
 
     return (
         <div className={className}>

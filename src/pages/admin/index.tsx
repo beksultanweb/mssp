@@ -44,7 +44,7 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     // }
 
     React.useEffect(() => {
-        requestsStore.getMyRequests(authStore.user.id)
+        requestsStore.getAllRequests()
     }, [requestsStore.requests])
 
     const requests = requestsStore.requests.map(request => {
@@ -54,8 +54,9 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             <div className={styles.request__item}>
                 <div>{date}</div>
                 <div className={styles.request__title}>{request.title}</div>
+                <div>{request.domain}</div>
                 <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{request.status}</div>
-                <Link to={`${location.pathname + 'request'}`} state={{ requestId: request._id }}><button className={styles.request__btn}>Подробнее<Arrow theme="light"/></button></Link>
+                <Link to={`${location.pathname + 'update'}`} state={{ requestId: request._id }}><button className={styles.request__btn}>Редактировать<Arrow theme="light"/></button></Link>
             </div>
         </div>)})
 
@@ -66,7 +67,6 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
         <Layout>
             <div className={styles.flex}>
                 <div onClick={handleOpenedDropdown} className={styles.status__dropdown}>Статус <img src={arrow} alt="" /></div>
-                <button onClick={handleModalOpen} className={styles.btn}>Создать заявку<Arrow theme="dark"/></button>
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>

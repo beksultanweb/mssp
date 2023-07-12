@@ -1,10 +1,12 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import Arrow from "../../../assets/icons/arrow"
-import styles from "./styles.module.scss"
-import mainPhoto from "../../../assets/images/main3.png"
-import { graphql, useStaticQuery } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import mainPhoto from '../../../assets/images/main3.png'
+import Layout from '../../../components/Layout'
 
 const fetchMainBlockData = graphql`
 {

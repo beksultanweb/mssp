@@ -1,14 +1,17 @@
-import React, {useState} from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import Header from "../../components/Header"
-import Layout from "../../components/Layout"
-import styles from "./styles.module.scss"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import Arrow from "../../assets/icons/arrow"
-import { Footer } from "../../components/Footer"
-import transliterate from "@sindresorhus/transliterate"
-import { StaticImage } from "gatsby-plugin-image"
-import slugify from "slugify"
+import transliterate from '@sindresorhus/transliterate'
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import React, { useState } from 'react'
+import slugify from 'slugify'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import { Footer } from '../../components/Footer'
+import Header from '../../components/Header'
+import Layout from '../../components/Layout'
+
+import type { HeadFC, PageProps } from 'gatsby'
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -71,7 +74,7 @@ const ProductsPage: React.FC<PageProps> = () => {
             </div>
             <div className={styles.tabs__content}>
                 {categoryData.map((post: any) =>
-                    <Link to={`/products/${post.slug}`} className={styles.tabs__box}>
+                    <Link key={post.title} to={`/products/${post.slug}`} className={styles.tabs__box}>
                         <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
                         <div className={styles.tabs__title}>{post.title}</div>
                         <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>

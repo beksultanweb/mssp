@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from 'react'
+import { SVGProps } from 'react'
 
 interface ArrowProps extends SVGProps<SVGSVGElement> {
   theme?: string;
@@ -7,7 +7,7 @@ interface ArrowProps extends SVGProps<SVGSVGElement> {
 }
 
 const Arrow = (props: ArrowProps) => {
-  const {theme, rotate, ...svgProps} = props
+  const { theme, rotate, ...svgProps } = props
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"

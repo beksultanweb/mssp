@@ -1,10 +1,12 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import styles from "./styles.module.scss"
-import Arrow from "../../../assets/icons/arrow"
-import {graphql, useStaticQuery} from "gatsby"
-import { NewsBox } from "../../../components/NewsBox"
-import { SimilarHead } from "../../../components/AdditionalTitle"
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import { SimilarHead } from '../../../components/AdditionalTitle'
+import Layout from '../../../components/Layout'
+import { NewsBox } from '../../../components/NewsBox'
 
 const query = graphql`
 {

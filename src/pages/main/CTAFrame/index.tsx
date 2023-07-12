@@ -1,8 +1,10 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import Arrow from "../../../assets/icons/arrow"
-import styles from "./styles.module.scss"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../../assets/icons/arrow'
+import Layout from '../../../components/Layout'
 
 const query = graphql`
 {

@@ -1,9 +1,11 @@
-import React from "react"
-import Layout from "../../../components/Layout"
-import styles from "./styles.module.scss"
-import download from "../../../assets/icons/download.svg"
-import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import React from 'react'
+
+import styles from './styles.module.scss'
+
+import download from '../../../assets/icons/download.svg'
+import Layout from '../../../components/Layout'
 
 const query = graphql`
 query {
@@ -40,7 +42,7 @@ query {
 
 const AwardsFrame = () => {
   const data = useStaticQuery(query)
-  const {awardsTitle, awardsSubtitle, requisites, award1, award2, award3, award4, awardData1, awardData2, awardData3, awardData4, awardFile1, awardFile2, awardFile3, awardFile4} = data.wpPage.Awards
+  const { awardsTitle, awardsSubtitle, requisites, award1, award2, award3, award4, awardData1, awardData2, awardData3, awardData4, awardFile1, awardFile2, awardFile3, awardFile4 } = data.wpPage.Awards
   const award_img1 = getImage(awardFile1)
   const award_img2 = getImage(awardFile2)
   const award_img3 = getImage(awardFile3)
@@ -94,7 +96,7 @@ const AwardsFrame = () => {
               <h2 className={styles.requisites__title}>Наши реквизиты</h2>
               <p className={styles.requisites__text}>Вы можете скачать здесь информацию о реквизитах для получения подробной информации или для произведения оплаты.</p>
             </div>
-            <a style={{textDecoration: 'none'}} href={requisites.mediaItemUrl} download><button className={styles.requisites__btn}>Скачать  реквизиты<img src={download} alt="" /></button></a>
+            <a style={{ textDecoration: 'none' }} href={requisites.mediaItemUrl} download><button className={styles.requisites__btn}>Скачать  реквизиты<img src={download} alt="" /></button></a>
           </div>
         </Layout>
     </div>

@@ -1,16 +1,18 @@
-import React, { useState } from "react"
-import Layout from "../../components/Layout"
-import Header from "../../components/Header"
-import { Footer } from "../../components/Footer"
-import styles from "./styles.module.scss"
-import BreadCrumb from "../../components/BreadCrumb"
-import { graphql, Link } from "gatsby"
-import slugify from "slugify"
-import { PageProps } from "gatsby"
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
-import saveIcon from "../../assets/icons/download-light.svg"
-import Arrow from "../../assets/icons/arrow"
-import { SimilarHead } from "../../components/AdditionalTitle"
+import { graphql, Link } from 'gatsby'
+import { PageProps } from 'gatsby'
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
+import React, { useState } from 'react'
+import slugify from 'slugify'
+
+import styles from './styles.module.scss'
+
+import Arrow from '../../assets/icons/arrow'
+import saveIcon from '../../assets/icons/download-light.svg'
+import { SimilarHead } from '../../components/AdditionalTitle'
+import BreadCrumb from '../../components/BreadCrumb'
+import { Footer } from '../../components/Footer'
+import Header from '../../components/Header'
+import Layout from '../../components/Layout'
 
 export const query = graphql`
 query MyQuery($title: String, $parent: String) {
@@ -111,10 +113,10 @@ interface ProductPageProps {
     }
 }
 
-const Product = ({data}: ProductPageProps) => {
+const Product = ({ data }: ProductPageProps) => {
     const { title, content } = data.wpPost
     const parent = data.wpPost.categories.nodes[0].name
-    const {yearOfProduction, deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3} = data.wpPost.ServiceInformation
+    const { yearOfProduction, deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3 } = data.wpPost.ServiceInformation
     const separatedContent = content.split('<!--nextpage-->')
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.name === parent))
 
@@ -152,14 +154,14 @@ const Product = ({data}: ProductPageProps) => {
                 <span>/001</span>
                 <h2 className={styles.about_service__title}>О услуге</h2>
               </div>
-              <div className={styles.about_service__content} dangerouslySetInnerHTML={{__html: separatedContent[0]}}></div>
+              <div className={styles.about_service__content} dangerouslySetInnerHTML={{ __html: separatedContent[0] }}></div>
             </div>
             <div className={styles.about_service__advantages}>
               <div className={styles.about_service__advantage}><img src={iconAdvantage1.sourceUrl} alt="advantage" />{advantage1}</div>
               <div className={styles.about_service__advantage}><img src={iconAdvantage2.sourceUrl} alt="advantage" />{advantage2}</div>
               <div className={styles.about_service__advantage}><img src={iconAdvantage3.sourceUrl} alt="advantage" />{advantage3}</div>
             </div>
-            <div className={styles.about_service__content2} dangerouslySetInnerHTML={{__html: separatedContent[1]}}></div>
+            <div className={styles.about_service__content2} dangerouslySetInnerHTML={{ __html: separatedContent[1] }}></div>
           </Layout>
         </section>
         <section>
@@ -167,7 +169,7 @@ const Product = ({data}: ProductPageProps) => {
             <SimilarHead title="Похожие услуги" order="/002" buttonTxt="Все услуги"/>
             <div className={styles.tabs__like}>
             {categoryData.filter((post: any) => post.title !== title).map(post =>
-              <Link to={`/products/${slugify(post.title, { lower: true })}`} className={styles.tabs__box}>
+              <Link key={post.title} to={`/products/${slugify(post.title, { lower: true })}`} className={styles.tabs__box}>
                   <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
                   <div className={styles.tabs__title}>{post.title}</div>
                   <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>

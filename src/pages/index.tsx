@@ -1,21 +1,33 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import "./styles.module.scss"
-import MainFrame from "./main/MainFrame"
-import ProductsFrame from "./main/ProductsFrame"
-import { Footer } from "../components/Footer"
-import CTAFrame from "./main/CTAFrame"
-import MSSProductsFrame from "./main/MSSProductsFrame"
-import PenetrationTestFrame from "./main/PenetrationTestFrame"
-import PartnerLinkFrame from "./main/PartnerLinkFrame"
-import PartnerLinkFrame2 from "./main/PartnerLinkFrame2"
-import DodgerFrame from "./main/DodgerFrame"
-import ClientsFrame from "./main/ClientsFrame"
-import NewsFrame from "./main/NewsFrame"
-import Header from "../components/Header"
-import PromoFrame from "./main/PromoFrame"
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 
-const IndexPage: React.FC<PageProps> = () => {
+import './styles.module.scss'
+import ClientsFrame from './main/ClientsFrame'
+import CTAFrame from './main/CTAFrame'
+import DodgerFrame from './main/DodgerFrame'
+import MainFrame from './main/MainFrame'
+import MSSProductsFrame from './main/MSSProductsFrame'
+import NewsFrame from './main/NewsFrame'
+import PartnerLinkFrame from './main/PartnerLinkFrame'
+import PartnerLinkFrame2 from './main/PartnerLinkFrame2'
+import PenetrationTestFrame from './main/PenetrationTestFrame'
+import ProductsFrame from './main/ProductsFrame'
+import PromoFrame from './main/PromoFrame'
+
+import { Footer } from '../components/Footer'
+import Header from '../components/Header'
+import { AuthStore } from '../store/AuthStore'
+
+import type { HeadFC, PageProps } from 'gatsby'
+
+interface IndexProps extends PageProps {
+  authStore: AuthStore
+}
+
+const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
+  React.useEffect(() => {
+    authStore?.checkAuth()
+  }, [])
 
   return (
     <>
@@ -38,6 +50,6 @@ const IndexPage: React.FC<PageProps> = () => {
   )
 }
 
-export default IndexPage
+export default inject('authStore')(observer(IndexPage))
 
 export const Head: HeadFC = () => <title>Home Page</title>

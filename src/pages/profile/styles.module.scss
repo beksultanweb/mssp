@@ -128,21 +128,22 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    &__doing {
-        background-color: #00AE46;
-    }
-    &__new {
-        background-color: #0300A6;
-    }
-    &__done {
-        background-color: #DA00ED;
-    }
-    &__closed {
-        background-color: #000;
-    }
-    &__canceled {
-        background-color: #FF2E00;
-    }
+}
+
+.green {
+    background-color: #00AE46;
+}
+.blue {
+    background-color: #0300A6;
+}
+.fiolet {
+    background-color: #DA00ED;
+}
+.black {
+    background-color: #000;
+}
+.red {
+    background-color: #FF2E00;
 }
 
 @media (max-width: 1000px) {

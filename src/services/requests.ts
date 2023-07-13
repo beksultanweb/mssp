@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios'
 import $api from '../http'
 import { RequestsResponse } from '../types/RequestsResponse'
 import { UserInfoResponse } from '../types/UserInfoResponse'
+import { blob } from 'stream/consumers'
 
 export default class RequestsService {
     static async createRequest(title: string, domain: string, phone: string, comments?: string): Promise<AxiosResponse<RequestsResponse>> {
@@ -23,7 +24,10 @@ export default class RequestsService {
     static async updateStatus(requestId: number, status: string): Promise<AxiosResponse<RequestsResponse>> {
         return $api.post<RequestsResponse>(`/request/${requestId}`, { status })
     }
-    static async uplodadFiles(requestId: number, formData: FormData): Promise<AxiosResponse<RequestsResponse>> {
-        return $api.post<RequestsResponse>(`/upload/${requestId}`, { formData })
+    static async uploadFiles(requestId: number, data: FormData): Promise<AxiosResponse<RequestsResponse>> {
+        return $api.post<RequestsResponse>(`/upload/${requestId}`, data)
+    }
+    static async download(requestId: number, fileName: string): Promise<AxiosResponse<RequestsResponse>> {
+        return $api.get<RequestsResponse>('/download', { params: { requestId: requestId, fileName: fileName }, responseType: 'blob' })
     }
 }

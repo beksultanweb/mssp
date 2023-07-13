@@ -83,7 +83,6 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
             setSuccess(true)
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
-                console.log(error.response)
                 setErrMsg(error.response.data.message)
             }
             else setErrMsg('Неопознанная ошибка, обратитесь к администратору сайта')

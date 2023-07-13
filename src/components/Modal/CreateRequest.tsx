@@ -46,9 +46,9 @@ const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsSto
         e.preventDefault()
         try {
             const response = await RequestsService.createRequest(service, domain, phone)
+            setSuccess(true)
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
-                console.log(error.response)
                 setErrMsg(error.response.data.message)
             }
             else setErrMsg('Unexpected error')
@@ -58,6 +58,7 @@ const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsSto
     return (
         <Modal title="Заявка" subtitle="Предоставьте данные и следите за статусом заявки в Личном кабинете." close={close}>
             <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
+            <p className={success ? styles.success : styles.offscreen}>Успешно загружено</p>
             <form onSubmit={handleSubmit}>
                 <div className={styles.form__inputs}>
                     <input className={styles.input} value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" name="phone" placeholder="Номер телефона" />

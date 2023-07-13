@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { PageProps, navigate } from 'gatsby'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
@@ -9,8 +10,11 @@ import download from '../../assets/icons/download.svg'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+import RequestsService from '../../services/requests'
 import { AuthStore } from '../../store/AuthStore'
 import { RequestsStore } from '../../store/RequestsStore'
+import { API_URL } from '../../http'
+
 
 interface ProfileProps extends PageProps {
     authStore: AuthStore
@@ -18,6 +22,8 @@ interface ProfileProps extends PageProps {
 }
 
 const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+    const [errMsg, setErrMsg] = React.useState('')
+
     if(!authStore.isAuth) {
         navigate('/')
     }
@@ -25,10 +31,31 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     React.useEffect(() => {
         location.state &&
         requestsStore.getRequest(location.state.requestId)
-    }, [requestsStore.request])
+    }, [])
 
-    const { title, status, paid } = requestsStore.request
+    const { _id, title, status, paid, reports } = requestsStore.request
+    const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
 
+    const handleDownload = async (fileName: string) => {
+        try {
+            const response = await RequestsService.download(_id, fileName)
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            if(axios.isAxiosError(error) && error.response) {
+                setErrMsg(error.response.data.message)
+            }
+        }
+    }
+
+    if(!authStore.user.roles?.includes(2001)) {
+        navigate('/')
+        return null
+    }
     return (
         <section className={styles.profile}>
             <Header theme="light"/>
@@ -39,7 +66,7 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
                         <div className={styles.request__status}>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус заявки</div>
-                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{status}</div>
+                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${color} ${styles.circle__doing}`}></div>{status}</div>
                             </div>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус оплаты</div>
@@ -55,18 +82,12 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
                     <div className={styles.document__content}>
                         <h3 className={styles.document__title}>Документы</h3>
                         <div className={styles.document__flex}>
-                            <div className={styles.document__item}>
-                                <p>Отчет 1</p>
-                                <button className={styles.request__btn}>Скачать<img src={download} alt="" /></button>
-                            </div>
-                            <div className={styles.document__item}>
-                                <p>Отчет 1</p>
-                                <button className={styles.request__btn}>Скачать<img src={download} alt="" /></button>
-                            </div>
-                            <div className={styles.document__item}>
-                                <p>Отчет 1</p>
-                                <button className={styles.request__btn}>Скачать<img src={download} alt="" /></button>
-                            </div>
+                            {reports && reports.map(report => (
+                            <div key={report} className={styles.document__item}>
+                                <p>{report}</p>
+                                <a download onClick={() => handleDownload(report)} className={styles.request__btn}>Скачать<img src={download} alt="" /></a>
+                            </div>))}
+                            {errMsg && <div>{errMsg}</div>}
                         </div>
                     </div>
                 </Layout>

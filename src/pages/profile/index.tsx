@@ -39,27 +39,32 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             navigate('/')
         }
     }, [])
-    // if(!authStore.isAuth) {
-    //     navigate('/')
-    // }
+
+    React.useEffect(() => {
+        authStore.checkAuth()
+    }, [])
 
     React.useEffect(() => {
         requestsStore.getMyRequests(authStore.user.id)
     }, [requestsStore.requests])
 
-    const requests = requestsStore.requests.map(request => {
-        const date = new Date(request.date).toLocaleDateString()
+    const requests = requestsStore.requests.map(({ _id, date, status, title }) => {
+        const data = new Date(date).toLocaleDateString()
+        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
         return (
-        <div key={request.title} className={styles.request}>
+        <div key={title} className={styles.request}>
             <div className={styles.request__item}>
-                <div>{date}</div>
-                <div className={styles.request__title}>{request.title}</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{request.status}</div>
-                <Link to={`${location.pathname + 'request'}`} state={{ requestId: request._id }}><button className={styles.request__btn}>Подробнее<Arrow theme="light"/></button></Link>
+                <div>{data}</div>
+                <div className={styles.request__title}>{title}</div>
+                <div className={styles.status}><div className={`${styles.circle} ${color} ${styles.circle__doing}`}></div>{status}</div>
+                <Link to={`${location.pathname + 'request'}`} state={{ requestId: _id }}><button className={styles.request__btn}>Подробнее<Arrow theme="light"/></button></Link>
             </div>
         </div>)})
 
-
+    if(!authStore.user.roles?.includes(2001)) {
+        navigate('/')
+        return null
+    }
     return (
         <section className={styles.profile}>
         <Header theme="light"/>

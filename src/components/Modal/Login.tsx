@@ -71,10 +71,9 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
             authStore?.setAuth(true)
             authStore?.setUser(response.data.user)
             close()
-            navigate('/profile')
+            navigate(authStore?.user.roles?.includes(5150) ? '/admin' : '/profile')
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
-                console.log(error.response)
                 setErrMsg(error.response.data.message)
             }
             else setErrMsg('Unexpected error')

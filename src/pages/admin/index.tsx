@@ -39,28 +39,29 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             navigate('/')
         }
     }, [])
-    // if(!authStore.isAuth) {
-    //     navigate('/')
-    // }
 
     React.useEffect(() => {
         requestsStore.getAllRequests()
     }, [requestsStore.requests])
 
-    const requests = requestsStore.requests.map(request => {
-        const date = new Date(request.date).toLocaleDateString()
+    const requests = requestsStore.requests.map(({ date, _id, status, title, user, domain }) => {
+        const data = new Date(date).toLocaleDateString()
+        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
         return (
-        <div key={request.title} className={styles.request}>
+        <div key={title} className={styles.request}>
             <div className={styles.request__item}>
-                <div>{date}</div>
-                <div className={styles.request__title}>{request.title}</div>
-                <div>{request.domain}</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{request.status}</div>
-                <Link to={`${location.pathname + 'update'}`} state={{ requestId: request._id }}><button className={styles.request__btn}>Редактировать<Arrow theme="light"/></button></Link>
+                <div>{data}</div>
+                <div className={styles.request__title}>{title}</div>
+                <div>{domain}</div>
+                <div className={styles.status}><div className={`${styles.circle} ${color} ${styles.circle__doing}`}></div>{status}</div>
+                <Link to={`${location.pathname + 'update'}`} state={{ requestId: _id, author: user }}><button className={styles.request__btn}>Редактировать<Arrow theme="light"/></button></Link>
             </div>
         </div>)})
 
-
+    if(authStore.user.roles?.includes(5150) === false) {
+        navigate('/')
+        return null
+    }
     return (
         <section className={styles.profile}>
         <Header theme="light"/>

@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                     {authStore?.isAuth && <div className={`${theme === 'light' ? styles.light : ''} ${styles.user}`} onClick={handleUserDropdownOpen}>
                         {authStore?.user.email}
                         {userDropdownOpen && <div className={styles.logout}>
-                            <Link to='/profile'><button className={styles.logout__btn}>В личный кабинет<Arrow theme='light'/></button></Link>
+                            <Link to={authStore.user.roles?.includes(5150) ? '/admin' : '/profile'}><button className={styles.logout__btn}>В личный кабинет<Arrow theme='light'/></button></Link>
                             <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}

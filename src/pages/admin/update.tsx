@@ -22,19 +22,27 @@ interface ProfileProps extends PageProps {
 const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
     const [dropdownOpened, setDropdownOpened] = React.useState(false)
     const [fileData, setFileData] = React.useState<FileList | null>(null)
-
+    const [success, setSuccess] = React.useState('')
+    const [errMsg, setErrMsg] = React.useState('')
     // if(!authStore.isAuth) {
     //     navigate('/')
     // }
 
     React.useEffect(() => {
-        location.state &&
-        requestsStore.getRequest(location.state.requestId)
-        requestsStore.getUserInfo(requestsStore.request.user)
+        authStore.checkAuth()
+    }, [])
+
+    React.useEffect(() => {
+        if(location.state) {
+            requestsStore.getRequest(location.state.requestId)
+            requestsStore.getUserInfo(location.state.author)
+        }
     }, [requestsStore])
 
     const { title, status, paid, phone, domain } = requestsStore.request
     const { email, firstName, secondName } = requestsStore.user
+
+    const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
 
     const handleOpenedDropdown = () => {
         setDropdownOpened(!dropdownOpened)
@@ -51,23 +59,26 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if(fileData) {
-            const formData = new FormData()
+            const files = new FormData()
 
             for (let i = 0; i < fileData.length; i++) {
-                formData.append(fileData[i].name, fileData[i])
+                files.append(fileData[i].name, fileData[i])
             }
             try {
-                const response = await RequestsService.uplodadFiles(requestsStore.request._id, formData)
-                console.log(response)
+                const response = await RequestsService.uploadFiles(requestsStore.request._id, files)
+                setSuccess(response.data.message)
             } catch (error) {
                 if(axios.isAxiosError(error) && error.response) {
-                    console.log(error.response)
-                    // setErrMsg(error.response.data.message)
+                    setErrMsg(error.response.data.message)
                 }
             }
         }
     }
 
+    if(authStore.user.roles?.includes(5150) === false) {
+        navigate('/')
+        return null
+    }
     return (
         <section className={styles.profile}>
             <Header theme="light"/>
@@ -78,7 +89,7 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
                         <div className={styles.request__status}>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус заявки</div>
-                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${styles.circle__doing}`}></div>{status}</div>
+                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${color} ${styles.circle__doing}`}></div>{status}</div>
                             </div>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус оплаты</div>
@@ -126,6 +137,8 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
                                 <input type='file' onChange={fileChangeHandler} multiple className={styles.request__btn}/>
                                 <button>Загрузить<Arrow theme='dark'/></button>
                             </div>
+                            {errMsg && <div>{errMsg}</div>}
+                            {success && <div>{success} {fileData.length > 1 ? 'успешно загружены' : 'успешно загружен'}</div>}
                         </form>
                     </div>
                 </Layout>

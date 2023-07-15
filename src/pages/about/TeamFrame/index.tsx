@@ -23,26 +23,28 @@ const TeamFrame = () => {
 
   gsap.registerPlugin(MotionPathPlugin)
   useEffect(() => {
-    if(window.innerWidth > 600) {
-      bubblesRef.current.map((el: any, ind: number) => {
-        if(ind % 2) {
-          gsap.to(el, {
+    if(typeof window !== 'undefined') {
+      if(window.innerWidth > 600) {
+        bubblesRef.current.map((el: any, ind: number) => {
+          if(ind % 2) {
+            gsap.to(el, {
+              repeat: -1,
+              ease: 'none',
+              duration: 10,
+              motionPath: 'm 1.000003,76.015001 a 75.000001,75.000001 0 1 1 149.999997,0 75.000001,75.000001 0 1 1 -149.999997,0 m 74.999999,0'
+            })
+          }
+          else gsap.to(el, {
             repeat: -1,
             ease: 'none',
             duration: 10,
-            motionPath: 'm 1.000003,76.015001 a 75.000001,75.000001 0 1 1 149.999997,0 75.000001,75.000001 0 1 1 -149.999997,0 m 74.999999,0'
+            motionPath: 'M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
           })
-        }
-        else gsap.to(el, {
-          repeat: -1,
-          ease: 'none',
-          duration: 10,
-          motionPath: 'M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
         })
-      })
-    }
-    else {
-      gsap.set(bubblesRef.current[0], { x: 0, y: 100 })
+      }
+      else {
+        gsap.set(bubblesRef.current[0], { x: 0, y: 100 })
+      }
     }
   }, [])
 

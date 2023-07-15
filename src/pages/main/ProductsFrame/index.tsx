@@ -71,28 +71,30 @@ const ProductsFrame = () => {
 
     const ref = React.useRef(null)
     const textRef = React.useRef([])
-    gsap.registerPlugin(ScrollTrigger)
-    React.useEffect(() => {
-        const element = ref.current
-        const text = textRef.current
-        gsap.fromTo(element,
-            { y: 0 }, { y: -600, scrollTrigger: {
-                trigger: element,
-                start: 'top bottom',
-                end: 'top top',
-                scrub: true
-            } })
-        // gsap.fromTo(text,
-        //     { y: 100, opacity: 0 }, {
-        //     y: 0,
-        //     opacity: 1,
-        //     stagger: 0.2,
-        //     scrollTrigger: {
-        //         trigger: text,
-        //         start: "top bottom"
-        //     }
-        // })
-    }, [])
+    if(typeof window !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger)
+        React.useEffect(() => {
+            const element = ref.current
+            const text = textRef.current
+            gsap.fromTo(element,
+                { y: 0 }, { y: -600, scrollTrigger: {
+                    trigger: element,
+                    start: 'top bottom',
+                    end: 'top top',
+                    scrub: true
+                } })
+            // gsap.fromTo(text,
+            //     { y: 100, opacity: 0 }, {
+            //     y: 0,
+            //     opacity: 1,
+            //     stagger: 0.2,
+            //     scrollTrigger: {
+            //         trigger: text,
+            //         start: "top bottom"
+            //     }
+            // })
+        }, [])
+    }
 
     return (
         <section className={styles.products} ref={ref}>

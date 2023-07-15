@@ -3,7 +3,6 @@ import { AxiosResponse } from 'axios'
 import $api from '../http'
 import { RequestsResponse } from '../types/RequestsResponse'
 import { UserInfoResponse } from '../types/UserInfoResponse'
-import { blob } from 'stream/consumers'
 
 export default class RequestsService {
     static async createRequest(title: string, domain: string, phone: string, comments?: string): Promise<AxiosResponse<RequestsResponse>> {

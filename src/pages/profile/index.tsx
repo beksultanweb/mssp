@@ -32,7 +32,7 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     }
 
     React.useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
             authStore.checkAuth()
         }
         else {

@@ -14,6 +14,7 @@ import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
+
 export const query = graphql`
 query MyQuery($title: String, $parent: String) {
     allWpPost(filter: {categories: {nodes: {elemMatch: {name: {eq: $parent}}}}}) {
@@ -97,7 +98,7 @@ interface ProductPageProps {
                 advantage2: string
                 advantage3: string
                 presentation: {
-                  mediaItemUrl: string
+                  mediaItemUrl: any
                 }
                 deadlines: string
             }
@@ -117,7 +118,7 @@ const Product = ({ data }: ProductPageProps) => {
     const { title, content } = data.wpPost
     const parent = data.wpPost.categories.nodes[0].name
     const { yearOfProduction, deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3 } = data.wpPost.ServiceInformation
-    const separatedContent = content.split('<!--nextpage-->')
+    // const separatedContent = content.split('<!--nextpage-->')
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.name === parent))
 
     return(
@@ -141,7 +142,7 @@ const Product = ({ data }: ProductPageProps) => {
                     </div>
                   </div>
                   <div className={styles.top__btns}>
-                    <a href={presentation.mediaItemUrl} className={styles.a_download} download><button className={styles.btn}>Скачать презентацию <img src={saveIcon} alt="save" /></button></a>
+                    <a href={presentation?.mediaItemUrl} className={styles.a_download} download><button className={styles.btn}>Скачать презентацию <img src={saveIcon} alt="save" /></button></a>
                     <button className={styles.btn}>Консультация</button>
                   </div>
                 </div>
@@ -154,14 +155,14 @@ const Product = ({ data }: ProductPageProps) => {
                 <span>/001</span>
                 <h2 className={styles.about_service__title}>О услуге</h2>
               </div>
-              <div className={styles.about_service__content} dangerouslySetInnerHTML={{ __html: separatedContent[0] }}></div>
+              <div className={styles.about_service__content} dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
             <div className={styles.about_service__advantages}>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage1.sourceUrl} alt="advantage" />{advantage1}</div>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage2.sourceUrl} alt="advantage" />{advantage2}</div>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage3.sourceUrl} alt="advantage" />{advantage3}</div>
+              <div className={styles.about_service__advantage}><img src={iconAdvantage1?.sourceUrl} alt="advantage" />{advantage1}</div>
+              <div className={styles.about_service__advantage}><img src={iconAdvantage2?.sourceUrl} alt="advantage" />{advantage2}</div>
+              <div className={styles.about_service__advantage}><img src={iconAdvantage3?.sourceUrl} alt="advantage" />{advantage3}</div>
             </div>
-            <div className={styles.about_service__content2} dangerouslySetInnerHTML={{ __html: separatedContent[1] }}></div>
+            {/* <div className={styles.about_service__content2} dangerouslySetInnerHTML={{ __html: separatedContent[1] }}></div> */}
           </Layout>
         </section>
         <section>
@@ -170,7 +171,7 @@ const Product = ({ data }: ProductPageProps) => {
             <div className={styles.tabs__like}>
             {categoryData.filter((post: any) => post.title !== title).map(post =>
               <Link key={post.title} to={`/products/${slugify(post.title, { lower: true })}`} className={styles.tabs__box}>
-                  <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
+                  <img src={post.ServiceInformation.icon?.sourceUrl} alt="" />
                   <div className={styles.tabs__title}>{post.title}</div>
                   <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
               </Link>

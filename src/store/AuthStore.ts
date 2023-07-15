@@ -36,7 +36,7 @@ export class AuthStore {
     async logout() {
         try {
             const response = await AuthService.logout()
-            localStorage.removeItem('token')
+            if(typeof window !== 'undefined') localStorage.removeItem('token')
             this.setAuth(false)
             this.setUser({} as IUser)
         } catch (error) {
@@ -51,7 +51,7 @@ export class AuthStore {
         this.setLoading(true)
         try {
             const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true })
-            localStorage.setItem('token', response.data.accessToken)
+            if(typeof window !== 'undefined') localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {

@@ -39,12 +39,15 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     const handleDownload = async (fileName: string) => {
         try {
             const response = await RequestsService.download(_id, fileName)
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = fileName;
-            link.click();
-            window.URL.revokeObjectURL(url);
+            if(typeof window !== 'undefined') {
+                const url = window.URL.createObjectURL(new Blob([response.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.download = fileName
+                link.click()
+                window.URL.revokeObjectURL(url)
+            }
+
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
                 setErrMsg(error.response.data.message)

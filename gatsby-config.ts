@@ -27,7 +27,7 @@ const config: GatsbyConfig = {
     resolve: 'gatsby-source-wordpress',
       options: {
         url:
-          process.env.WPGRAPHQL_URL ||
+          process.env.WORDPRESS_URL ||
           'http://localhost/wp/graphql'
       }
   }, {

@@ -28,7 +28,7 @@ const config: GatsbyConfig = {
       options: {
         url:
           process.env.WORDPRESS_URL ||
-          'http://localhost/wp/graphql'
+          'http://195.49.215.125/wp/graphql'
       }
   }, {
     resolve: 'gatsby-plugin-sharp',

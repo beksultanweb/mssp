@@ -42,7 +42,7 @@
         font-weight: 800;
     }
     &__img {
-        display: none;
+        display: none !important;
         &_active {
             display: block;
             position: absolute !important;

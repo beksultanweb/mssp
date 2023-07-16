@@ -1,17 +1,18 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
 import styles from './styles.module.scss'
 
 import Layout from '../../../components/Layout'
 
+
 const query = graphql`
 {
     wpPage {
       clients {
         client1 {
-          sourceUrl
+            sourceUrl
         }
         client2 {
             sourceUrl
@@ -45,10 +46,10 @@ const ClientsFrame = () => {
                     </div>
                 </div>
                 <div className={styles.partners}>
-                    <img className={styles.partners__item} src={data.wpPage.clients.client1.sourceUrl} alt="img" />
-                    <img className={styles.partners__item} src={data.wpPage.clients.client2.sourceUrl} alt="img" />
-                    <img className={styles.partners__item} src={data.wpPage.clients.client3.sourceUrl} alt="img" />
-                    <img className={styles.partners__item} src={data.wpPage.clients.client4.sourceUrl} alt="img" />
+                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner.svg" alt="img" />
+                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner1.svg" alt="img" />
+                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner2.svg" alt="img" />
+                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner3.svg" alt="img" />
                 </div>
             </Layout>
         </section>

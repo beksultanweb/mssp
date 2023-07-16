@@ -1,5 +1,4 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
 import styles from './styles.module.scss'
@@ -46,10 +45,10 @@ const ClientsFrame = () => {
                     </div>
                 </div>
                 <div className={styles.partners}>
-                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner.svg" alt="img" />
-                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner1.svg" alt="img" />
-                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner2.svg" alt="img" />
-                    <StaticImage className={styles.partners__item} src="../../../assets/icons/partner3.svg" alt="img" />
+                    <img className={styles.partners__item} src="../../../assets/icons/partner.svg" alt="img" />
+                    <img className={styles.partners__item} src="../../../assets/icons/partner1.svg" alt="img" />
+                    <img className={styles.partners__item} src="../../../assets/icons/partner2.svg" alt="img" />
+                    <img className={styles.partners__item} src="../../../assets/icons/partner3.svg" alt="img" />
                 </div>
             </Layout>
         </section>

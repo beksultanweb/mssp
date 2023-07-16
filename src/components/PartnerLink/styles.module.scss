@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables.scss";
 
 .img {
-    position: absolute;
+    position: absolute !important;
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -45,7 +45,8 @@
         display: none;
         &_active {
             display: block;
-            position: absolute;
+            position: absolute !important;
+            z-index: 2;
             right: 74px;
         }
     }

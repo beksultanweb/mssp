@@ -10,7 +10,7 @@ h1 {
 }
 
 .main3 {
-    position: absolute;
+    position: absolute !important;
     right: 0;
     bottom: -80px;
     z-index: -1;
@@ -23,12 +23,12 @@ h1 {
 }
 
 .main1 {
-    position: absolute;
+    position: absolute !important;
     top: 150px;
     right: 0;
 }
 .main2 {
-    position: absolute;
+    position: absolute !important;
     bottom: 30px;
     right: 40%;
 }

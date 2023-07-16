@@ -7,6 +7,7 @@ import Arrow from '../../assets/icons/arrow'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
 
 export const query = graphql`query MyQuery {
     allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "news"}}}}}) {
@@ -25,7 +26,7 @@ export const query = graphql`query MyQuery {
           slug
           news {
             newsImg {
-              sourceUrl
+              gatsbyImage(width: 1000)
             }
             newsReadTime
             newsSubtitle
@@ -54,7 +55,7 @@ interface dataProps {
             slug: string
             news: {
             newsImg: {
-                sourceUrl: string
+              gatsbyImage: IGatsbyImageData
             }
             newsReadTime: string
             newsSubtitle: string
@@ -73,12 +74,14 @@ const News: React.FC<dataProps> = ({ data }) => {
       setSliceNum(sliceNum * 2)
     }
 
+    const arrayImage = newsData.map(post => getImage(post.news.newsImg))
+
     return (
         <section className={styles.news}>
             <Header theme="light"/>
             <Layout>
                 <h1 className={styles.title}>Новости</h1>
-                <img src={newsData[0].news.newsImg.sourceUrl} className={styles.main__img} alt="" />
+                {arrayImage[0] && <GatsbyImage image={arrayImage[0]} className={styles.main__img} alt="" />}
                 <div className={styles.news__info}>
                   <div>
                     <Link className={styles.a_link} to={`/news/${newsData[0].slug}`}><h3 className={styles.news__title}>{newsData[0].title}</h3></Link>
@@ -93,9 +96,9 @@ const News: React.FC<dataProps> = ({ data }) => {
                     <div className={styles.news__date}>{newsData[0].date}</div>
                   </div>
                 </div>
-                {newsData.slice(1, sliceNum).map((post: any) =>
+                {newsData.slice(1, sliceNum).map((post: any, index: number) =>
                   <div key={post.title} className={styles.news__box}>
-                      <img src={post.news.newsImg.sourceUrl} className={styles.news__img} alt="news" />
+                      <GatsbyImage image={arrayImage[index]} className={styles.news__img} alt="news" />
                       <div>
                         <h3 className={styles.news__title}>{post.title}</h3>
                         <p className={`${styles.news__subtitle} ${styles.news__subtitle_margin}`}>{post.news.newsSubtitle}</p>

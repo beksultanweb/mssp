@@ -10,6 +10,7 @@ import Header from '../../components/Header'
 
 import Layout from '../../components/Layout'
 import { NewsBox } from '../../components/NewsBox'
+import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
 
 export const query = graphql`
 query MyQuery($title: String) {
@@ -43,7 +44,7 @@ query MyQuery($title: String) {
       }
       news {
         newsImg {
-          sourceUrl
+          gatsbyImage(width: 1000)
         }
         newsReadTime
         newsSubtitle
@@ -63,7 +64,7 @@ interface ProductPageProps {
             slug: string
             news: {
               newsImg: {
-                localFile: string
+                gatsbyImage: IGatsbyImageData
               }
             }
           }
@@ -81,7 +82,7 @@ interface ProductPageProps {
               }
               news: {
                 newsImg: {
-                  sourceUrl: string
+                  gatsbyImage: IGatsbyImageData
                 }
                 newsReadTime: string
                 newsSubtitle: string
@@ -95,6 +96,7 @@ interface ProductPageProps {
 
 const NewsItem = ({ data }: ProductPageProps) => {
     const { title, date, news, author, content } = data.wpPost
+    const newsImage = getImage(news.newsImg)
     const newsData = data.allWpPost.edges.map((edge: any) => edge.node)
     return (
         <section className={styles.news}>
@@ -111,7 +113,7 @@ const NewsItem = ({ data }: ProductPageProps) => {
                     <div className={`${styles.news__circle} ${styles.link}`}></div>
                     <div className={styles.news__date}>{news.newsReadTime}</div>
                 </div>
-                <img src={news.newsImg.sourceUrl} className={styles.main__img} alt="" />
+                {newsImage && <GatsbyImage image={newsImage} className={styles.main__img} alt="" />}
                 <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }}></div>
                 <SimilarHead theme="light" title="Похожие новости" buttonTxt="Все новости"/>
                 <NewsBox data={newsData}/>

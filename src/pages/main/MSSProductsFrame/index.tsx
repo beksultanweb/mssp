@@ -33,53 +33,53 @@ const MSSProductsFrame = () => {
         gsap.registerPlugin(ScrollTrigger)
         useEffect(() => {
             if(window.innerWidth >= 600) {
-                gsap.fromTo(bubblesRef.current[0], { x: 0, y: 100 }, { x: '+80px', duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[0], { x: 0, y: 100 }, { x: '+80px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[1], { x: 80, y: 250 }, { y: 200, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[1], { x: 80, y: 250 }, { y: 200, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[2], { x: -20, y: 0 }, { x: '+80px', y: '80px', duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[2], { x: -20, y: 0 }, { x: '+80px', y: '80px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[3], { x: 0, y: 150 }, { x: '+100px', y: 240, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[3], { x: 0, y: 150 }, { x: '+100px', y: 240, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[4], { x: 0, y: 80 }, { x: '+100px', y: 40, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[4], { x: 0, y: 80 }, { x: '+100px', y: 40, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[5], { x: -40, y: 200 }, { x: '+50px', duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[5], { x: -40, y: 200 }, { x: '+50px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[6], { x: 100, y: 40 }, { x: 150, y: 20, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[6], { x: 100, y: 40 }, { x: 150, y: 20, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[7], { x: 0, y: -150 }, { x: '+100px', y: -220, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[7], { x: 0, y: -150 }, { x: '+100px', y: -220, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[8], { x: 80, y: 0 }, { x: '+100px', y: '+20px', duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[8], { x: 80, y: 0 }, { x: '+100px', y: '+20px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[9], { x: 60, y: -280 }, { x: '+100px', y: -200, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[9], { x: 60, y: -280 }, { x: '+100px', y: -200, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[10], { x: 0, y: 0 }, { x: '+100px', duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[10], { x: 0, y: 0 }, { x: '+100px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[11], { x: 100, y: -240 }, { x: 150, y: -200, duration: 3, scrollTrigger: {
+                gsap.fromTo(bubblesRef.current[11], { x: 100, y: -240 }, { x: 150, y: -200, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
-                    toggleActions: 'play pause reverse reset'
+                    toggleActions: 'play pause resume pause'
                 } })
             }
             else {

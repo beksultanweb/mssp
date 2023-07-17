@@ -118,7 +118,7 @@ const Product = ({ data }: ProductPageProps) => {
     const { title, content } = data.wpPost
     const parent = data.wpPost.categories.nodes[0].name
     const { yearOfProduction, deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3 } = data.wpPost.ServiceInformation
-    // const separatedContent = content.split('<!--nextpage-->')
+
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.name === parent))
 
     return(
@@ -162,7 +162,6 @@ const Product = ({ data }: ProductPageProps) => {
               <div className={styles.about_service__advantage}><img src={iconAdvantage2?.sourceUrl} alt="advantage" />{advantage2}</div>
               <div className={styles.about_service__advantage}><img src={iconAdvantage3?.sourceUrl} alt="advantage" />{advantage3}</div>
             </div>
-            {/* <div className={styles.about_service__content2} dangerouslySetInnerHTML={{ __html: separatedContent[1] }}></div> */}
           </Layout>
         </section>
         <section>

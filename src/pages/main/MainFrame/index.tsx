@@ -1,6 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
-import React from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React, { useRef } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -22,23 +24,52 @@ const fetchMainBlockData = graphql`
 
 const MainFrame = () => {
     const data = useStaticQuery(fetchMainBlockData)
+    const ref1 = useRef(null)
+    const ref2 = useRef(null)
+    const ref3 = useRef(null)
+    if(typeof window !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger)
+        React.useEffect(() => {
+            if(window.innerWidth >= 600) {
+            gsap.fromTo(ref1.current,
+                { y: 800 }, { x: -10, y: 600, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                    trigger: ref3.current,
+                    start: 'bottom bottom'
+                } })
+            gsap.fromTo(ref2.current,
+                { x: 0, y: 0 }, { x: -100, y: -20, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                    trigger: ref2.current
+                } })
+            gsap.fromTo(ref3.current,
+                { x: 0, y: 640 }, { x: +100, y: 650, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                    trigger: ref2.current
+                } })
+            }
+        }, [])
+    }
     return (
         <div>
-        <StaticImage
-        src="../../../assets/images/main3.png"
-        alt="bgphoto"
-        className={styles.main3}
-        />
-        <StaticImage
-        src="../../../assets/images/main1.png"
-        alt="bgphoto"
-        className={styles.main1}
-        />
-        <StaticImage
-        src="../../../assets/images/main2.png"
-        alt="bgphoto"
-        className={styles.main2}
-        />
+        <div ref={ref1}>
+            <StaticImage
+            src="../../../assets/images/main3.png"
+            alt="bgphoto"
+            className={styles.main3}
+            />
+        </div>
+        <div ref={ref2}>
+            <StaticImage
+            src="../../../assets/images/main1.png"
+            alt="bgphoto"
+            className={styles.main1}
+            />
+        </div>
+        <div ref={ref3}>
+            <StaticImage
+            src="../../../assets/images/main2.png"
+            alt="bgphoto"
+            className={styles.main2}
+            />
+        </div>
         <Layout>
             <h1>{data.wpPage.homePage.mainTitle}</h1>
             <span>/001</span><p className={styles.paragraph}>{data.wpPage.homePage.mainSubtitle}</p>

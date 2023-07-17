@@ -30,7 +30,7 @@ const TeamFrame = () => {
             gsap.to(el, {
               repeat: -1,
               ease: 'none',
-              duration: 10,
+              duration: 20,
               motionPath: 'm 1.000003,76.015001 a 75.000001,75.000001 0 1 1 149.999997,0 75.000001,75.000001 0 1 1 -149.999997,0 m 74.999999,0'
             })
           }

@@ -27,8 +27,8 @@
 }
 
 .tabs {
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    flex-direction: row;
     gap: 4px;
     &__btn {
         white-space: nowrap;
@@ -49,7 +49,6 @@
         column-gap: 15px;
         margin-top: 40px;
         margin-bottom: 49px;
-        position: relative;
         transition: transition;
         transition-property: transform;
         transition-duration: 300ms;
@@ -84,10 +83,13 @@
             cursor: pointer;
         }
     }
+    &__parent {
+        position: relative;
+    }
     &__ellipse {
-        position: absolute;
+        position: absolute !important;
         top: 19px;
-        left: 193px;
+        z-index: 100;
     }
 }
 

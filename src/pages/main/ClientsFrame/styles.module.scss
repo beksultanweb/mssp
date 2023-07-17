@@ -11,7 +11,7 @@
     color: #979797;
     font-size: 16px;
     font-weight: 400;
-    width: 95%;
+    width: 70%;
     margin-top: 12px;
 }
 .partners {
@@ -19,6 +19,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &__item {
+        transition: all 2s ease;
+    }
 }
 .about__content {
     display: grid;
@@ -43,7 +46,6 @@
         column-gap: 100px;
         &__item {
             width: 100%;
-            // object-fit: fill;
         }
     }
 }

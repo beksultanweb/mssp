@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import * as React from 'react'
 import { SVGProps } from 'react'
 
@@ -8,11 +9,33 @@ interface ArrowProps extends SVGProps<SVGSVGElement> {
 
 const Arrow = (props: ArrowProps) => {
   const { theme, rotate, ...svgProps } = props
+  const ref = React.useRef(null)
+  const [isHovered, setIsHovered] = React.useState(false)
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+  }
+
+  React.useEffect(() => {
+    if(isHovered) {
+      gsap.fromTo(ref.current, {
+        x: 0, y: 0
+      }, { x: +10, y: -10, onComplete: function() {gsap.set(ref.current, { x: 0, y: 0 }) } } )
+    }
+  }, [isHovered])
+
   return (
     <svg
+    ref={ref}
     xmlns="http://www.w3.org/2000/svg"
     width={13}
     height={13}
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
     fill="none"
     {...svgProps}
     style={{ transform: `rotate(${rotate ? rotate : 0}deg)` }}

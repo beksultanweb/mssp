@@ -21,7 +21,6 @@
     background-color:#0099CC;
     width: 150px;
     height: 150px;
-    box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
     padding: 25px;
     box-sizing: border-box;
     border-radius: 50%;
@@ -29,6 +28,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    &:hover {
+        box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
+        &::before {
+            cursor: pointer;
+            box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
+        }
+    }
     &::before {
         position: absolute;
         content: "";
@@ -36,7 +42,6 @@
         width: 200px;
         height: 200px;
         border: 1px solid #0099CC;
-        box-shadow: -1px 1px 5px 5px rgba(0, 153, 204, 0.2);
     }
     div {
         color: $primary-white;
@@ -55,7 +60,13 @@
     color: $primary-white;
     width: 85px;
     height: 85px;
-    box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
+    &:hover {
+        box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
+        cursor: pointer;
+        &::before {
+            box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
+        }
+    }
     &::before {
         position: absolute;
         content: "";
@@ -63,7 +74,6 @@
         width: 120px;
         height: 120px;
         border: 1px solid #669966;
-        box-shadow: -1px 1px 5px 5px rgba(102, 153, 102, 0.2);
     }
     div {
         color: $primary-white;

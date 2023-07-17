@@ -1,15 +1,17 @@
 @import "../../../assets/styles/variables.scss";
 
 .promo {
-    background:
-    url('../../../assets/icons/Liner\ gradient.svg') left bottom no-repeat,
-    url('../../../assets/icons/Ellipse\ 18.svg') right 20% bottom no-repeat,
-    $primary-black;
+    background: $primary-black;
     background-size: contain;
     border-radius: 30px;
     height: 634px;
     margin-top: 200px;
     position: relative;
+    overflow: hidden;
+}
+.svg {
+    position: absolute !important;
+    z-index: 1;
 }
 .content {
     margin-top: 187px;
@@ -17,11 +19,13 @@
 .title {
     width: 60%;
     margin: 0;
+    color: $primary-white;
 }
 .paragraph {
     margin-top: 12px;
     margin-bottom: 40px;
     width: 60%;
+    color: $primary-white;
 }
 .img {
     position: absolute !important;
@@ -32,12 +36,17 @@
 .link {
     text-decoration: none;
 }
+.btn {
+    white-space: nowrap;
+    background-color: $secondary-white;
+    color: $primary-black;
+}
 
 @media (max-width: 1100px) {
     .promo {
         background:
-        url('../../../assets/icons/Liner\ gradient.svg') left bottom 80% no-repeat,
-        url('../../../assets/icons/Ellipse\ 18.svg') top -20% right 100% no-repeat,
+        url('../../../assets/icons/Linergradient.png') left bottom 80% no-repeat,
+        url('../../../assets/icons/Ellipse18.png') top -20% right 100% no-repeat,
         $primary-black;
         height: 740px;
     }

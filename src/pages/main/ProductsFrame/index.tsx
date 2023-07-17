@@ -46,7 +46,7 @@ query($selectedCategory: String) {
       }
 }`
 
-const SLIDER_WIDTH = 300
+const SLIDER_WIDTH = 388
 
 const ProductsFrame = () => {
     const [selectedCategory, setSelectedCategory] = useState('blue-team')
@@ -54,28 +54,43 @@ const ProductsFrame = () => {
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
 
     const [offset, setOffset] = useState(0)
+    const [ellipseLeft, setEllipseLeft] = useState(193)
 
     const handleLeftSlider = () => {
         setOffset((currentOffset) => {
             const newOffset = currentOffset + SLIDER_WIDTH
             return Math.min(newOffset, 0)
         })
+        if(offset > -1 * SLIDER_WIDTH) {
+            setEllipseLeft(193)
+        }
+        else setEllipseLeft((left) => {
+            return left
+        })
     }
     const handleRightSlider = () => {
+        const maxOffset = -(SLIDER_WIDTH / 2 * categoryData.length)
         setOffset((currentOffset) => {
             const newOffset = currentOffset - SLIDER_WIDTH
-            const maxOffset = -(SLIDER_WIDTH * categoryData.length / 2)
             return Math.max(newOffset, maxOffset)
         })
+        if(offset <= -(SLIDER_WIDTH / 2 * 3)) {
+            setEllipseLeft(left => {
+                const newLeft = left * 2 + 15
+                if(newLeft <= maxOffset * -1) {
+                    return newLeft
+                }
+                else return left
+            })
+        }
     }
 
     const ref = React.useRef(null)
-    const textRef = React.useRef([])
+
     if(typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger)
         React.useEffect(() => {
             const element = ref.current
-            const text = textRef.current
             gsap.fromTo(element,
                 { y: 0 }, { y: -600, scrollTrigger: {
                     trigger: element,
@@ -83,16 +98,6 @@ const ProductsFrame = () => {
                     end: 'top top',
                     scrub: true
                 } })
-            // gsap.fromTo(text,
-            //     { y: 100, opacity: 0 }, {
-            //     y: 0,
-            //     opacity: 1,
-            //     stagger: 0.2,
-            //     scrollTrigger: {
-            //         trigger: text,
-            //         start: "top bottom"
-            //     }
-            // })
         }, [])
     }
 
@@ -100,8 +105,8 @@ const ProductsFrame = () => {
         <section className={styles.products} ref={ref}>
         <Layout>
             <div className={styles.products__head}>
-                <h2 ref={textRef.current[0]} className={styles.white_text}>{data.wpPage.ourServicesBlock.title}</h2>
-                <button ref={textRef.current[1]} className={styles.products__btn}>{data.wpPage.ourServicesBlock.button}<Arrow theme="dark"/></button>
+                <h2 className={styles.white_text}>{data.wpPage.ourServicesBlock.title}</h2>
+                <button className={styles.products__btn}>{data.wpPage.ourServicesBlock.button}<Arrow theme="dark"/></button>
             </div>
             <span className={styles.white_text}>/002</span><p className={`${styles.white_text} ${styles.change_width}`}>{data.wpPage.ourServicesBlock.description}</p>
             <div className={styles.tabs}>
@@ -118,15 +123,17 @@ const ProductsFrame = () => {
                 }
             })}
             </div>
-            <div className={styles.tabs__content} style={{ transform: `translateX(${offset}px)` }}>
-                <StaticImage className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
-                {categoryData.map((post: any) =>
-                    <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                        <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
-                        <div className={styles.tabs__title}>{post.title}</div>
-                        <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
-                    </Link>
-                )}
+            <div className={styles.tabs__parent}>
+                <StaticImage style={{ left: `${ellipseLeft}px` }} className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
+                <div className={styles.tabs__content} style={{ transform: `translateX(${offset}px)` }}>
+                    {categoryData.map((post: any) =>
+                        <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
+                            <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
+                            <div className={styles.tabs__title}>{post.title}</div>
+                            <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
+                        </Link>
+                    )}
+                </div>
             </div>
             <div className={styles.tabs__navigation}>
                 <img style={{ transform: 'rotate(180deg)' }} src={arrow} onClick={handleLeftSlider} alt="" />

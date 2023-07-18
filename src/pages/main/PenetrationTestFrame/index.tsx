@@ -37,7 +37,7 @@ const PenetrationTestFrame = () => {
                 </div>
                 <button>Оставить заявку<Arrow theme="dark"/></button>
             </Layout>
-            <StaticImage src="../../../assets/images/penetration.png" alt="penetration" className={styles.penetration__img}/>
+            <StaticImage src="../../../assets/images/021A5908.jpg" width={651} alt="penetration" objectPosition={'40% 40%'} className={styles.penetration__img}/>
         </section>
     )
 }

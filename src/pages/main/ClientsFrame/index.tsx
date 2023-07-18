@@ -57,49 +57,49 @@ const ClientsFrame = () => {
     const handleChange1 = () => {
         gsap.fromTo(ref1.current, {
             opacity: 1
-        }, { opacity: 0, ease: 'elastic' })
+        }, { opacity: 0, ease: 'linear' })
         setTimeout(() => {
             if(partner1 === 3) {
                 setPartner1(0)
             }
             else setPartner1((val) => val + 1)
-            gsap.fromTo(ref1.current, { opacity: 0 }, { opacity: 1, ease: 'elastic' })
+            gsap.fromTo(ref1.current, { opacity: 0 }, { opacity: 1, ease: 'linear' })
         }, 1000)
     }
     const handleChange2 = () => {
         gsap.fromTo(ref2.current, {
             opacity: 1
-        }, { opacity: 0, ease: 'elastic' })
+        }, { opacity: 0, ease: 'linear' })
         setTimeout(() => {
             if(partner2 === 3) {
                 setPartner2(0)
             }
             else setPartner2((val) => val + 1)
-            gsap.fromTo(ref2.current, { opacity: 0 }, { opacity: 1, ease: 'elastic' })
+            gsap.fromTo(ref2.current, { opacity: 0 }, { opacity: 1, ease: 'linear' })
         }, 1000)
     }
     const handleChange3 = () => {
         gsap.fromTo(ref3.current, {
             opacity: 1
-        }, { opacity: 0, ease: 'elastic' })
+        }, { opacity: 0, ease: 'linear' })
         setTimeout(() => {
             if(partner3 === 3) {
                 setPartner3(0)
             }
             else setPartner3((val) => val + 1)
-            gsap.fromTo(ref3.current, { opacity: 0 }, { opacity: 1, ease: 'elastic' })
+            gsap.fromTo(ref3.current, { opacity: 0 }, { opacity: 1, ease: 'linear' })
         }, 1000)
     }
     const handleChange4 = () => {
         gsap.fromTo(ref4.current, {
             opacity: 1
-        }, { opacity: 0, ease: 'elastic' })
+        }, { opacity: 0, ease: 'linear' })
         setTimeout(() => {
             if(partner4 === 3) {
                 setPartner4(0)
             }
             else setPartner4((val) => val + 1)
-            gsap.fromTo(ref4.current, { opacity: 0 }, { opacity: 1, ease: 'elastic' })
+            gsap.fromTo(ref4.current, { opacity: 0 }, { opacity: 1, ease: 'linear' })
         }, 1000)
     }
 

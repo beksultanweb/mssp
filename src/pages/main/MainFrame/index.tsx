@@ -51,21 +51,27 @@ const MainFrame = () => {
         <div>
         <div ref={ref1}>
             <StaticImage
-            src="../../../assets/images/main3.png"
+            src="../../../assets/images/021A5938.jpg"
+            width={344}
+            height={393}
             alt="bgphoto"
             className={styles.main3}
             />
         </div>
         <div ref={ref2}>
             <StaticImage
-            src="../../../assets/images/main1.png"
+            src="../../../assets/images/AApro-21.jpg"
+            width={313}
+            height={234}
             alt="bgphoto"
             className={styles.main1}
             />
         </div>
         <div ref={ref3}>
             <StaticImage
-            src="../../../assets/images/main2.png"
+            src="../../../assets/images/AApro-68.jpg"
+            width={256}
+            height={319}
             alt="bgphoto"
             className={styles.main2}
             />

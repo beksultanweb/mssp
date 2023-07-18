@@ -19,6 +19,7 @@ const Modal: React.FC<ModalProps> = ({ title, subtitle, close, children }) => {
     return (
         <div className={styles.outside} onClick={clickOutside}>
             <div className={styles.modal}>
+                <div onClick={close} className={styles.close}></div>
                 <h2 className={styles.title}>{title}</h2>
                 <p className={styles.subtitle}>{subtitle}</p>
                 {children}

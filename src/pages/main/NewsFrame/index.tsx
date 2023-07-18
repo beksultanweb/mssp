@@ -17,7 +17,7 @@ const query = graphql`
             newsImg {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(width: 387, height: 299, formats: WEBP, placeholder: DOMINANT_COLOR)
+                  gatsbyImageData(width: 387, height: 299, formats: WEBP)
                 }
               }
             }

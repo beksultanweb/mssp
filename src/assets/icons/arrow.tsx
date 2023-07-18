@@ -21,7 +21,7 @@ const Arrow = (props: ArrowProps) => {
   }
 
   React.useEffect(() => {
-    if(isHovered) {
+    if(isHovered && !rotate) {
       gsap.fromTo(ref.current, {
         x: 0, y: 0
       }, { x: +10, y: -10, onComplete: function() {gsap.set(ref.current, { x: 0, y: 0 }) } } )

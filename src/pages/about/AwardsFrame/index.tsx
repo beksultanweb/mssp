@@ -20,16 +20,16 @@ query {
       awardData3
       awardData4
       awardFile1 {
-        gatsbyImage(width: 200)
+        gatsbyImage(width: 200, formats: WEBP)
       }
       awardFile2 {
-        gatsbyImage(width: 200)
+        gatsbyImage(width: 200, formats: WEBP)
       }
       awardFile3 {
-        gatsbyImage(width: 200)
+        gatsbyImage(width: 200, formats: WEBP)
       }
       awardFile4 {
-        gatsbyImage(width: 200)
+        gatsbyImage(width: 200, formats: WEBP)
       }
       awardsSubtitle
       awardsTitle

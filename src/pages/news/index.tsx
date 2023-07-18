@@ -1,4 +1,5 @@
 import { Link, graphql } from 'gatsby'
+import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
 import React, { useState } from 'react'
 
 import styles from './styles.module.scss'
@@ -7,7 +8,7 @@ import Arrow from '../../assets/icons/arrow'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
-import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
+
 
 export const query = graphql`query MyQuery {
     allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "news"}}}}}) {
@@ -26,7 +27,7 @@ export const query = graphql`query MyQuery {
           slug
           news {
             newsImg {
-              gatsbyImage(width: 1000)
+              gatsbyImage(width: 1000, formats: WEBP)
             }
             newsReadTime
             newsSubtitle
@@ -68,23 +69,23 @@ interface dataProps {
 }
 
 const News: React.FC<dataProps> = ({ data }) => {
-    const newsData = data.allWpPost.edges.map(edge => edge.node)
+    const newsData = data?.allWpPost.edges.map(edge => edge.node)
     const [sliceNum, setSliceNum] = useState(3)
     const handleOpenMore = () => {
       setSliceNum(sliceNum * 2)
     }
 
-    const arrayImage = newsData.map(post => getImage(post.news.newsImg))
+    const arrayImage = newsData?.map(post => getImage(post.news.newsImg))
 
     return (
         <section className={styles.news}>
             <Header theme="light"/>
             <Layout>
                 <h1 className={styles.title}>Новости</h1>
-                {arrayImage[0] && <GatsbyImage image={arrayImage[0]} className={styles.main__img} alt="" />}
+                <GatsbyImage image={arrayImage?.[0]} className={styles.main__img} alt="" />
                 <div className={styles.news__info}>
                   <div>
-                    <Link className={styles.a_link} to={`/news/${newsData[0].slug}`}><h3 className={styles.news__title}>{newsData[0].title}</h3></Link>
+                    <Link className={styles.a_link} to={`/news/${newsData?.[0].slug}`}><h3 className={styles.news__title}>{newsData?.[0].title}</h3></Link>
                     <p className={styles.news__subtitle}>{newsData[0].news.newsSubtitle}</p>
                   </div>
                   <div className={styles.news__addinfo}>

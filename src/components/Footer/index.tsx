@@ -1,5 +1,6 @@
 import { Link } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
 import styles from './styles.module.scss'
@@ -12,7 +13,6 @@ import LinkedinDark from '../../assets/icons/linkedin-dark.svg'
 import Linkedin from '../../assets/icons/linkedin.svg'
 import Logo from '../../assets/icons/logo'
 import { routeElements } from '../../config/routeElements'
-import { ITheme } from '../../types/ITheme'
 import Layout from '../Layout'
 
 
@@ -45,7 +45,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
             <Layout>
                 <nav>
                     <div>
-                        <Logo theme={theme === 'light' ? 'dark' : 'light'}/>
+                        <Link className={styles.logo} to={'/'}>{theme === 'dark' ? <StaticImage src="../../assets/icons/logo_black.svg" alt="logo"/> : <StaticImage src="../../assets/icons/logo.svg" alt="logo"/>}</Link>
                         <div className={styles.socmedia}>
                             <a href={data.wpPage.footer.facebook}>{theme === 'light' ? <img src={FbIconDark}/> : <img src={FbIcon}/>}</a>
                             <a href={data.wpPage.footer.instagram}>{theme === 'light' ? <img src={InstagramDark}/> : <img src={Instagram}/>}</a>

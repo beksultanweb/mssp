@@ -9,7 +9,7 @@ import Layout from '../../../components/Layout'
 const DodgerFrame = () => {
     return (
         <section className={styles.dodger}>
-            <StaticImage className={styles.dodger__img} src="../../../assets/images/dodger.png" alt="dodger_img"/>
+            <StaticImage className={styles.dodger__img} width={551} height={500} src="../../../assets/images/AApro-35.jpg" alt="dodger_img"/>
             <div className={styles.darknet}>Darknet</div>
             <div className={styles.security}>Security</div>
             <Layout>

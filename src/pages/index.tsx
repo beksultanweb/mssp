@@ -41,7 +41,7 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
       <PenetrationTestFrame/>
       <PartnerLinkFrame/>
       <DodgerFrame/>
-      <PromoFrame/>
+      {/* <PromoFrame/> */}
       <ClientsFrame/>
       <PartnerLinkFrame2/>
       <NewsFrame/>

@@ -36,6 +36,7 @@ const config: GatsbyConfig = {
       defaults: {
         formats: ['webp'],
         placeholder: 'dominantColor',
+        quality: 100,
         breakpoints: [750, 1080, 1366, 1920],
         backgroundColor: 'transparent',
         tracedSVGOptions: {},
@@ -55,9 +56,9 @@ const config: GatsbyConfig = {
   }, {
     resolve: 'gatsby-plugin-typescript',
     options: {
-      isTSX: true, // defaults to false
-      jsxPragma: 'jsx', // defaults to "React"
-      allExtensions: true // defaults to false
+      isTSX: true,
+      jsxPragma: 'jsx',
+      allExtensions: true
     }
   }
   ]

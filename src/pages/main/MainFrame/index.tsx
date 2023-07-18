@@ -60,7 +60,7 @@ const MainFrame = () => {
         </div>
         <div ref={ref2}>
             <StaticImage
-            src="../../../assets/images/AApro-21.jpg"
+            src="../../../assets/images/keypad.jpg"
             width={313}
             height={234}
             alt="bgphoto"
@@ -69,7 +69,7 @@ const MainFrame = () => {
         </div>
         <div ref={ref3}>
             <StaticImage
-            src="../../../assets/images/AApro-68.jpg"
+            src="../../../assets/images/man.jpg"
             width={256}
             height={319}
             alt="bgphoto"

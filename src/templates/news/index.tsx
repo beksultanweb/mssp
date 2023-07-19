@@ -1,5 +1,5 @@
-import { Link, graphql, useStaticQuery, PageProps } from 'gatsby'
-import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
+import { Link, PageProps } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React, { useState } from 'react'
 
 import styles from './styles.module.scss'
@@ -10,69 +10,10 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
 
-const query = graphql`
-query MyQuery {
-    allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "news"}}}}}) {
-      edges {
-        node {
-          author {
-            node {
-              avatar {
-                url
-              }
-              lastName
-              firstName
-            }
-          }
-          title
-          slug
-          news {
-            newsImg {
-              gatsbyImage(width: 1000, formats: WEBP)
-            }
-            newsReadTime
-            newsSubtitle
-          }
-          date(formatString: "DD MMMM YYYY", locale: "ru")
-        }
-      }
-    }
-  }`
 
-  interface dataProps {
-    data: {
-      allWpPost: {
-        edges: {
-          node: {
-              author: {
-                node: {
-                  avatar: {
-                    url: string
-                  }
-                  lastName: string
-                  firstName: string
-                }
-              }
-              title: string
-              slug: string
-              news: {
-              newsImg: {
-                gatsbyImage: IGatsbyImageData
-              }
-              newsReadTime: string
-              newsSubtitle: string
-              }
-              date: string
-          }
-        }[]
-      }
-    }
-  }
-
-
-const News: React.FC<PageProps> = () => {
-    const data = useStaticQuery(query)
-    const newsData = data.allWpPost.edges.map(edge => edge.node)
+const News: React.FC<PageProps> = ({ pageContext }) => {
+    const { news } = pageContext
+    const newsData = news.data.allWpPost.nodes
     const [sliceNum, setSliceNum] = useState(3)
     const handleOpenMore = () => {
       setSliceNum(sliceNum * 2)

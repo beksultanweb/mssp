@@ -42,6 +42,10 @@ footer {
     background-color: $secondary-white;
     color: $primary-black;
 }
+.logo {
+    width: 101px;
+    display: flex;
+}
 
 @media (max-width: 1000px) {
     nav {
@@ -51,10 +55,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .logo {
-        width: 60px;
-        height: 29px;
-    }
     nav {
         justify-content: space-between;
         gap: 0;

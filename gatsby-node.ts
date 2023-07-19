@@ -96,6 +96,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const productTemplate = path.join(__dirname, '/src/templates/product/product.tsx');
   const newsTemplate = path.join(__dirname, '/src/templates/news/news.tsx');
+  const allNewsTemplate = path.join(__dirname, '/src/templates/news/index.tsx');
   news.data.allWpPost.nodes.forEach((node: any) => {
     createPage({
       path: `/news/${node.slug}`,
@@ -115,4 +116,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }
     });
   });
+  createPage({
+    path: '/news',
+    component: allNewsTemplate,
+    context: {
+      news: news
+    }
+  })
 };

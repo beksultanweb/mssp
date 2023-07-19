@@ -45,7 +45,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
             <Layout>
                 <nav>
                     <div>
-                        <Link className={styles.logo} to={'/'}><Logo theme={theme}/></Link>
+                        <Link className={styles.logo} to={'/'}><Logo theme={theme === 'light' ? 'dark' : 'light'}/></Link>
                         <div className={styles.socmedia}>
                             <a href={data.wpPage.footer.facebook}>{theme === 'light' ? <img src={FbIconDark}/> : <img src={FbIcon}/>}</a>
                             <a href={data.wpPage.footer.instagram}>{theme === 'light' ? <img src={InstagramDark}/> : <img src={Instagram}/>}</a>

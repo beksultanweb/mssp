@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
+require('dotenv').config()
 
 const config: GatsbyConfig = {
   // siteMetadata: {
@@ -26,9 +27,7 @@ const config: GatsbyConfig = {
   }, 'gatsby-plugin-image', 'gatsby-transformer-sharp', {
     resolve: 'gatsby-source-wordpress',
       options: {
-        url:
-          process.env.WORDPRESS_URL ||
-          'http://195.49.215.125/wp/graphql'
+        url: process.env.GATSBY_WORDPRESS_URL
       }
   }, {
     resolve: 'gatsby-plugin-sharp',

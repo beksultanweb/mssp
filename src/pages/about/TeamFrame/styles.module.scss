@@ -21,8 +21,10 @@
     grid-template-columns: repeat(3, max-content);
 }
 .img {
-    opacity: .8;
+    filter: grayscale(90%);
+    opacity: .7;
     &:hover {
+        filter: grayscale(0);
         opacity: 1;
     }
     &:nth-child(2n) {

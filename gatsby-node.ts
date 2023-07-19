@@ -64,6 +64,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
               categories {
                 nodes {
                   name
+                  slug
                 }
               }
               content
@@ -72,6 +73,27 @@ export const createPages: GatsbyNode['createPages'] = async ({
     }
   `);
 
+  const sameNews = await graphql(`query MyQuery {
+    allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "news"}}}}}) {
+      edges {
+        node {
+          title
+          slug
+          news {
+            newsImg {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 387, height: 299, formats: WEBP)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }`)
+
+
   const productTemplate = path.join(__dirname, '/src/templates/product/product.tsx');
   const newsTemplate = path.join(__dirname, '/src/templates/news/news.tsx');
   news.data.allWpPost.nodes.forEach((node: any) => {
@@ -79,7 +101,8 @@ export const createPages: GatsbyNode['createPages'] = async ({
       path: `/news/${node.slug}`,
       component: newsTemplate,
       context: {
-        currNews: node
+        currNews: node,
+        sameNews: sameNews
       }
     });
   });

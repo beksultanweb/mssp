@@ -42,11 +42,11 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
 
     React.useEffect(() => {
         requestsStore.getAllRequests()
-    }, [requestsStore.requests])
+    }, [])
 
     const requests = requestsStore.requests.map(({ date, _id, status, title, user, domain }) => {
         const data = new Date(date).toLocaleDateString()
-        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
+        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнено'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
         return (
         <div key={title} className={styles.request}>
             <div className={styles.request__item}>
@@ -71,11 +71,11 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>в работе</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__new}`}></div>новая</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__done}`}></div>исполнена</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__closed}`}></div>закрыта</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__canceled}`}></div>отменена</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнена</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
+                <div className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}
             {requests}
         </Layout>

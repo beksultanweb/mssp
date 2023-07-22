@@ -9,6 +9,7 @@ import styles from './styles.module.scss'
 
 import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
+import usePersist from '../../hooks/usePersist'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
 
@@ -21,6 +22,7 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
 
     const [email, setEmail] = React.useState('')
     const [validEmail, setValidEmail] = React.useState(false)
+    const [persist, setPersist] = usePersist()
 
     const [password, setPassword] = React.useState('')
     const [validPassword, setValidPassword] = React.useState(false)
@@ -28,6 +30,7 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
     const [errMsg, setErrMsg] = React.useState('');
     const [checkRun, setCheckRun] = React.useState(false);
 
+    const handlePersist = () => setPersist(prev => !prev)
     const handleSaveCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.checked) {
             // localStorage.setItem('saved', {email, })
@@ -104,7 +107,7 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
                     </p>
                 </div>
                 <div className={styles.flex}>
-                    <label><input onChange={handleSaveCheckbox} type="checkbox" name="save" />Запомнить меня</label>
+                    <label><input onChange={handlePersist} type="checkbox" id="persist" checked={persist} />Запомнить меня</label>
                     <div className={styles.forget}>Забыли пароль?</div>
                 </div>
                 <div className={styles.buttons}>

@@ -26,7 +26,7 @@ interface IndexProps extends PageProps {
 
 const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
   React.useEffect(() => {
-    authStore?.checkAuth()
+    if(localStorage.getItem('token')) authStore?.checkAuth()
   }, [])
 
   return (

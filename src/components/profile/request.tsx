@@ -22,11 +22,10 @@ interface ProfileProps extends PageProps {
 const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
     const [errMsg, setErrMsg] = React.useState('')
 
-    if(!authStore.isAuth) {
-        navigate('/')
-    }
-
     React.useEffect(() => {
+        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+            authStore.checkAuth()
+        }
         location.state &&
         requestsStore.getRequest(location.state.requestId)
     }, [])
@@ -51,7 +50,7 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
         }
     }
 
-    if(!authStore.user.roles?.includes(2001)) {
+    if(authStore.user.roles?.includes(2001) === false) {
         navigate('/')
         return null
     }
@@ -86,6 +85,7 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
                                 <p>{report}</p>
                                 <a download onClick={() => handleDownload(report)} className={styles.request__btn}>Скачать<img src={download} alt="" /></a>
                             </div>))}
+                            {reports?.length === 0 && <div>Документы пока не были загружены администратором...</div>}
                             {errMsg && <div>{errMsg}</div>}
                         </div>
                     </div>

@@ -25,9 +25,9 @@ export class RequestsStore {
         this.user = user
     }
 
-    async getMyRequests(userId: number) {
+    async getMyRequests(userId: number, status?: string) {
         try {
-            const { data } = await RequestsService.getMyRequests(userId)
+            const { data } = await RequestsService.getMyRequests(userId, status)
             this.setRequests(data)
         } catch (error) {
             if(error instanceof Error) {

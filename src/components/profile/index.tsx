@@ -13,6 +13,7 @@ import Layout from '../../components/Layout'
 import CreateRequest from '../../components/Modal/CreateRequest'
 import { AuthStore } from '../../store/AuthStore'
 import { RequestsStore } from '../../store/RequestsStore'
+import { RequestsResponse } from '../../types/RequestsResponse'
 
 interface ProfileProps extends PageProps {
     authStore: AuthStore
@@ -22,9 +23,15 @@ interface ProfileProps extends PageProps {
 const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
     const [dropdownOpened, setOpenedDropdown] = React.useState(false)
     const [modalOpen, setModalOpen] = React.useState(false)
+    const [currStatus, setCurrStatus] = React.useState('')
+    const [requests, setRequests] = React.useState<RequestsResponse[]>([])
 
     const handleOpenedDropdown = () => {
         setOpenedDropdown(!dropdownOpened)
+    }
+
+    const handleChangeStatus = (status: string) => {
+        setCurrStatus(status)
     }
 
     const handleModalOpen = () => {
@@ -35,22 +42,20 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
         if (typeof window !== 'undefined' && localStorage.getItem('token')) {
             authStore.checkAuth()
         }
-        else {
-            navigate('/')
-        }
     }, [])
 
-    React.useEffect(() => {
-        authStore.checkAuth()
-    }, [])
 
     React.useEffect(() => {
-        requestsStore.getMyRequests(authStore.user.id)
+        requestsStore.getMyRequests(authStore.user.id, currStatus)
+    }, [!modalOpen, currStatus, requestsStore, authStore.user.id])
+
+    React.useEffect(() => {
+        setRequests(requestsStore.requests)
     }, [requestsStore.requests])
 
-    const requests = requestsStore.requests.map(({ _id, date, status, title }) => {
+    const myrequests = requests.map(({ _id, date, status, title }) => {
         const data = new Date(date).toLocaleDateString()
-        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
+        const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнено'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
         return (
         <div key={title} className={styles.request}>
             <div className={styles.request__item}>
@@ -61,7 +66,7 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
         </div>)})
 
-    if(!authStore.user.roles?.includes(2001)) {
+    if(authStore.user.roles?.includes(2001) === false) {
         navigate('/')
         return null
     }
@@ -75,13 +80,13 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>в работе</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__new}`}></div>новая</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__done}`}></div>исполнена</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__closed}`}></div>закрыта</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.circle__canceled}`}></div>отменена</div>
+                <div onClick={() => handleChangeStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
+                <div onClick={() => handleChangeStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
+                <div onClick={() => handleChangeStatus('исполнено')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнено</div>
+                <div onClick={() => handleChangeStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
+                <div onClick={() => handleChangeStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}
-            {requests}
+            {myrequests}
         </Layout>
         {modalOpen && <CreateRequest close={() => setModalOpen(false)}/>}
         <Footer theme="light"/>

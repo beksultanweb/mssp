@@ -74,6 +74,7 @@ header {
 }
 .logout {
     position: absolute;
+    z-index: 100;
     padding: 20px;
     background-color: $primary-white;
     border-radius: 20px;

@@ -8,8 +8,8 @@ export default class RequestsService {
     static async createRequest(title: string, domain: string, phone: string, comments?: string): Promise<AxiosResponse<RequestsResponse>> {
         return $api.post<RequestsResponse>('/requests', { title, domain, phone, comments })
     }
-    static async getMyRequests(userId: number): Promise<AxiosResponse<RequestsResponse[]>> {
-        return $api.get<RequestsResponse[]>(`/requests/${userId}`)
+    static async getMyRequests(userId: number, status?: string): Promise<AxiosResponse<RequestsResponse[]>> {
+        return $api.get<RequestsResponse[]>(`/requests/${userId}`, { params: { status: status } })
     }
     static async getAllRequests(): Promise<AxiosResponse<RequestsResponse[]>> {
         return $api.get<RequestsResponse[]>('/requests')

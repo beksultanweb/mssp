@@ -13,6 +13,7 @@ import Layout from '../../components/Layout'
 import RequestsService from '../../services/requests'
 import { AuthStore } from '../../store/AuthStore'
 import { RequestsStore } from '../../store/RequestsStore'
+import { RequestsResponse } from '../../types/RequestsResponse'
 
 
 interface ProfileProps extends PageProps {
@@ -25,12 +26,13 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
     const [fileData, setFileData] = React.useState<FileList | null>(null)
     const [success, setSuccess] = React.useState('')
     const [errMsg, setErrMsg] = React.useState('')
-    // if(!authStore.isAuth) {
-    //     navigate('/')
-    // }
+    const [request, setRequest] = React.useState<RequestsResponse>()
 
     React.useEffect(() => {
-        authStore.checkAuth()
+        if(localStorage.getItem('token')) authStore.checkAuth()
+        else {
+            navigate('/')
+        }
     }, [])
 
     React.useEffect(() => {
@@ -40,17 +42,21 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
         }
     }, [requestsStore])
 
-    const { title, status, paid, phone, domain } = requestsStore.request
+    const handleUpdateStatus = (status: string) => {
+        requestsStore.updateStatus(requestsStore.request._id, status)
+        setDropdownOpened(false)
+    }
+
+    React.useEffect(() => {
+        setRequest(requestsStore.request)
+    }, [requestsStore.request])
+
     const { email, firstName, secondName } = requestsStore.user
 
-    const color = `${status === 'новая'?styles.blue:status === 'в работе'?styles.green:status === 'исполнена'?styles.fiolet:status === 'закрыта'?styles.black:status==='отменена'?styles.red:''}`
+    const color = `${request?.status === 'новая'?styles.blue:request?.status === 'в работе'?styles.green:request?.status === 'исполнено'?styles.fiolet:request?.status === 'закрыта'?styles.black:request?.status==='отменена'?styles.red:''}`
 
     const handleOpenedDropdown = () => {
         setDropdownOpened(!dropdownOpened)
-    }
-
-    const handleUpdateStatus = (status: string) => {
-        requestsStore.updateStatus(requestsStore.request._id, status)
     }
 
     const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,35 +92,37 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
             <Layout>
                 <div className={styles.flex}>
                     <div>
-                        <h2 className={styles.title}>{title}</h2>
+                        <h2 className={styles.title}>{request?.title}</h2>
                         <div className={styles.request__status}>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус заявки</div>
-                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${color} ${styles.circle__doing}`}></div>{status}</div>
+                                <div className={`${styles.status} ${styles.status__light}`}><div className={`${styles.circle} ${color}`}></div>{request?.status}</div>
                             </div>
                             <div className={styles.request__status_item}>
                                 <div className={styles.title}>Статус оплаты</div>
-                                <div className={styles.title}>{paid === false ? 'Не оплачен' : 'Оплачен'}</div>
+                                <div className={styles.title}>{request?.paid === false ? 'Не оплачен' : 'Оплачен'}</div>
                             </div>
-                            {phone && <div className={styles.request__status_item}>
+                            {request?.phone && <div className={styles.request__status_item}>
                                 <div className={styles.title}>Номер телефона</div>
-                                <div className={`${styles.status} ${styles.status__light}`}>{phone}</div>
+                                <div className={`${styles.status} ${styles.status__light}`}>{request?.phone}</div>
                             </div>}
-                            {domain && <div className={styles.request__status_item}>
+                            {request?.domain && <div className={styles.request__status_item}>
                                 <div className={styles.title}>Домен</div>
-                                <div className={`${styles.status} ${styles.status__light}`}>{domain}</div>
+                                <div className={`${styles.status} ${styles.status__light}`}>{request?.domain}</div>
                             </div>}
                         </div>
                     </div>
-                    <button onClick={handleOpenedDropdown} className={styles.btnLight}>Изменить статус<Arrow theme="light"/></button>
-                    {dropdownOpened &&
-                    <div className={styles.status__dropdown_menu}>
-                        <div onClick={() => handleUpdateStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.circle__doing}`}></div>в работе</div>
-                        <div onClick={() => handleUpdateStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.circle__new}`}></div>новая</div>
-                        <div onClick={() => handleUpdateStatus('исполнено')} className={styles.status}><div className={`${styles.circle} ${styles.circle__done}`}></div>исполнена</div>
-                        <div onClick={() => handleUpdateStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.circle__closed}`}></div>закрыта</div>
-                        <div onClick={() => handleUpdateStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.circle__canceled}`}></div>отменена</div>
-                    </div>}
+                    <div>
+                        <button onClick={handleOpenedDropdown} className={styles.btnLight}>Изменить статус<Arrow theme="light"/></button>
+                        {dropdownOpened &&
+                        <div className={`${styles.status__dropdown_menu} ${styles.update_status}`}>
+                            <div onClick={() => handleUpdateStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
+                            <div onClick={() => handleUpdateStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
+                            <div onClick={() => handleUpdateStatus('исполнено')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнена</div>
+                            <div onClick={() => handleUpdateStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
+                            <div onClick={() => handleUpdateStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
+                        </div>}
+                    </div>
                 </div>
                 <div>
                     <div className={styles.request__status}>

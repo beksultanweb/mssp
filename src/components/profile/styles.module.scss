@@ -24,6 +24,7 @@
     gap: 5px;
     align-items: center;
     font-weight: 500;
+    cursor: pointer;
     &__light {
         color: $primary-white;
     }
@@ -119,8 +120,12 @@
     &__btn {
         padding: 0;
         background-color: inherit;
-        color: $primary-black;
+        color: $black;
         text-decoration: underline;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
     }
 }
 

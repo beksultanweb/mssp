@@ -9,7 +9,7 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use((config) => {
-    if(typeof window !== 'undefined') config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config
 })
 
@@ -21,7 +21,7 @@ $api.interceptors.response.use(config => {
         originalRequest._isRetry = true
         try {
             const response = await axios.get<AuthResponse>(`${process.env.GATSBY_API_URL}/refresh`, { withCredentials: true })
-            if(typeof window !== 'undefined') localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('token', response.data.accessToken)
             return $api.request(originalRequest)
         } catch (error) {
             console.log(error)

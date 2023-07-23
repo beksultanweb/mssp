@@ -16,7 +16,7 @@ import { AuthStore } from '../../store/AuthStore'
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setRegisterOpen: () => void, authStore?: AuthStore}) => {
+const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: () => void, setRegisterOpen: () => void, setResetPwdOpen: () => void, authStore?: AuthStore}) => {
     const emailRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
     const errRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
 
@@ -30,12 +30,7 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
     const [errMsg, setErrMsg] = React.useState('');
     const [checkRun, setCheckRun] = React.useState(false);
 
-    const handlePersist = () => setPersist(prev => !prev)
-    const handleSaveCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.checked) {
-            // localStorage.setItem('saved', {email, })
-        }
-    }
+    const handlePersist = () => setPersist((prev: boolean) => !prev)
 
     React.useEffect(() => {
         if(emailRef.current) {
@@ -59,6 +54,11 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
         close()
         setRegisterOpen()
     }
+
+    // const handleSwithchToResetPwd = () => {
+    //     close()
+    //     setResetPwdOpen()
+    // }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -108,7 +108,7 @@ const Login = ({ close, setRegisterOpen, authStore }: {close: () => void, setReg
                 </div>
                 <div className={styles.flex}>
                     <label><input onChange={handlePersist} type="checkbox" id="persist" checked={persist} />Запомнить меня</label>
-                    <div className={styles.forget}>Забыли пароль?</div>
+                    {/* <div onClick={handleSwithchToResetPwd} className={styles.forget}>Забыли пароль?</div> */}
                 </div>
                 <div className={styles.buttons}>
                     <button className={styles.btnLight}>Войти<Arrow theme="light"/></button>

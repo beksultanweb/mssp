@@ -39,13 +39,6 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     }
 
     React.useEffect(() => {
-        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
-            authStore.checkAuth()
-        }
-    }, [])
-
-
-    React.useEffect(() => {
         requestsStore.getMyRequests(authStore.user.id, currStatus)
     }, [!modalOpen, currStatus, requestsStore, authStore.user.id])
 
@@ -66,10 +59,6 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
         </div>)})
 
-    if(authStore.user.roles?.includes(2001) === false) {
-        navigate('/')
-        return null
-    }
     return (
         <section className={styles.profile}>
         <Header theme="light"/>

@@ -79,6 +79,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
         }
         try {
             const response = await AuthService.registration(email, password, firstName, secondName)
+            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             setSuccess(true)
         } catch (error) {

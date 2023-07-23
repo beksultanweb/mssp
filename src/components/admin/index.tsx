@@ -19,7 +19,7 @@ interface ProfileProps extends PageProps {
     requestsStore: RequestsStore
 }
 
-const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+const Admin: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
     const [dropdownOpened, setOpenedDropdown] = React.useState(false)
     const [modalOpen, setModalOpen] = React.useState(false)
 
@@ -30,15 +30,6 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     const handleModalOpen = () => {
         setModalOpen(!modalOpen)
     }
-
-    React.useEffect(() => {
-        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
-            authStore.checkAuth()
-        }
-        else {
-            navigate('/')
-        }
-    }, [])
 
     React.useEffect(() => {
         requestsStore.getAllRequests()
@@ -58,10 +49,6 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
         </div>)})
 
-    if(authStore.user.roles?.includes(5150) === false) {
-        navigate('/')
-        return null
-    }
     return (
         <section className={styles.profile}>
         <Header theme="light"/>
@@ -85,4 +72,4 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     )
 }
 
-export default inject('authStore', 'requestsStore')(observer(Profile))
+export default inject('authStore', 'requestsStore')(observer(Admin))

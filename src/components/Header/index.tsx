@@ -14,6 +14,7 @@ import Layout from '../Layout'
 
 import Login from '../Modal/Login'
 import Register from '../Modal/Register'
+import ResetPwd from '../Modal/ResetPwd';
 
 interface HeaderProps {
     theme: string
@@ -24,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [loginOpen, setloginOpen] = useState(false)
     const [registerOpen, setRegisterOpen] = useState(false)
+    const [resetPwdOpen, setResetPwdOpen] = useState(false)
     const [userDropdownOpen, setUserDropdownOpen] = useState(false)
 
     const handleMenuOpen = () => {
@@ -36,6 +38,10 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
 
     const handleRegisterOpen = () => {
         setRegisterOpen(!registerOpen)
+    }
+
+    const handleResetPwdOpen = () => {
+        setResetPwdOpen(!resetPwdOpen)
     }
 
     const handleUserDropdownOpen = () => {
@@ -61,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                         </div>
                     </div>
                     {authStore?.isAuth && <div className={`${theme === 'light' ? styles.light : ''} ${styles.user}`} onClick={handleUserDropdownOpen}>
-                        {authStore?.user.email}
+                        {authStore?.user.email.split('@')[0]}
                         {userDropdownOpen && <div className={styles.logout}>
                             <Link to={authStore.user.roles?.includes(5150) ? '/admin' : '/profile'}><button className={styles.logout__btn}>В личный кабинет<Arrow theme='light'/></button></Link>
                             <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
@@ -71,8 +77,9 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                     <button onClick={handleMenuOpen} className={`${theme === 'light' ? styles.light : styles.dark} ${isOpen ? styles.mobile__burger_open : styles.mobile__burger}`}>{!isOpen && 'Меню'}<Arrow theme={theme === 'light' ? 'dark' : 'light'}/></button>
                 </header>
             </Layout>
-            {loginOpen && <Login setRegisterOpen={handleRegisterOpen} close={handleloginOpen}/>}
+            {loginOpen && <Login setResetPwdOpen={handleResetPwdOpen} setRegisterOpen={handleRegisterOpen} close={handleloginOpen}/>}
             {registerOpen && <Register setLoginOpen={handleloginOpen} close={handleRegisterOpen}/>}
+            {/* {resetPwdOpen && <ResetPwd close={handleResetPwdOpen}/>} */}
         </RemoveScroll>
     )
 }

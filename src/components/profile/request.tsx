@@ -23,9 +23,6 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
     const [errMsg, setErrMsg] = React.useState('')
 
     React.useEffect(() => {
-        if (typeof window !== 'undefined' && localStorage.getItem('token')) {
-            authStore.checkAuth()
-        }
         location.state &&
         requestsStore.getRequest(location.state.requestId)
     }, [])
@@ -50,10 +47,6 @@ const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
         }
     }
 
-    if(authStore.user.roles?.includes(2001) === false) {
-        navigate('/')
-        return null
-    }
     return (
         <section className={styles.profile}>
             <Header theme="light"/>

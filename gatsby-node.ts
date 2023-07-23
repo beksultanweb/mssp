@@ -4,6 +4,7 @@ import { CreatePageArgs } from 'gatsby';
 import path from 'path';
 
 export const createPages: GatsbyNode['createPages'] = async ({
+  page,
   graphql,
   actions
 }: CreatePageArgs) => {

@@ -75,6 +75,11 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
                 <div onClick={() => handleChangeStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
                 <div onClick={() => handleChangeStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}
+            {myrequests.length === 0 && <div className={styles.request}>
+                <div className={styles.request__item}>
+                    Для начала добавьте свой запрос, чтобы отобразить список всех ваших запросов
+                </div>
+            </div>}
             {myrequests}
         </Layout>
         {modalOpen && <CreateRequest close={() => setModalOpen(false)}/>}

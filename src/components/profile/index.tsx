@@ -69,6 +69,7 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>
+                <div onClick={() => handleChangeStatus('')} className={styles.status}><div className={`${styles.circle} ${styles.nostatus}`}></div>весь список</div>
                 <div onClick={() => handleChangeStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
                 <div onClick={() => handleChangeStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
                 <div onClick={() => handleChangeStatus('исполнено')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнено</div>

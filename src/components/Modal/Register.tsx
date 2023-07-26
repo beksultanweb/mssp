@@ -94,7 +94,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
         <Modal title="Регистрация" subtitle="Для того чтобы отслеживать статус вашей заявки, необходимо зарегистрироваться." close={close}>
             <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <p className={success ? styles.success : styles.offscreen}>
-                Регистрация прошла успешно! Можете <span className={styles.span} onClick={handleSwithchToLogin}>войти в личный кабинет</span>.
+                Регистрация прошла успешно! Можете <p className={styles.success__link} onClick={handleSwithchToLogin}>войти в личный кабинет</p>.
             </p>
             <form onSubmit={handleSubmit}>
                 <div className={styles.form__inputs}>

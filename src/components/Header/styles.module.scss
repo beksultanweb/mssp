@@ -71,11 +71,14 @@ header {
 }
 .user {
     cursor: pointer;
+    position: relative;
 }
 .logout {
     position: absolute;
     z-index: 100;
     padding: 20px;
+    right: 0;
+    width: 170px;
     background-color: $primary-white;
     border-radius: 20px;
     display: flex;

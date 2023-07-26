@@ -39,20 +39,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
   `);
   const products = await graphql(`
     query AllWpProducts {
-        allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {nin: ["news", "uncategorized", "mssp-services"]}}}}}) {
+        allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {nin: ["news", "uncategorized"]}}}}}) {
             nodes {
               slug
               title
               ServiceInformation {
                 yearOfProduction
                 iconAdvantage1 {
-                  sourceUrl
+                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
                 }
                 iconAdvantage2 {
-                  sourceUrl
+                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
                 }
                 iconAdvantage3 {
-                  sourceUrl
+                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
                 }
                 advantage1
                 advantage2

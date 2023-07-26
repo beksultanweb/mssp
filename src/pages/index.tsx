@@ -19,6 +19,7 @@ import Header from '../components/Header'
 import { AuthStore } from '../store/AuthStore'
 
 import type { HeadFC, PageProps } from 'gatsby'
+import Widget from '../components/Widget'
 
 interface IndexProps extends PageProps {
   authStore: AuthStore
@@ -48,6 +49,7 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
       <PartnerLinkFrame2/>
       <NewsFrame/>
       <Footer/>
+      <Widget/>
     </>
   )
 }

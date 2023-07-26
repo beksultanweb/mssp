@@ -79,9 +79,9 @@ const Product = ({ pageContext }: PageProps) => {
               <div className={styles.about_service__content} dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
             <div className={styles.about_service__advantages}>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage1?.sourceUrl} alt="advantage" />{advantage1}</div>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage2?.sourceUrl} alt="advantage" />{advantage2}</div>
-              <div className={styles.about_service__advantage}><img src={iconAdvantage3?.sourceUrl} alt="advantage" />{advantage3}</div>
+              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage1)} alt="advantage" />{advantage1}</div>
+              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage2)} alt="advantage" />{advantage2}</div>
+              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage3)} alt="advantage" />{advantage3}</div>
             </div>
           </Layout>
         </section>

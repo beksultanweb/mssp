@@ -135,6 +135,10 @@
     border-radius: 50%;
 }
 
+.nostatus {
+    background-color: inherit;
+    border: 0.5px solid $black;
+}
 .green {
     background-color: #00AE46;
 }

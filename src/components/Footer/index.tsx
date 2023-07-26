@@ -1,6 +1,5 @@
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
 import styles from './styles.module.scss'
@@ -40,8 +39,9 @@ const query = graphql`
 
 export const Footer = ({ theme } :{theme?: string}) => {
     const data = useStaticQuery(query)
+
     return (
-        <footer className={`${theme === 'light' ? styles.light : ''}`}>
+        <footer className={`${theme === 'light' ? styles.light : ''}`} id="footer">
             <Layout>
                 <nav>
                     <div>
@@ -68,7 +68,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
                     </div>
                     <div className={styles.routes}>
                     {data.allWpCategory.edges.map((el: any) => (
-                        <div key={el.node.name} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{el.node.name}</div>
+                        <Link key={el.node.name} to={'/products'} state={{ product: el.node.slug }} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{el.node.name}</Link>
                     ))}
                     </div>
                 </nav>

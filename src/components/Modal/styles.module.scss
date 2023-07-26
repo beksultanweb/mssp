@@ -34,6 +34,19 @@
     margin-top: 8px;
     margin-bottom: 48px;
 }
+.decipher__title {
+    font-size: 20px;
+    font-weight: 800;
+    color: $secondary-white;
+    display: flex;
+    gap: 8px;
+}
+.decipher__subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: $grey-decipher;
+    margin-top: 12px;
+}
 .input {
     border: none;
     display: block;
@@ -84,8 +97,11 @@
 .success, .errmsg {
     color: $primary-white;
     margin-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-.span {
+.success__link {
+    color: $primary-white;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -167,9 +183,13 @@ label {
 }
 
 @media (max-width: 600px) {
+    .outside {
+        align-items: center !important;
+    }
     .modal {
         width: 100%;
         height: auto;
+        margin: 0 auto !important;
     }
     .subtitle {
         margin-bottom: 20px;

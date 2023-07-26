@@ -19,6 +19,7 @@
 }
 .big_circle {
     background-color:#0099CC;
+    text-decoration: none;
     width: 150px;
     height: 150px;
     padding: 25px;
@@ -52,6 +53,7 @@
 .small_circle {
     border-radius: 50%;
     box-sizing: border-box;
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;

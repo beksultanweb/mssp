@@ -49,10 +49,14 @@ query($selectedCategory: String) {
       }
 }`
 
-const ProductsPage: React.FC<PageProps> = () => {
+const ProductsPage: React.FC<PageProps> = ({ location }) => {
   const [selectedCategory, setSelectedCategory] = useState('blue-team')
   const data = useStaticQuery(fetchData)
   const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
+  React.useEffect(() => {
+    location.state.product &&
+    setSelectedCategory(location.state.product)
+  }, [location.state.product])
   return (
     <>
       <Header theme="dark"/>

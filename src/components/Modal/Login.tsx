@@ -85,7 +85,7 @@ const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: (
     }
 
     return (
-        <Modal title="Вход" subtitle="Для отслеживания статуса вашей заявки, пожалуйста, войдите в свой личный кабинет." close={close}>
+        <Modal title="Вход" subtitle="Для создания и отслеживания статуса вашей заявки, пожалуйста, войдите в свой личный кабинет." close={close}>
             <p ref={errRef} className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <form onSubmit={handleSubmit}>
                 <div className={styles.form__inputs}>

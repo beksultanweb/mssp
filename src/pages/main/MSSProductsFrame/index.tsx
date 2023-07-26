@@ -8,6 +8,7 @@ import styles from './styles.module.scss'
 import Arrow from '../../../assets/icons/arrow'
 import Layout from '../../../components/Layout'
 import productsStyles from '../ProductsFrame/styles.module.scss'
+import { Link } from '@reach/router'
 
 const query = graphql`
 {
@@ -112,14 +113,14 @@ const MSSProductsFrame = () => {
             </div>
             <div className={styles.bubbles}>
             {sortedNodes.slice(0, 6).map((node: any) => (
-                <div key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.big_circle} ${styles[node.slug]}`}>
+                <Link to={`/products/${node.slug}`} key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.big_circle} ${styles[node.slug]}`}>
                     <div className="product_name">{node.title}</div>
-                </div>
+                </Link>
             ))}
             {sortedNodes.slice(6).map((node: any) => (
-                <div key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.small_circle} ${styles[node.slug]}`}>
+                <Link to={`/products/${node.slug}`} key={node.slug} ref={el => !bubblesRef.current.includes(el) && bubblesRef.current.push(el)} className={`${styles.small_circle} ${styles[node.slug]}`}>
                     <div className="product_name">{node.title}</div>
-                </div>
+                </Link>
             ))}
             </div>
         </Layout>

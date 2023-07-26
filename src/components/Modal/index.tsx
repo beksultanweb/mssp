@@ -3,13 +3,15 @@ import React from 'react'
 import styles from './styles.module.scss'
 
 interface ModalProps {
-    title: string
-    subtitle: string
+    title?: string
+    subtitle?: string
     close: () => void
-    children: React.ReactNode
+    children: React.ReactNode,
+    width?: number
+    justifyEnd?: boolean
 }
 
-const Modal: React.FC<ModalProps> = ({ title, subtitle, close, children }) => {
+const Modal: React.FC<ModalProps> = ({ title, subtitle, close, children, width, justifyEnd }) => {
     const clickOutside = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if(event.target === event.currentTarget) {
             close()
@@ -17,11 +19,11 @@ const Modal: React.FC<ModalProps> = ({ title, subtitle, close, children }) => {
     }
 
     return (
-        <div className={styles.outside} onClick={clickOutside}>
-            <div className={styles.modal}>
+        <div className={styles.outside} onClick={clickOutside} style={{ alignItems: `${justifyEnd && 'end'}` }}>
+            <div className={styles.modal} style={{ width: `${width}px`, margin: `${justifyEnd && '0 5% 10% auto'}` }}>
                 <div onClick={close} className={styles.close}></div>
-                <h2 className={styles.title}>{title}</h2>
-                <p className={styles.subtitle}>{subtitle}</p>
+                {title && <h2 className={styles.title}>{title}</h2>}
+                {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
                 {children}
             </div>
         </div>

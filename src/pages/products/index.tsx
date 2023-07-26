@@ -56,7 +56,7 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
   React.useEffect(() => {
     location.state.product &&
     setSelectedCategory(location.state.product)
-  }, [location.state.product])
+  }, [location.state?.product])
   return (
     <>
       <Header theme="dark"/>

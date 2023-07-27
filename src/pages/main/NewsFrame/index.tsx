@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby'
+import { Link, graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
 import styles from './styles.module.scss'
@@ -37,7 +37,7 @@ const NewsFrame = () => {
         <Layout>
             <SimilarHead title="Новости" order="/007" buttonTxt="Все новости" theme="dark"/>
             <NewsBox data={news}/>
-            <button className={styles.btn}>Все новости<Arrow theme="dark"/></button>
+            <Link to={'/news'}><button className={styles.btn}>Все новости<Arrow theme="dark"/></button></Link>
         </Layout>
     )
 }

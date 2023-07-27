@@ -13,7 +13,6 @@ import partner4 from '../../../assets/icons/partner3.svg'
 import Layout from '../../../components/Layout'
 
 
-
 const query = graphql`
 {
     wpPage {
@@ -69,40 +68,52 @@ const ClientsFrame = () => {
     const data = useStaticQuery(query)
     const [counter, setCounter] = React.useState({ counter: 0 })
 
-    const ref1 = useRef(null)
+    const ref = useRef<HTMLImageElement[]>([])
 
     gsap.registerPlugin(ScrollTrigger)
     React.useEffect(() => {
-        const tl = gsap.timeline({ repeat: -1, scrollTrigger: {
-          trigger: ref1.current,
-          toggleActions: 'play pause resume pause'
-        } })
-        tl.to(ref1.current, { duration: 3 })
-        tl.to({ counter: 0 }, {
-          onUpdate: setCounter,
-          onUpdateParams: [{ counter: 1 }]
-        });
-        tl.to(ref1.current, { duration: 3 })
-        tl.to({ counter: 1 }, {
-          onUpdate: setCounter,
-          onUpdateParams: [{ counter: 2 }]
-        });
-        tl.to(ref1.current, { duration: 3 })
-        tl.to({ counter: 2 }, {
-          onUpdate: setCounter,
-          onUpdateParams: [{ counter: 3 }]
-        });
-        tl.to(ref1.current, { duration: 3 })
-        tl.to({ counter: 3 }, {
-          onUpdate: setCounter,
-          onUpdateParams: [{ counter: 0 }]
-        });
+        ref.current.forEach((el: HTMLImageElement) => moveMe(el))
     }, [])
 
-    React.useEffect(() => {
-      console.log(counter.counter)
-    }, [counter.counter])
-
+    const moveMe = (element: HTMLImageElement) => {
+      const tl = gsap.timeline({ repeat: -1, scrollTrigger: {
+        trigger: ref.current,
+        toggleActions: 'play pause resume pause'
+      } })
+      tl.to(element, { duration: gsap.utils.random(2, 3) })
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: gsap.utils.random(2, 3) })
+      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to({ counter: 0 }, {
+        duration: 3,
+        onUpdate: setCounter,
+        onUpdateParams: [{ counter: 1 }]
+      });
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: gsap.utils.random(2, 3) })
+      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to({ counter: 1 }, {
+        duration: 3,
+        onUpdate: setCounter,
+        onUpdateParams: [{ counter: 2 }]
+      });
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: gsap.utils.random(2, 3) })
+      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to({ counter: 2 }, {
+        duration: 3,
+        onUpdate: setCounter,
+        onUpdateParams: [{ counter: 3 }]
+      });
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: gsap.utils.random(2, 3) })
+      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to({ counter: 3 }, {
+        duration: 3,
+        onUpdate: setCounter,
+        onUpdateParams: [{ counter: 0 }]
+      });
+    }
 
     return (
         <section className={styles.clients}>
@@ -118,10 +129,10 @@ const ClientsFrame = () => {
                     </div>
                 </div>
                 <div className={styles.partners}>
-                    <img ref={ref1} className={styles.partners__item} src={partners[counter.counter]} alt="img" />
-                    <img ref={ref1} className={styles.partners__item} src={partners2[counter.counter]} alt="img" />
-                    <img ref={ref1} className={styles.partners__item} src={partners3[counter.counter]} alt="img" />
-                    <img ref={ref1} className={styles.partners__item} src={partners4[counter.counter]} alt="img" />
+                    <img ref={(el: HTMLImageElement) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners[counter.counter]} alt="img" />
+                    <img ref={(el: HTMLImageElement) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners2[counter.counter]} alt="img" />
+                    <img ref={(el: HTMLImageElement) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners3[counter.counter]} alt="img" />
+                    <img ref={(el: HTMLImageElement) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners4[counter.counter]} alt="img" />
                 </div>
             </Layout>
         </section>

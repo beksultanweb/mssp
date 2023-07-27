@@ -68,7 +68,12 @@ const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsSto
                     <p id="emailnote" className={phone && !validPhone ? styles.instructions : styles.offscreen}>
                         <img src={info} alt="" />Неверный номер телефона
                     </p>
-                    <input className={styles.input} value={service} onChange={(e) => setService(e.target.value)} type="text" placeholder="Выбранная услуга (общая)" />
+                    <select className={styles.input} value={service} onChange={(e) => setService(e.target.value)}>
+                        <option value="" disabled selected>Выбранная услуга (общая)</option>
+                        <option value="Dodger">Dodger</option>
+                        <option value="Sentest">Sentest</option>
+                        <option value="Дешифратор">Дешифратор</option>
+                    </select>
                     <input className={styles.input} value={domain} onChange={(e) => setDomain(e.target.value)} type="text" placeholder="Доменный адрес" />
                 </div>
                 <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>

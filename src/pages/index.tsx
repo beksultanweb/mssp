@@ -1,5 +1,5 @@
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import React, { RefObject } from 'react'
 
 import './styles.module.scss'
 import ClientsFrame from './main/ClientsFrame'
@@ -16,32 +16,46 @@ import PromoFrame from './main/PromoFrame'
 
 import { Footer } from '../components/Footer'
 import Header from '../components/Header'
+import Consultation from '../components/Modal/Consultation'
+import Decipher from '../components/Modal/Decipher'
+import Widget from '../components/Widget'
 import { AuthStore } from '../store/AuthStore'
 
 import type { HeadFC, PageProps } from 'gatsby'
-import Widget from '../components/Widget'
+
 
 interface IndexProps extends PageProps {
   authStore: AuthStore
 }
 
 const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
+  const [consultationOpen, setConsultationOpen] = React.useState(false)
+
   React.useEffect(() => {
     if(localStorage.getItem('token') && localStorage.getItem('persist') === 'true') {
       authStore?.checkAuth()
     }
   }, [])
 
+  const handleConsultationOpen = () => {
+    setConsultationOpen(!consultationOpen)
+  }
+
+  const [decipherOpen, setDecipherOpen] = React.useState(false)
+  const handleDecipherOpen = () => {
+      setDecipherOpen(!decipherOpen)
+  }
+
   return (
     <>
       <main>
         <Header theme="dark"/>
-        <MainFrame/>
+        <MainFrame handleConsultationOpen={handleConsultationOpen}/>
       </main>
       <ProductsFrame/>
-      <CTAFrame/>
+      <CTAFrame setDecipherOpen={setDecipherOpen} handleConsultationOpen={handleConsultationOpen}/>
       <MSSProductsFrame/>
-      <PenetrationTestFrame/>
+      <PenetrationTestFrame handleConsultationOpen={handleConsultationOpen}/>
       <PartnerLinkFrame/>
       <DodgerFrame/>
       {/* <PromoFrame/> */}
@@ -49,7 +63,9 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
       <PartnerLinkFrame2/>
       <NewsFrame/>
       <Footer/>
-      <Widget/>
+      <Widget handleDecipherOpen={handleDecipherOpen}/>
+      {consultationOpen && <Consultation close={() => setConsultationOpen(false)}/>}
+      {decipherOpen && <Decipher close={handleDecipherOpen} handleConsultationOpen={handleConsultationOpen}/>}
     </>
   )
 }

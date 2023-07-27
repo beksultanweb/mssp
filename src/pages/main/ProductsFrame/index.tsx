@@ -1,14 +1,19 @@
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import React, { useEffect, useRef, useState } from 'react'
 
+import Slider from 'react-slick'
+
 import styles from './styles.module.scss'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import Arrow from '../../../assets/icons/arrow'
 import arrow from '../../../assets/icons/Arrow.svg'
 import Layout from '../../../components/Layout'
+
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -32,7 +37,7 @@ query($selectedCategory: String) {
           ServiceInformation {
             description
             icon {
-              sourceUrl
+                gatsbyImage(width: 72, formats: WEBP, quality: 100)
             }
           }
           title
@@ -48,6 +53,18 @@ query($selectedCategory: String) {
 
 const SLIDER_WIDTH = 388
 
+const NextArrow = (props) => {
+    return (
+        <img onClick={props.onClick} className={styles.tabs__next} src={arrow} alt="" />
+    );
+}
+
+const PrevArrow = (props) => {
+    return (
+        <img onClick={props.onClick} className={styles.tabs__prev} style={{ transform: 'rotate(180deg)' }} src={arrow} alt="" />
+    );
+}
+
 const ProductsFrame = () => {
     const [selectedCategory, setSelectedCategory] = useState('blue-team')
     const data = useStaticQuery(fetchData)
@@ -56,33 +73,40 @@ const ProductsFrame = () => {
     const [offset, setOffset] = useState(0)
     const [ellipseLeft, setEllipseLeft] = useState(193)
 
-    const handleLeftSlider = () => {
-        setOffset((currentOffset) => {
-            const newOffset = currentOffset + SLIDER_WIDTH
-            return Math.min(newOffset, 0)
-        })
-        if(offset > -1 * SLIDER_WIDTH) {
-            setEllipseLeft(193)
-        }
-        else setEllipseLeft((left) => {
-            return left
-        })
-    }
-    const handleRightSlider = () => {
-        const maxOffset = -(SLIDER_WIDTH / 2 * categoryData.length)
-        setOffset((currentOffset) => {
-            const newOffset = currentOffset - SLIDER_WIDTH
-            return Math.max(newOffset, maxOffset)
-        })
-        if(offset <= -(SLIDER_WIDTH / 2 * 3)) {
-            setEllipseLeft(left => {
-                const newLeft = left * 2 + 15
-                if(newLeft <= maxOffset * -1) {
-                    return newLeft
-                }
-                else return left
-            })
-        }
+    // const handleLeftSlider = () => {
+    //     setOffset((currentOffset) => {
+    //         const newOffset = currentOffset + SLIDER_WIDTH
+    //         return Math.min(newOffset, 0)
+    //     })
+    //     if(offset > -1 * SLIDER_WIDTH) {
+    //         setEllipseLeft(193)
+    //     }
+    //     else setEllipseLeft((left) => {
+    //         return left
+    //     })
+    // }
+    // const handleRightSlider = () => {
+    //     const maxOffset = -(SLIDER_WIDTH * categoryData.length)
+    //     setOffset((currentOffset) => {
+    //         const newOffset = currentOffset - SLIDER_WIDTH
+    //         return Math.max(newOffset, maxOffset)
+    //     })
+    //     if(offset <= -(SLIDER_WIDTH / 2 * 3)) {
+    //         setEllipseLeft(left => {
+    //             const newLeft = left * 2 + 15
+    //             if(newLeft <= maxOffset * -1) {
+    //                 return newLeft
+    //             }
+    //             else return left
+    //         })
+    //     }
+    // }
+    const settings = {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        nextArrow: <NextArrow/>,
+        prevArrow: <PrevArrow/>,
+        infinite: false
     }
 
     const ref = React.useRef(null)
@@ -125,19 +149,15 @@ const ProductsFrame = () => {
             </div>
             <div className={styles.tabs__parent}>
                 <StaticImage style={{ left: `${ellipseLeft}px` }} className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
-                <div className={styles.tabs__content} style={{ transform: `translateX(${offset}px)` }}>
+                <Slider className={styles.tabs__content} {...settings}>
                     {categoryData.map((post: any) =>
                         <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                            <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
+                            <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
                             <div className={styles.tabs__title}>{post.title}</div>
                             <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
                         </Link>
                     )}
-                </div>
-            </div>
-            <div className={styles.tabs__navigation}>
-                <img style={{ transform: 'rotate(180deg)' }} src={arrow} onClick={handleLeftSlider} alt="" />
-                <img src={arrow} onClick={handleRightSlider} alt="" />
+                </Slider>
             </div>
         </Layout>
         </section>

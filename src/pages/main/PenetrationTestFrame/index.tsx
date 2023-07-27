@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 import Arrow from '../../../assets/icons/arrow'
 import Layout from '../../../components/Layout'
 
-const PenetrationTestFrame = () => {
+const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => void}) => {
     return (
         <section className={styles.penetration}>
             <div className={styles.report}>Report</div>
@@ -35,7 +35,7 @@ const PenetrationTestFrame = () => {
                         <div className={styles.country}>Казахстан</div>
                     </div>
                 </div>
-                <button>Оставить заявку<Arrow theme="dark"/></button>
+                <button onClick={handleConsultationOpen}>Оставить заявку<Arrow theme="dark"/></button>
             </Layout>
             <StaticImage src="../../../assets/images/021A5908.jpg" width={651} alt="penetration" objectPosition={'40% 40%'} className={styles.penetration__img}/>
         </section>

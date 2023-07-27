@@ -99,13 +99,13 @@
     &__content {
         margin-top: 234px;
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
         align-items: flex-start;
     }
     &__btns {
+        margin-top: 15px;
         display: flex;
-        flex-wrap: wrap;
+        white-space: nowrap;
         gap: 20px;
     }
     &__title, &__subtitle {
@@ -137,6 +137,7 @@
         margin-left: 400px;
     }
     &__content h3 {
+        margin-top: 0;
         font-size: 32px;
     }
     &__content ul, &__content2 ul {
@@ -211,6 +212,11 @@
         }
         &__content {
             grid-template-columns: 1fr;
+        }
+    }
+    .top {
+        &__content, &__btns {
+            flex-wrap: wrap;
         }
     }
 }

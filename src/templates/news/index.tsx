@@ -16,7 +16,7 @@ const News: React.FC<PageProps> = ({ pageContext }) => {
     const newsData = news.data.allWpPost.nodes
     const [sliceNum, setSliceNum] = useState(3)
     const handleOpenMore = () => {
-      setSliceNum(sliceNum * 2)
+      setSliceNum(newsData.length)
     }
 
     const arrayImage = newsData.map(post => getImage(post.news.newsImg))
@@ -45,7 +45,7 @@ const News: React.FC<PageProps> = ({ pageContext }) => {
                   <div key={post.title} className={styles.news__box}>
                       <GatsbyImage image={arrayImage[index]} className={styles.news__img} alt="news" />
                       <div>
-                        <h3 className={styles.news__title}>{post.title}</h3>
+                        <Link className={styles.a_link} to={`/news/${post.slug}`}><h3 className={styles.news__title}>{post.title}</h3></Link>
                         <p className={`${styles.news__subtitle} ${styles.news__subtitle_margin}`}>{post.news.newsSubtitle}</p>
                         <div className={styles.news__addinfo}>
                           <div className={styles.news__author}>

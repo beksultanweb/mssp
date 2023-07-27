@@ -78,13 +78,13 @@ header {
     z-index: 100;
     padding: 20px;
     right: 0;
-    width: 170px;
     background-color: $primary-white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     &__btn {
+        width: 170px;
         cursor: pointer;
         border: none;
         padding: 0;

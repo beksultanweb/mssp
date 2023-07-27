@@ -22,7 +22,7 @@ const fetchMainBlockData = graphql`
     }
 }`
 
-const MainFrame = () => {
+const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => void}) => {
     const data = useStaticQuery(fetchMainBlockData)
     const ref1 = useRef(null)
     const ref2 = useRef(null)
@@ -79,7 +79,7 @@ const MainFrame = () => {
         <Layout>
             <h1>{data.wpPage.homePage.mainTitle}</h1>
             <span>/001</span><p className={styles.paragraph}>{data.wpPage.homePage.mainSubtitle}</p>
-            <button>{data.wpPage.homePage.mainBtn}<Arrow theme="dark"/></button>
+            <button onClick={handleConsultationOpen}>{data.wpPage.homePage.mainBtn}<Arrow theme="dark"/></button>
         </Layout>
         </div>
     )

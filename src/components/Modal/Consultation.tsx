@@ -10,6 +10,7 @@ import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import RequestsService from '../../services/requests'
 import { RequestsStore } from '../../store/RequestsStore'
+import { RemoveScroll } from 'react-remove-scroll'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
@@ -56,27 +57,29 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
     }
 
     return (
-        <Modal title="Консультация" subtitle="Оставляйте заявку на консультацию, мы поможем выявить решение" close={close}>
-            <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
-            <p className={success ? styles.success : styles.offscreen}>Заявка успешно отправлена</p>
-            <form onSubmit={handleSubmit}>
-                <div className={styles.form__inputs}>
-                    <input className={styles.input} value={company} onChange={(e) => setCompany(e.target.value)} type="text" placeholder="Название компании" />
-                    <input className={styles.input} value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" name="phone" placeholder="Номер телефона" />
-                    <p className={!phone && checkRun ? styles.instructions : styles.offscreen}>
-                        <img src={info} alt="" />Номер телефона обязателен к заполнению
-                    </p>
-                    <p id="emailnote" className={phone && !validPhone ? styles.instructions : styles.offscreen}>
-                        <img src={info} alt="" />Неверный номер телефона
-                    </p>
-                </div>
-                <div className={styles.flex}>
-                    <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
-                </div>
-                <p className={validPhone && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
-                <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>
-            </form>
-        </Modal>
+        <RemoveScroll enabled>
+            <Modal title="Консультация" subtitle="Оставляйте заявку на консультацию, мы поможем выявить решение" close={close}>
+                <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
+                <p className={success ? styles.success : styles.offscreen}>Заявка успешно отправлена</p>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.form__inputs}>
+                        <input className={styles.input} value={company} onChange={(e) => setCompany(e.target.value)} type="text" placeholder="Название компании" />
+                        <input className={styles.input} value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" name="phone" placeholder="Номер телефона" />
+                        <p className={!phone && checkRun ? styles.instructions : styles.offscreen}>
+                            <img src={info} alt="" />Номер телефона обязателен к заполнению
+                        </p>
+                        <p id="emailnote" className={phone && !validPhone ? styles.instructions : styles.offscreen}>
+                            <img src={info} alt="" />Неверный номер телефона
+                        </p>
+                    </div>
+                    <div className={styles.flex}>
+                        <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
+                    </div>
+                    <p className={validPhone && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
+                    <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>
+                </form>
+            </Modal>
+        </RemoveScroll>
     )
 }
 

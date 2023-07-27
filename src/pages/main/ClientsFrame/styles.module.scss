@@ -17,11 +17,13 @@
 .partners {
     margin-top: 85px;
     display: grid;
+    height: 200px;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: space-between;
     &__item {
         transition: all 2s ease;
+        justify-self: center;
     }
 }
 .about__content {

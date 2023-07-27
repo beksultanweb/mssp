@@ -48,7 +48,7 @@
         grid-auto-flow: column;
         column-gap: 15px;
         margin-top: 40px;
-        margin-bottom: 49px;
+        margin-bottom: 150px;
         transition: transition;
         transition-property: transform;
         transition-duration: 300ms;
@@ -59,7 +59,8 @@
         background-color: $secondary-black;
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 48px 21px 33px 21px;
-        width: 344px;
+        width: 386px !important;
+        height: 233px;
         text-decoration: none;
     }
     &__title {
@@ -74,14 +75,16 @@
         font-size: 16px;
         font-weight: 400;
     }
-    &__navigation {
-        display: flex;
-        justify-content: center;
-        gap: 22px;
-        margin-bottom: 101px;
-        img {
-            cursor: pointer;
-        }
+    &__prev, &__next {
+        position: absolute;
+        bottom: -15%;
+        cursor: pointer;
+    }
+    &__prev {
+        left: 45%;
+    }
+    &__next {
+        right: 45%;
     }
     &__parent {
         position: relative;

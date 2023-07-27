@@ -1,6 +1,5 @@
-import transliterate from '@sindresorhus/transliterate'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React, { useState } from 'react'
 import slugify from 'slugify'
 
@@ -10,6 +9,8 @@ import Arrow from '../../assets/icons/arrow'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+
+import Consultation from '../../components/Modal/Consultation'
 
 import type { HeadFC, PageProps } from 'gatsby'
 
@@ -35,7 +36,7 @@ query($selectedCategory: String) {
           ServiceInformation {
             description
             icon {
-              sourceUrl
+              gatsbyImage(width: 72, formats: WEBP, quality: 100)
             }
           }
           title
@@ -50,6 +51,7 @@ query($selectedCategory: String) {
 }`
 
 const ProductsPage: React.FC<PageProps> = ({ location }) => {
+  const [consultationOpen, setConsultationOpen] = React.useState(false)
   const [selectedCategory, setSelectedCategory] = useState('blue-team')
   const data = useStaticQuery(fetchData)
   const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
@@ -79,7 +81,7 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
             <div className={styles.tabs__content}>
                 {categoryData.map((post: any) =>
                     <Link key={post.title} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                        <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
+                        <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
                         <div className={styles.tabs__title}>{post.title}</div>
                         <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
                     </Link>
@@ -89,11 +91,12 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
           <div className={styles.cta}>
             <h2 className={styles.cta__title}>Записаться на консультацию</h2>
             <div className={styles.cta__subtitle}>Гарантируем доступ к экспертам по кибербезопасности высочайшего уровня для вашей компании, где бы она ни находилась и какого бы масштаба не была!</div>
-            <button className={styles.cta__btn}>Связаться с вами<Arrow theme="light"/></button>
+            <button onClick={() => setConsultationOpen(!consultationOpen)} className={styles.cta__btn}>Связаться с вами<Arrow theme="light"/></button>
           </div>
         </div>
       </Layout>
       <Footer/>
+      {consultationOpen && <Consultation close={() => setConsultationOpen(false)}/>}
     </>
   )
 }

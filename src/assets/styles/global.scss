@@ -15,4 +15,14 @@ body {
 
 .slick-list {
     overflow: visible !important;
+    margin: 0 -15px;
+}
+.slick-track {
+    display: grid !important;
+    grid-auto-flow: column;
+    gap: 15px;
+    margin-left: -15px !important;
+}
+.slick-slide {
+    width: 100% !important;
 }

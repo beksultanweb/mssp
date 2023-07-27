@@ -51,8 +51,6 @@ query($selectedCategory: String) {
       }
 }`
 
-const SLIDER_WIDTH = 388
-
 const NextArrow = (props) => {
     return (
         <img onClick={props.onClick} className={styles.tabs__next} src={arrow} alt="" />
@@ -70,43 +68,32 @@ const ProductsFrame = () => {
     const data = useStaticQuery(fetchData)
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
 
-    const [offset, setOffset] = useState(0)
     const [ellipseLeft, setEllipseLeft] = useState(193)
 
-    // const handleLeftSlider = () => {
-    //     setOffset((currentOffset) => {
-    //         const newOffset = currentOffset + SLIDER_WIDTH
-    //         return Math.min(newOffset, 0)
-    //     })
-    //     if(offset > -1 * SLIDER_WIDTH) {
-    //         setEllipseLeft(193)
-    //     }
-    //     else setEllipseLeft((left) => {
-    //         return left
-    //     })
-    // }
-    // const handleRightSlider = () => {
-    //     const maxOffset = -(SLIDER_WIDTH * categoryData.length)
-    //     setOffset((currentOffset) => {
-    //         const newOffset = currentOffset - SLIDER_WIDTH
-    //         return Math.max(newOffset, maxOffset)
-    //     })
-    //     if(offset <= -(SLIDER_WIDTH / 2 * 3)) {
-    //         setEllipseLeft(left => {
-    //             const newLeft = left * 2 + 15
-    //             if(newLeft <= maxOffset * -1) {
-    //                 return newLeft
-    //             }
-    //             else return left
-    //         })
-    //     }
-    // }
     const settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
         nextArrow: <NextArrow/>,
         prevArrow: <PrevArrow/>,
-        infinite: false
+        infinite: false,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            }
+          ]
     }
 
     const ref = React.useRef(null)

@@ -36,7 +36,7 @@ const NewsFrame = () => {
     return (
         <Layout>
             <SimilarHead title="Новости" order="/007" buttonTxt="Все новости" theme="dark"/>
-            <NewsBox data={news.slice(0, 2)}/>
+            <NewsBox data={news.slice(0, 3)}/>
             <Link to={'/news'}><button className={styles.btn}>Все новости<Arrow theme="dark"/></button></Link>
         </Layout>
     )

@@ -63,7 +63,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
                         {routeElements.map(route => (
                             <Link key={route.url} to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
                         ))}
-                        <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</div>
+                        <Link to='https://astana.hh.kz/employer/5560612' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</Link>
                         <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</div>
                     </div>
                     <div className={styles.routes}>

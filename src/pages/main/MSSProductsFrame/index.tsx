@@ -105,7 +105,7 @@ const MSSProductsFrame = () => {
         <Layout>
             <div className={productsStyles.products__head}>
                 <h2 className={productsStyles.white_text}>MSS-услуги</h2>
-                <Link to={'/products'} state={{ product: 'mss-services' }}><button className={productsStyles.products__btn}>Подробнее<Arrow theme="dark"/></button></Link>
+                <Link to={'/products'} state={{ product: 'mssp-services' }}><button className={productsStyles.products__btn}>Подробнее<Arrow theme="dark"/></button></Link>
             </div>
             <div className={styles.flex}>
                 <span className={productsStyles.white_text}>/003</span>

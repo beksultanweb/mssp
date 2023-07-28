@@ -80,34 +80,35 @@ const ClientsFrame = () => {
         trigger: ref.current,
         toggleActions: 'play pause resume pause'
       } })
+      
+      tl.to(element, { duration: gsap.utils.random(2, 5) })
+      tl.to(element, { alpha: 0, duration: 0.75 })
       tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 0 })
-      tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to(element, { alpha: 1, duration: 0.75 })
       tl.to({ counter: 0 }, {
         duration: 3,
         onUpdate: setCounter,
         onUpdateParams: [{ counter: 1 }]
       });
-      tl.to(element, { alpha: 0 })
+      tl.to(element, { alpha: 0, duration: 0.75 })
       tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to(element, { alpha: 1, duration: 0.75 })
       tl.to({ counter: 1 }, {
         duration: 3,
         onUpdate: setCounter,
         onUpdateParams: [{ counter: 2 }]
       });
-      tl.to(element, { alpha: 0 })
+      tl.to(element, { alpha: 0, duration: 0.75 })
       tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to(element, { alpha: 1, duration: 0.75 })
       tl.to({ counter: 2 }, {
         duration: 3,
         onUpdate: setCounter,
         onUpdateParams: [{ counter: 3 }]
       });
-      tl.to(element, { alpha: 0 })
+      tl.to(element, { alpha: 0, duration: 0.75 })
       tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0 })
+      tl.to(element, { alpha: 1, duration: 0.75 })
       tl.to({ counter: 3 }, {
         duration: 3,
         onUpdate: setCounter,

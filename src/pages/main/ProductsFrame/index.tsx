@@ -68,8 +68,6 @@ const ProductsFrame = () => {
     const data = useStaticQuery(fetchData)
     const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
 
-    const [ellipseLeft, setEllipseLeft] = useState(193)
-
     const settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -111,6 +109,11 @@ const ProductsFrame = () => {
                 } })
         }, [])
     }
+    const sliderRef = React.useRef(null)
+    const handleChangeCategory = (slug: string) => {
+        setSelectedCategory(slug)
+        sliderRef.current?.slickGoTo(0)
+    }
 
     return (
         <section className={styles.products} ref={ref}>
@@ -129,14 +132,13 @@ const ProductsFrame = () => {
                 }
                 else {
                     return (
-                        <button key={el.node.name} className={styles.tabs__btn} onClick={() => setSelectedCategory(el.node.slug)}>{el.node.name}<Arrow theme="light"/></button>
+                        <button key={el.node.name} className={styles.tabs__btn} onClick={() => handleChangeCategory(el.node.slug)}>{el.node.name}<Arrow theme="light"/></button>
                     )
                 }
             })}
             </div>
             <div className={styles.tabs__parent}>
-                <StaticImage style={{ left: `${ellipseLeft}px` }} className={styles.tabs__ellipse} src="../../../assets/icons/Ellipse.svg" alt="" />
-                <Slider className={styles.tabs__content} {...settings}>
+                <Slider ref={sliderRef} className={styles.tabs__content} {...settings}>
                     {categoryData.map((post: any) =>
                         <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
                             <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />

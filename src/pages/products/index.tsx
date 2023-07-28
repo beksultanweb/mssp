@@ -23,7 +23,7 @@ query($selectedCategory: String) {
           button
         }
     }
-    allWpCategory(filter: {slug: {nin: ["news", "uncategorized", "mssp-services"]}}) {
+    allWpCategory(filter: {slug: {nin: ["news", "uncategorized"]}}) {
         edges {
             node {
                 slug

@@ -74,46 +74,34 @@ const ClientsFrame = () => {
     React.useEffect(() => {
         ref.current.forEach((el: HTMLImageElement) => moveMe(el))
     }, [])
-
+    const dur = gsap.utils.random(2, 3)
     const moveMe = (element: HTMLImageElement) => {
       const tl = gsap.timeline({ repeat: -1, scrollTrigger: {
         trigger: ref.current,
         toggleActions: 'play pause resume pause'
       } })
       
-      tl.to(element, { duration: gsap.utils.random(2, 5) })
-      tl.to(element, { alpha: 0, duration: 0.75 })
-      tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0.75 })
-      tl.to({ counter: 0 }, {
-        duration: 3,
-        onUpdate: setCounter,
-        onUpdateParams: [{ counter: 1 }]
-      });
-      tl.to(element, { alpha: 0, duration: 0.75 })
-      tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0.75 })
-      tl.to({ counter: 1 }, {
-        duration: 3,
-        onUpdate: setCounter,
-        onUpdateParams: [{ counter: 2 }]
-      });
-      tl.to(element, { alpha: 0, duration: 0.75 })
-      tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0.75 })
-      tl.to({ counter: 2 }, {
-        duration: 3,
-        onUpdate: setCounter,
-        onUpdateParams: [{ counter: 3 }]
-      });
-      tl.to(element, { alpha: 0, duration: 0.75 })
-      tl.to(element, { duration: gsap.utils.random(2, 3) })
-      tl.to(element, { alpha: 1, duration: 0.75 })
-      tl.to({ counter: 3 }, {
-        duration: 3,
-        onUpdate: setCounter,
-        onUpdateParams: [{ counter: 0 }]
-      });
+      tl.to(element, { duration: dur })
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: 2 })
+      tl.fromTo(element, { alpha: 0 }, { alpha: 1, ease: 'power2.out', duration: 5, onStart: () => setCounter({ counter: 1 }) })
+      // tl.to({ counter: 0 }, {
+      //   duration: 3,
+      //   onUpdate: ,
+      //   onUpdateParams: [{ counter: 1 }]
+      // });
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: 2 })
+      // tl.to(element, { alpha: 1, duration: durT })
+      tl.fromTo(element, { alpha: 0 }, { alpha: 1, ease: 'power2.out', duration: 5, onStart: () => setCounter({ counter: 2 }) })
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: 2 })
+      // tl.to(element, { alpha: 1, duration: durT })
+      tl.fromTo(element, { alpha: 0 }, { alpha: 1, ease: 'power2.out', duration: 5, onStart: () => setCounter({ counter: 3 }) })
+      tl.to(element, { alpha: 0 })
+      tl.to(element, { duration: 2 })
+      // tl.to(element, { alpha: 1, duration: durT })
+      tl.fromTo(element, { alpha: 0 }, { alpha: 1, ease: 'power2.out', duration: 5, onStart: () => setCounter({ counter: 0 }) })
     }
 
     return (

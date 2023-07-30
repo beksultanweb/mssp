@@ -17,7 +17,6 @@
 .partners {
     margin-top: 85px;
     display: grid;
-    height: 200px;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: space-between;
@@ -46,7 +45,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
-        column-gap: 100px;
+        gap: 100px;
         &__item {
             width: 100%;
         }

@@ -75,15 +75,17 @@ const ClientsFrame = () => {
         ref.current.forEach((el: HTMLImageElement) => moveMe(el))
     }, [])
     const dur = gsap.utils.random(2, 3)
+    
     const moveMe = (element: HTMLImageElement) => {
       const tl = gsap.timeline({ repeat: -1, scrollTrigger: {
-        trigger: element,
+        trigger: ref.current,
         toggleActions: 'play pause resume pause'
       } })
-      
-      tl.to(element, { duration: dur })
+
+      // tl.to(element, { duration: dur })
+      tl.to(element, { alpha: 1 })
       tl.to(element, { alpha: 0 })
-      tl.to(element, { duration: dur })
+      tl.to(element, { duration: gsap.utils.random([2, 2.25], true) })
       tl.fromTo(element, { alpha: 0 }, { alpha: 1, ease: 'power2.out', duration: 5, onStart: () => setCounter({ counter: 1 }) })
       // tl.to({ counter: 0 }, {
       //   duration: 3,

@@ -9,6 +9,7 @@ import Arrow from '../../../assets/icons/arrow'
 import Layout from '../../../components/Layout'
 import productsStyles from '../ProductsFrame/styles.module.scss'
 import { Link } from '@reach/router'
+import Button from '../../../components/Button'
 
 const query = graphql`
 {
@@ -105,7 +106,9 @@ const MSSProductsFrame = () => {
         <Layout>
             <div className={productsStyles.products__head}>
                 <h2 className={productsStyles.white_text}>MSS-услуги</h2>
-                <Link to={'/products'} state={{ product: 'mssp-services' }}><button className={productsStyles.products__btn}>Подробнее<Arrow theme="dark"/></button></Link>
+                <Link to={'/products'} state={{ product: 'mssp-services' }}>
+                    <Button className={productsStyles.products__btn} theme='dark' txt='Подробнее'/>
+                </Link>
             </div>
             <div className={styles.flex}>
                 <span className={productsStyles.white_text}>/003</span>

@@ -3,22 +3,14 @@ import * as React from 'react'
 import { SVGProps } from 'react'
 
 interface ArrowProps extends SVGProps<SVGSVGElement> {
-  theme?: string;
+  theme?: string
   rotate?: number
+  isHovered?: boolean
 }
 
 const Arrow = (props: ArrowProps) => {
-  const { theme, rotate, ...svgProps } = props
+  const { theme, rotate, isHovered, ...svgProps } = props
   const ref = React.useRef(null)
-  const [isHovered, setIsHovered] = React.useState(false)
-
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
 
   React.useEffect(() => {
     if(isHovered && !rotate) {
@@ -34,8 +26,6 @@ const Arrow = (props: ArrowProps) => {
     xmlns="http://www.w3.org/2000/svg"
     width={13}
     height={13}
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
     fill="none"
     {...svgProps}
     style={{ transform: `rotate(${rotate ? rotate : 0}deg)` }}

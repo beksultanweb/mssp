@@ -5,6 +5,7 @@ import styles from './styles.module.scss'
 
 import Arrow from '../../../assets/icons/arrow'
 import { SimilarHead } from '../../../components/AdditionalTitle'
+import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 import { NewsBox } from '../../../components/NewsBox'
 
@@ -37,7 +38,9 @@ const NewsFrame = () => {
         <Layout>
             <SimilarHead title="Новости" order="/007" buttonTxt="Все новости" theme="dark"/>
             <NewsBox data={news.slice(0, 3)}/>
-            <Link to={'/news'}><button className={styles.btn}>Все новости<Arrow theme="dark"/></button></Link>
+            <Link to={'/news'}>
+              <Button txt='Все новости' className={styles.btn} theme='dark'/>
+            </Link>
         </Layout>
     )
 }

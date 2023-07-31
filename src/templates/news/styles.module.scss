@@ -60,6 +60,7 @@
         margin-bottom: 8px;
     }
     &__subtitle {
+        font-family: 'SF-Pro-Text';
         font-size: 16px;
         font-weight: 400;
         color: $grey-news;
@@ -83,14 +84,12 @@
         width: 100%;
         height: 223px;
         object-fit: cover;
-        border-radius: 12px;
     }
 }
 .main__img {
     width: 100%;
     height: 406px;
     object-fit: cover;
-    border-radius: 12px;
 }
 
 .simple__title {

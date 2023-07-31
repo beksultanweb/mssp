@@ -11,6 +11,7 @@ import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
+import Button from '../Button'
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
@@ -51,7 +52,7 @@ const ResetPwd = ({ close, authStore }: {close: () => void, authStore?: AuthStor
                 <div className={styles.form__inputs}>
                     <input className={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="email" placeholder="Email" />
                 </div>
-                <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>
+                <Button className={styles.btnLight} theme='light' txt='Отправить'/>
             </form>
         </Modal>
     )

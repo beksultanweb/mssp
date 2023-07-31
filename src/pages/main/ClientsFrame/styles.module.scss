@@ -8,6 +8,7 @@
     width: 95%;
 }
 .paragraph {
+    font-family: 'SF-Pro-Text';
     color: #979797;
     font-size: 16px;
     font-weight: 400;
@@ -19,6 +20,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
+    height: 200px;
     justify-content: space-between;
     &__item {
         transition: all 2s ease;

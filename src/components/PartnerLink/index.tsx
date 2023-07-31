@@ -3,8 +3,9 @@ import React from 'react'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
+import Button from '../Button'
 import Layout from '../Layout'
+
 
 interface PartnerLinkProps {
     image: IGatsbyImageData
@@ -23,7 +24,9 @@ const PartnerLink = (props: PartnerLinkProps) => {
                 <div className={styles.partner__content}>
                     <h2 className={styles.title}>{title}</h2>
                     <p className={styles.paragraph}>{description}</p>
-                    <a href={link} className={styles.link}><button className={styles.btn}>{btn}<Arrow theme="light"/></button></a>
+                    <a href={link} className={styles.link}>
+                        <Button txt={btn} theme='light' className={styles.btn}/>
+                    </a>
                 </div>
             </div>
         </Layout>

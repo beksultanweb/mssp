@@ -11,10 +11,12 @@
 }
 .tabs {
     &__btn {
+        font-family: 'Manrope';
         background-color: $black;
         margin-bottom: 15px;
         white-space: nowrap;
         &_active {
+            font-family: 'Manrope';
             border: 1px solid $primary-black;
             background-color: inherit;
             color: $primary-black;
@@ -47,6 +49,7 @@
         margin-bottom: 12px;
     }
     &__descr {
+        font-family: 'SF-Pro-Text';
         color: $thirdly-white;
         width: 344px;
         font-size: 16px;
@@ -68,6 +71,7 @@
         margin-bottom: 8px;
     }
     &__subtitle {
+        font-family: 'SF-Pro-Text';
         font-size: 16px;
         font-weight: 400;
         color: $primary-white;

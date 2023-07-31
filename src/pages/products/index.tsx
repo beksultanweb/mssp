@@ -13,6 +13,7 @@ import Layout from '../../components/Layout'
 import Consultation from '../../components/Modal/Consultation'
 
 import type { HeadFC, PageProps } from 'gatsby'
+import Button from '../../components/Button'
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -59,6 +60,10 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
     location.state.product &&
     setSelectedCategory(location.state.product)
   }, [location.state?.product])
+
+  const handleConsultationOpen = () => {
+    setConsultationOpen(!consultationOpen)
+  }
   return (
     <>
       <Header theme="dark"/>
@@ -91,7 +96,7 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
           <div className={styles.cta}>
             <h2 className={styles.cta__title}>Записаться на консультацию</h2>
             <div className={styles.cta__subtitle}>Гарантируем доступ к экспертам по кибербезопасности высочайшего уровня для вашей компании, где бы она ни находилась и какого бы масштаба не была!</div>
-            <button onClick={() => setConsultationOpen(!consultationOpen)} className={styles.cta__btn}>Связаться с вами<Arrow theme="light"/></button>
+            <Button className={styles.cta__btn} handleConsultationOpen={handleConsultationOpen} theme='light' txt='Связаться с вами'/>
           </div>
         </div>
       </Layout>

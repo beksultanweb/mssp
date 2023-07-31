@@ -10,6 +10,7 @@ import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import RequestsService from '../../services/requests'
 import { RequestsStore } from '../../store/RequestsStore'
+import Button from '../Button'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
@@ -76,7 +77,7 @@ const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsSto
                     </select>
                     <input className={styles.input} value={domain} onChange={(e) => setDomain(e.target.value)} type="text" placeholder="Доменный адрес" />
                 </div>
-                <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>
+                <Button txt='Отправить' className={styles.btnLight} theme='light'/>
             </form>
         </Modal>
     )

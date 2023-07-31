@@ -10,6 +10,7 @@ import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
+import Button from '../Button'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^(?!$)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -125,7 +126,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
                     <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
                 </div>
                 <p className={validPassword && validEmail && validMatch && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
-                <button className={styles.btnLight}>Зарегистрироваться<Arrow theme="light"/></button>
+                <Button className={styles.btnLight} txt='Зарегистрироваться' theme='light'/>
             </form>
         </Modal>
     )

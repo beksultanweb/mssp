@@ -31,10 +31,12 @@
     flex-direction: row;
     gap: 4px;
     &__btn {
+        font-family: 'Manrope';
         white-space: nowrap;
         background-color: $secondary-white;
         color: $primary-black;
         &_active {
+            font-family: 'Manrope';
             white-space: nowrap;
             background-color: $primary-black;
             border: 1px solid $primary-white;
@@ -64,6 +66,7 @@
         margin-bottom: 12px;
     }
     &__descr {
+        font-family: 'SF-Pro-Text', sans-serif;
         color: $thirdly-white;
         font-size: 16px;
         font-weight: 400;

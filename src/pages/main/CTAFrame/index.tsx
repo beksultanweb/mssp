@@ -8,6 +8,7 @@ import Layout from '../../../components/Layout'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Button from '../../../components/Button'
 
 const query = graphql`
 {
@@ -49,7 +50,7 @@ const CTAFrame = ({ setDecipherOpen, handleConsultationOpen }: {setDecipherOpen:
         <Layout>
             <h2 className={styles.calltoaction__title}>{data.wpPage.ctaframe.ctatitle}</h2>
             <p className={styles.calltoaction__subtitle}>{data.wpPage.ctaframe.ctasubtitle}</p>
-            <button onClick={handleConsultationOpen} className={styles.calltoaction__btn}>{data.wpPage.ctaframe.ctabutton}<Arrow theme="dark"/></button>
+            <Button handleConsultationOpen={handleConsultationOpen} className={styles.calltoaction__btn} theme='dark' txt={data.wpPage.ctaframe.ctabutton}/>
         </Layout>
         </section>
     )

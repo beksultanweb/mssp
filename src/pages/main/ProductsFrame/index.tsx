@@ -13,6 +13,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import Arrow from '../../../assets/icons/arrow'
 import arrow from '../../../assets/icons/Arrow.svg'
 import Layout from '../../../components/Layout'
+import Button from '../../../components/Button'
 
 
 const fetchData = graphql`
@@ -120,7 +121,7 @@ const ProductsFrame = () => {
         <Layout>
             <div className={styles.products__head}>
                 <h2 className={styles.white_text}>{data.wpPage.ourServicesBlock.title}</h2>
-                <button className={styles.products__btn}>{data.wpPage.ourServicesBlock.button}<Arrow theme="dark"/></button>
+                <Link to='/products'><Button className={styles.products__btn} txt={data.wpPage.ourServicesBlock.button} theme='dark'/></Link>
             </div>
             <span className={styles.white_text}>/002</span><p className={`${styles.white_text} ${styles.change_width}`}>{data.wpPage.ourServicesBlock.description}</p>
             <div className={styles.tabs}>

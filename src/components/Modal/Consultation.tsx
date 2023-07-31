@@ -2,6 +2,8 @@ import axios from 'axios'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 
+import { RemoveScroll } from 'react-remove-scroll'
+
 import Modal from '.'
 
 import styles from './styles.module.scss'
@@ -10,7 +12,8 @@ import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import RequestsService from '../../services/requests'
 import { RequestsStore } from '../../store/RequestsStore'
-import { RemoveScroll } from 'react-remove-scroll'
+
+import Button from '../Button'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
@@ -76,7 +79,7 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
                         <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
                     </div>
                     <p className={validPhone && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
-                    <button className={styles.btnLight}>Отправить<Arrow theme="light"/></button>
+                    <Button className={styles.btnLight} txt='Отправить' theme='light'/>
                 </form>
             </Modal>
         </RemoveScroll>

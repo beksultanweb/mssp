@@ -12,6 +12,7 @@ import info from '../../assets/icons/info-circle.svg'
 import usePersist from '../../hooks/usePersist'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
+import Button from '../Button'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -111,9 +112,9 @@ const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: (
                     {/* <div onClick={handleSwithchToResetPwd} className={styles.forget}>Забыли пароль?</div> */}
                 </div>
                 <div className={styles.buttons}>
-                    <button className={styles.btnLight}>Войти<Arrow theme="light"/></button>
+                    <Button className={styles.btnLight} theme='light' txt='Войти'/>
                     <div className={styles.or}>или</div>
-                    <button onClick={handleSwithchToRegister} className={styles.btn}>Зарегистрироваться<Arrow theme="dark"/></button>
+                    <Button handleSwithchToRegister={handleSwithchToRegister} className={styles.btn} theme='dark' txt='Зарегистрироваться'/>
                 </div>
             </form>
         </Modal>

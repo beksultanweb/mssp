@@ -15,6 +15,7 @@ import Layout from '../Layout'
 import Login from '../Modal/Login'
 import Register from '../Modal/Register'
 import ResetPwd from '../Modal/ResetPwd';
+import Button from '../Button';
 
 interface HeaderProps {
     theme: string
@@ -73,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
                             <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}
-                    {!authStore?.isAuth && <button onClick={handleloginOpen} className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`}>Войти<Arrow theme={theme}/></button>}
+                    {!authStore?.isAuth && <Button className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`} theme={theme} handleloginOpen={handleloginOpen} txt='Войти'/>}
                     <button onClick={handleMenuOpen} className={`${theme === 'light' ? styles.light : styles.dark} ${isOpen ? styles.mobile__burger_open : styles.mobile__burger}`}>{!isOpen && 'Меню'}<Arrow theme={theme === 'light' ? 'dark' : 'light'}/></button>
                 </header>
             </Layout>

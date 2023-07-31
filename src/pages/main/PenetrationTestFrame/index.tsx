@@ -3,7 +3,7 @@ import React from 'react'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../../assets/icons/arrow'
+import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 
 const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => void}) => {
@@ -35,9 +35,9 @@ const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpe
                         <div className={styles.country}>Казахстан</div>
                     </div>
                 </div>
-                <button onClick={handleConsultationOpen}>Оставить заявку<Arrow theme="dark"/></button>
+                <Button txt='Оставить заявку' handleConsultationOpen={handleConsultationOpen} theme='dark'/>
             </Layout>
-            <StaticImage src="../../../assets/images/021A5908.jpg" width={651} alt="penetration" objectPosition={'40% 40%'} className={styles.penetration__img}/>
+            <StaticImage src="../../../assets/images/021A5908.jpg" width={651} height={620} alt="penetration" objectPosition={'40% 40%'} imgStyle={{ borderRadius: '24px 0 0 24px' }} className={styles.penetration__img}/>
         </section>
     )
 }

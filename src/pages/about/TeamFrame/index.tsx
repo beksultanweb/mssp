@@ -33,7 +33,22 @@ const TeamFrame = () => {
         })
       }
       else {
-        gsap.set(bubblesRef.current[0], { x: 0, y: 100 })
+        bubblesRef.current.map((el: any, ind: number) => {
+          if(ind % 3) {
+            gsap.to(el, {
+              repeat: -1,
+              ease: 'none',
+              duration: 20,
+              motionPath: 'm 0.5 38.0075 a 37.5 37.5 90 1 1 75 0 a 37.5 37.5 90 1 1 -75 0 m 37.5 0'
+            })
+          }
+          else gsap.to(el, {
+            repeat: -1,
+            ease: 'none',
+            duration: 15,
+            motionPath: 'M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0'
+          })
+        })
       }
     }
   }, [])

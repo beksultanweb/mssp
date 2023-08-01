@@ -5,10 +5,24 @@ import React, { useRef } from 'react'
 
 import styles from './styles.module.scss'
 
-import partner1 from '../../../assets/icons/partner.svg'
-import partner2 from '../../../assets/icons/partner1.svg'
-import partner3 from '../../../assets/icons/partner2.svg'
-import partner4 from '../../../assets/icons/partner3.svg'
+import partner5 from '../../../assets/icons/logo/Logo 10.svg'
+import partner6 from '../../../assets/icons/logo/Logo 11.svg'
+import partner7 from '../../../assets/icons/logo/Logo 12.svg'
+import partner8 from '../../../assets/icons/logo/Logo 13.svg'
+import partner9 from '../../../assets/icons/logo/Logo 14.svg'
+import partner10 from '../../../assets/icons/logo/Logo 15.svg'
+import partner11 from '../../../assets/icons/logo/Logo 16.svg'
+import partner12 from '../../../assets/icons/logo/Logo 17.svg'
+import partner13 from '../../../assets/icons/logo/Logo 5-1.svg'
+import partner14 from '../../../assets/icons/logo/Logo 5.svg'
+import partner15 from '../../../assets/icons/logo/Logo 6.svg'
+import partner16 from '../../../assets/icons/logo/Logo 7.svg'
+import partner17 from '../../../assets/icons/logo/Logo 8.svg'
+import partner18 from '../../../assets/icons/logo/Logo 9.svg'
+import partner1 from '../../../assets/icons/logo/partner.svg'
+import partner2 from '../../../assets/icons/logo/partner1.svg'
+import partner3 from '../../../assets/icons/logo/partner2.svg'
+import partner4 from '../../../assets/icons/logo/partner3.svg'
 
 import Layout from '../../../components/Layout'
 
@@ -40,14 +54,22 @@ const partners = [
     partner1,
     partner2,
     partner3,
-    partner4
+    partner4,
+    partner5,
+    partner6,
+    partner7,
+    partner8,
+    partner9,
+    partner10
 ]
 
 const partners2 = [
-    partner4,
-    partner2,
-    partner1,
-    partner3
+    partner11,
+    partner12,
+    partner13,
+    partner14,
+    partner15,
+    partner16
 ]
 
 const partners3 = [
@@ -107,7 +129,7 @@ const ClientsFrame = () => {
             toggleActions: 'play pause resume pause'
           } })
         const dur = 4
-        tl.to(ref.current[1], { duration: dur })
+
         tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 1 }) })
         tl.to(ref.current[1], { alpha: 0 })
         tl.to(ref.current[1], { duration: dur })
@@ -119,6 +141,7 @@ const ClientsFrame = () => {
         tl.to(ref.current[1], { duration: dur })
         tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 0 }) })
         tl.to(ref.current[1], { alpha: 0 })
+        tl.to(ref.current[1], { duration: dur })
     }
 
     const moveMe3 = () => {
@@ -147,8 +170,7 @@ const ClientsFrame = () => {
             toggleActions: 'play pause resume pause'
           } })
           const dur = 4.5
-        
-        tl.to(ref.current[3], { duration: dur })
+
         tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 1 }) })
         tl.to(ref.current[3], { alpha: 0 })
         tl.to(ref.current[3], { duration: dur })
@@ -160,6 +182,7 @@ const ClientsFrame = () => {
         tl.to(ref.current[3], { duration: dur })
         tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 0 }) })
         tl.to(ref.current[3], { alpha: 0 })
+        tl.to(ref.current[3], { duration: dur })
     }
 
     return (

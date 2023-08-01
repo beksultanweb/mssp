@@ -108,8 +108,12 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .tabs__box {
         width: 300px !important;
+    }
+    .tabs__descr {
+        font-family: 'Manrope';
+        font-weight: 500;
     }
 }

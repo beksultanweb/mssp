@@ -99,10 +99,6 @@
 }
 
 @media (max-width: 600px) {
-    .tabs, .tabs__content {
-        overflow-x: scroll;
-        width: 100vw;
-    }
     .tabs__btn {
         font-size: 15px;
     }

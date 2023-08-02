@@ -94,6 +94,9 @@ header {
 }
 
 @media (max-width: 965px) {
+    .logout__btn {
+        width: 200px;
+    }
     .mobile__menu_hide, .btn {
         display: none;
     }

@@ -109,7 +109,7 @@
         font-weight: 600;
     }
     .certificate__img_active {
-        display: none;
+        display: none !important;
     }
     .certificate__title_active {
         font-weight: 600;

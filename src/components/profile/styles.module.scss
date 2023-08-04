@@ -116,6 +116,11 @@
         justify-content: space-between;
         align-items: center;
         background-color: $secondary-white;
+        &_none {
+            border-radius: 30px;
+            padding: 21px 78px 21px 79px;
+            background-color: $secondary-white;
+        }
     }
     &__btn {
         padding: 0;

@@ -77,7 +77,7 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
                 <div onClick={() => handleChangeStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}
             {myrequests.length === 0 && <div className={styles.request}>
-                <div className={styles.request__item}>
+                <div className={styles.request__item_none}>
                     Для начала добавьте свой запрос, чтобы отобразить список всех ваших запросов
                 </div>
             </div>}

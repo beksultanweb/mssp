@@ -22,6 +22,7 @@ interface ProfileProps extends PageProps {
 const Admin: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
     const [dropdownOpened, setOpenedDropdown] = React.useState(false)
     const [modalOpen, setModalOpen] = React.useState(false)
+    const [currStatus, setCurrStatus] = React.useState('')
 
     const handleOpenedDropdown = () => {
         setOpenedDropdown(!dropdownOpened)
@@ -31,9 +32,13 @@ const Admin: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) =
         setModalOpen(!modalOpen)
     }
 
+    const handleChangeStatus = (status: string) => {
+        setCurrStatus(status)
+    }
+
     React.useEffect(() => {
-        requestsStore.getAllRequests()
-    }, [])
+        requestsStore.getAllRequests(currStatus)
+    }, [currStatus])
 
     const requests = requestsStore.requests.map(({ date, _id, status, title, user, domain }) => {
         const data = new Date(date).toLocaleDateString()
@@ -58,11 +63,12 @@ const Admin: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) =
             </div>
             {dropdownOpened &&
             <div className={styles.status__dropdown_menu}>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнена</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
-                <div className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
+                <div onClick={() => handleChangeStatus('')} className={styles.status}><div className={`${styles.circle} ${styles.nostatus}`}></div>весь список</div>
+                <div onClick={() => handleChangeStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
+                <div onClick={() => handleChangeStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
+                <div onClick={() => handleChangeStatus('исполнена')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнена</div>
+                <div onClick={() => handleChangeStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
+                <div onClick={() => handleChangeStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}
             {requests}
         </Layout>

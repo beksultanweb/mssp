@@ -37,9 +37,9 @@ export class RequestsStore {
         }
     }
 
-    async getAllRequests() {
+    async getAllRequests(status?: string) {
         try {
-            const { data } = await RequestsService.getAllRequests()
+            const { data } = await RequestsService.getAllRequests(status)
             this.setRequests(data)
         } catch (error) {
             if(error instanceof Error) {

@@ -11,8 +11,8 @@ export default class RequestsService {
     static async getMyRequests(userId: number, status?: string): Promise<AxiosResponse<RequestsResponse[]>> {
         return $api.get<RequestsResponse[]>(`/requests/${userId}`, { params: { status: status } })
     }
-    static async getAllRequests(): Promise<AxiosResponse<RequestsResponse[]>> {
-        return $api.get<RequestsResponse[]>('/requests')
+    static async getAllRequests(status?: string): Promise<AxiosResponse<RequestsResponse[]>> {
+        return $api.get<RequestsResponse[]>('/requests', { params: { status: status } })
     }
     static async getRequest(requestId: number): Promise<AxiosResponse<RequestsResponse>> {
         return $api.get<RequestsResponse>(`/request/${requestId}`)

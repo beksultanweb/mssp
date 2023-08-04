@@ -34,6 +34,11 @@ const query = graphql`
         linkedin
         telephone
         }
+        Awards {
+            requisites {
+              mediaItemUrl
+            }
+          }
     }
 }`
 
@@ -64,7 +69,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
                             <Link key={route.url} to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
                         ))}
                         <Link to='https://astana.hh.kz/employer/5560612' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</Link>
-                        <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</div>
+                        <a href={data.wpPage.Awards.requisites.mediaItemUrl} download className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</a>
                     </div>
                     <div className={styles.routes}>
                     {data.allWpCategory.edges.map((el: any) => (

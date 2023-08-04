@@ -20,7 +20,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
-    height: 200px;
+    height: 150px;
     justify-content: space-between;
     &__item {
         transition: all 2s ease;
@@ -42,6 +42,9 @@
     .about {
         font-size: 24px;
         margin-top: 25px;
+    }
+    .paragraph {
+        width: 100%;
     }
     .partners {
         display: grid;

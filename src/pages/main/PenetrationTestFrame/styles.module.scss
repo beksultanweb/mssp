@@ -39,21 +39,21 @@
 .security {
     position: absolute;
     left: -10px;
-    top: 20%;
+    top: 0;
 }
 .startup {
     position: absolute;
     left: 40%;
-    top: 15%;
+    bottom: 20%;
 }
 .invest {
     position: absolute;
-    bottom: 10%;
+    bottom: -20%;
 }
 .report {
     position: absolute;
-    left: 38%;
-    bottom: 20%;
+    left: 28%;
+    bottom: 0;
 }
 
 @media (max-width: 1100px) {

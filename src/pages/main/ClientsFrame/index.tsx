@@ -19,6 +19,18 @@ import partner15 from '../../../assets/icons/logo/Logo 6.svg'
 import partner16 from '../../../assets/icons/logo/Logo 7.svg'
 import partner17 from '../../../assets/icons/logo/Logo 8.svg'
 import partner18 from '../../../assets/icons/logo/Logo 9.svg'
+import partner19 from '../../../assets/icons/logo/Logo 18.svg'
+import partner20 from '../../../assets/icons/logo/Logo 19.svg'
+import partner21 from '../../../assets/icons/logo/Logo 20.svg'
+import partner22 from '../../../assets/icons/logo/Logo 21.svg'
+import partner23 from '../../../assets/icons/logo/Logo 22.svg'
+import partner24 from '../../../assets/icons/logo/Logo 23.svg'
+import partner25 from '../../../assets/icons/logo/Logo 24.svg'
+import partner26 from '../../../assets/icons/logo/Logo 25.svg'
+import partner27 from '../../../assets/icons/logo/Logo 26.svg'
+import partner28 from '../../../assets/icons/logo/Logo 27.svg'
+import partner29 from '../../../assets/icons/logo/Logo 28.svg'
+import partner30 from '../../../assets/icons/logo/Logo 29.svg'
 import partner1 from '../../../assets/icons/logo/partner.svg'
 import partner2 from '../../../assets/icons/logo/partner1.svg'
 import partner3 from '../../../assets/icons/logo/partner2.svg'
@@ -57,10 +69,7 @@ const partners = [
     partner4,
     partner5,
     partner6,
-    partner7,
-    partner8,
-    partner9,
-    partner10
+    partner7
 ]
 
 const partners2 = [
@@ -69,29 +78,38 @@ const partners2 = [
     partner13,
     partner14,
     partner15,
-    partner16
+    partner16,
+    partner17
 ]
 
 const partners3 = [
-  partner1,
-  partner3,
-  partner2,
-  partner4
+  partner21,
+  partner22,
+  partner23,
+  partner24,
+  partner25,
+  partner26,
+  partner27,
+  partner30
 ]
 
 const partners4 = [
-  partner3,
-  partner4,
-  partner1,
-  partner2
+  partner8,
+  partner9,
+  partner10,
+  partner18,
+  partner19,
+  partner20,
+  partner28,
+  partner29
 ]
 
 const ClientsFrame = () => {
     const data = useStaticQuery(query)
-    const [counter1, setCounter1] = React.useState({ counter: 0 })
-    const [counter2, setCounter2] = React.useState({ counter: 0 })
-    const [counter3, setCounter3] = React.useState({ counter: 0 })
-    const [counter4, setCounter4] = React.useState({ counter: 0 })
+    const [counter1, setCounter1] = React.useState(0)
+    const [counter2, setCounter2] = React.useState(0)
+    const [counter3, setCounter3] = React.useState(0)
+    const [counter4, setCounter4] = React.useState(0)
 
     const ref = useRef<any>([])
 
@@ -110,16 +128,10 @@ const ClientsFrame = () => {
       } })
       const dur = 2
       tl.to(ref.current[0], { duration: dur })
-      tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1({ counter: 1 }) })
-      tl.to(ref.current[0], { alpha: 0 })
-      tl.to(ref.current[0], { duration: dur })
-      tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1({ counter: 2 }) })
-      tl.to(ref.current[0], { alpha: 0 })
-      tl.to(ref.current[0], { duration: dur })
-      tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1({ counter: 3 }) })
-      tl.to(ref.current[0], { alpha: 0 })
-      tl.to(ref.current[0], { duration: dur })
-      tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1({ counter: 0 }) })
+      tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1((prev) => {
+        if(prev === partners.length - 1) return 0
+        return prev + 1
+      }) })
       tl.to(ref.current[0], { alpha: 0 })
     }
 
@@ -130,16 +142,10 @@ const ClientsFrame = () => {
           } })
         const dur = 4
 
-        tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 1 }) })
-        tl.to(ref.current[1], { alpha: 0 })
-        tl.to(ref.current[1], { duration: dur })
-        tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 2 }) })
-        tl.to(ref.current[1], { alpha: 0 })
-        tl.to(ref.current[1], { duration: dur })
-        tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 3 }) })
-        tl.to(ref.current[1], { alpha: 0 })
-        tl.to(ref.current[1], { duration: dur })
-        tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2({ counter: 0 }) })
+        tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2((prev) => {
+          if(prev === partners2.length - 1) return 0
+          return prev + 1
+        }) })
         tl.to(ref.current[1], { alpha: 0 })
         tl.to(ref.current[1], { duration: dur })
     }
@@ -151,16 +157,10 @@ const ClientsFrame = () => {
           } })
           const dur = 3
         tl.to(ref.current[2], { duration: dur })
-        tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3({ counter: 1 }) })
-        tl.to(ref.current[2], { alpha: 0 })
-        tl.to(ref.current[2], { duration: dur })
-        tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3({ counter: 2 }) })
-        tl.to(ref.current[2], { alpha: 0 })
-        tl.to(ref.current[2], { duration: dur })
-        tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3({ counter: 3 }) })
-        tl.to(ref.current[2], { alpha: 0 })
-        tl.to(ref.current[2], { duration: dur })
-        tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3({ counter: 0 }) })
+        tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3((prev) => {
+          if(prev === partners3.length - 1) return 0
+          return prev + 1
+        }) })
         tl.to(ref.current[2], { alpha: 0 })
     }
 
@@ -171,16 +171,10 @@ const ClientsFrame = () => {
           } })
           const dur = 4.5
 
-        tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 1 }) })
-        tl.to(ref.current[3], { alpha: 0 })
-        tl.to(ref.current[3], { duration: dur })
-        tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 2 }) })
-        tl.to(ref.current[3], { alpha: 0 })
-        tl.to(ref.current[3], { duration: dur })
-        tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 3 }) })
-        tl.to(ref.current[3], { alpha: 0 })
-        tl.to(ref.current[3], { duration: dur })
-        tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4({ counter: 0 }) })
+        tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4((prev) => {
+          if(prev === partners2.length - 1) return 0
+          return prev + 1
+        }) })
         tl.to(ref.current[3], { alpha: 0 })
         tl.to(ref.current[3], { duration: dur })
     }
@@ -199,10 +193,10 @@ const ClientsFrame = () => {
                     </div>
                 </div>
                 <div className={styles.partners}>
-                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners[counter1.counter]} alt="img" />
-                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners2[counter2.counter]} alt="img" />
-                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners3[counter3.counter]} alt="img" />
-                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners4[counter4.counter]} alt="img" />
+                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners[counter1]} alt="img" />
+                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners2[counter2]} alt="img" />
+                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners3[counter3]} alt="img" />
+                    <img ref={(el) => !ref.current.includes(el) && ref.current.push(el)} className={styles.partners__item} src={partners4[counter4]} alt="img" />
                 </div>
             </Layout>
         </section>

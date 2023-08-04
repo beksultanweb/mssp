@@ -66,7 +66,7 @@ const Admin: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) =
                 <div onClick={() => handleChangeStatus('')} className={styles.status}><div className={`${styles.circle} ${styles.nostatus}`}></div>весь список</div>
                 <div onClick={() => handleChangeStatus('в работе')} className={styles.status}><div className={`${styles.circle} ${styles.green}`}></div>в работе</div>
                 <div onClick={() => handleChangeStatus('новая')} className={styles.status}><div className={`${styles.circle} ${styles.blue}`}></div>новая</div>
-                <div onClick={() => handleChangeStatus('исполнена')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнена</div>
+                <div onClick={() => handleChangeStatus('исполнено')} className={styles.status}><div className={`${styles.circle} ${styles.fiolet}`}></div>исполнено</div>
                 <div onClick={() => handleChangeStatus('закрыта')} className={styles.status}><div className={`${styles.circle} ${styles.black}`}></div>закрыта</div>
                 <div onClick={() => handleChangeStatus('отменена')} className={styles.status}><div className={`${styles.circle} ${styles.red}`}></div>отменена</div>
             </div>}

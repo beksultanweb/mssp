@@ -150,7 +150,7 @@ const ProductsFrame = () => {
                 <Slider ref={sliderRef} className={styles.tabs__content} {...settings}>
                     {categoryData.map((post: any) =>
                         <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                            <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
+                            <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="product_icon" />
                             <div className={styles.tabs__title}>{post.title}</div>
                             <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
                         </Link>

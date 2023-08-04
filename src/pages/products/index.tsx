@@ -86,7 +86,7 @@ const ProductsPage: React.FC<PageProps> = ({ location }) => {
             <div className={styles.tabs__content}>
                 {categoryData.map((post: any) =>
                     <Link key={post.title} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                        <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
+                        <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="product_icon" />
                         <div className={styles.tabs__title}>{post.title}</div>
                         <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
                     </Link>

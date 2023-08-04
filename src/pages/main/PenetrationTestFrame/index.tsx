@@ -19,19 +19,19 @@ const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpe
                 <div className={styles.countries}>У нас есть клиенты из разных стран</div>
                 <div className={styles.countries__flags}>
                     <div className={styles.countries__flags_item}>
-                        <StaticImage src="../../../assets/icons/JP.svg" alt="" />
+                        <StaticImage src="../../../assets/icons/JP.svg" alt="country_flag" />
                         <div className={styles.country}>Япония</div>
                     </div>
                     <div className={styles.countries__flags_item}>
-                        <StaticImage src="../../../assets/icons/US.svg" alt="" />
+                        <StaticImage src="../../../assets/icons/US.svg" alt="country_flag" />
                         <div className={styles.country}>США</div>
                     </div>
                     <div className={styles.countries__flags_item}>
-                        <StaticImage src="../../../assets/icons/IN.svg" alt="" />
+                        <StaticImage src="../../../assets/icons/IN.svg" alt="country_flag" />
                         <div className={styles.country}>Индия</div>
                     </div>
                     <div className={styles.countries__flags_item}>
-                        <StaticImage src="../../../assets/icons/KZ.svg" alt="" />
+                        <StaticImage src="../../../assets/icons/KZ.svg" alt="country_flag" />
                         <div className={styles.country}>Казахстан</div>
                     </div>
                 </div>

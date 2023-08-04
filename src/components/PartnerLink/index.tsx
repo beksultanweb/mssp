@@ -20,7 +20,7 @@ const PartnerLink = (props: PartnerLinkProps) => {
     return (
         <Layout>
             <div className={styles.partner}>
-                {image && <GatsbyImage className={styles.img} image={image} alt="img" />}
+                {image && <GatsbyImage className={styles.img} image={image} alt="partner_link" />}
                 <div className={styles.partner__content}>
                     <h2 className={styles.title}>{title}</h2>
                     <p className={styles.paragraph}>{description}</p>

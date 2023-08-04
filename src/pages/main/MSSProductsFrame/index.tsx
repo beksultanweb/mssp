@@ -77,10 +77,6 @@ const MSSProductsFrame = () => {
                     trigger: bubblesRef.current,
                     toggleActions: 'play pause resume pause'
                 } })
-                gsap.fromTo(bubblesRef.current[11], { x: 100, y: -240 }, { x: 150, y: -200, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
-                    trigger: bubblesRef.current,
-                    toggleActions: 'play pause resume pause'
-                } })
             }
             else {
                 gsap.fromTo(bubblesRef.current[0], { x: 70, y: 0 }, { x: 100, y: 20, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
@@ -124,10 +120,6 @@ const MSSProductsFrame = () => {
                     toggleActions: 'play pause resume pause'
                 } })
                 gsap.fromTo(bubblesRef.current[10], { x: 130, y: -240 }, { x: 120, y: -280, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
-                    trigger: bubblesRef.current,
-                    toggleActions: 'play pause resume pause'
-                } })
-                gsap.fromTo(bubblesRef.current[11], { x: 70, y: -150 }, { y: -100, duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,
                     toggleActions: 'play pause resume pause'
                 } })

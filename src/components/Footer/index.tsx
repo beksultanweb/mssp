@@ -68,7 +68,7 @@ export const Footer = ({ theme } :{theme?: string}) => {
                         {routeElements.map(route => (
                             <Link key={route.url} to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
                         ))}
-                        <Link to='https://astana.hh.kz/employer/5560612' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</Link>
+                        <a href='https://astana.hh.kz/employer/5560612' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</a>
                         <a href={data.wpPage.Awards.requisites.mediaItemUrl} download className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</a>
                     </div>
                     <div className={styles.routes}>

@@ -13,7 +13,7 @@ export const NewsBox = ({ data }: {data: INews[]}) => {
                 const image = getImage(post.news.newsImg.localFile)
                 return (
                     <Link key={post.title} to={`/news/${post.slug}`} className={styles.news__item}>
-                        {image && <GatsbyImage className={styles.news__img} image={image} alt="" />}
+                        {image && <GatsbyImage className={styles.news__img} image={image} alt="news_img" />}
                         <div className={styles.news__title}>{post.title}</div>
                     </Link>
                 )

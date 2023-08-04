@@ -187,6 +187,9 @@
 @media (max-width: 600px) {
     .request__item {
         padding: 21px 25px 30px 24px;
+        &_none {
+            padding: 21px 25px 30px 24px;
+        }
     }
     .request__title {
         margin-top: 8px;

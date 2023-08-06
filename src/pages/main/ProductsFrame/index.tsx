@@ -1,8 +1,8 @@
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import React, { useEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 import Slider from 'react-slick'
 
@@ -12,9 +12,12 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Arrow from '../../../assets/icons/arrow'
 import arrow from '../../../assets/icons/Arrow.svg'
-import Layout from '../../../components/Layout'
 import Button from '../../../components/Button'
+import Layout from '../../../components/Layout'
 
+type SlickArrowsProps = {
+    onClick?: () => void
+}
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -52,13 +55,13 @@ query($selectedCategory: String) {
       }
 }`
 
-const NextArrow = (props) => {
+const NextArrow = (props: SlickArrowsProps) => {
     return (
         <img onClick={props.onClick} className={styles.tabs__next} src={arrow} alt="" />
     );
 }
 
-const PrevArrow = (props) => {
+const PrevArrow = (props: SlickArrowsProps) => {
     return (
         <img onClick={props.onClick} className={styles.tabs__prev} style={{ transform: 'rotate(180deg)' }} src={arrow} alt="" />
     );
@@ -103,11 +106,11 @@ const ProductsFrame = () => {
           ]
     }
 
-    const ref = React.useRef(null)
+    const ref = useRef(null)
 
     if(typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger)
-        React.useEffect(() => {
+        useLayoutEffect(() => {
             const element = ref.current
             gsap.fromTo(element,
                 { y: 0 }, { y: -600, scrollTrigger: {
@@ -118,7 +121,7 @@ const ProductsFrame = () => {
                 } })
         }, [])
     }
-    const sliderRef = React.useRef(null)
+    const sliderRef = useRef(null)
     const handleChangeCategory = (slug: string) => {
         setSelectedCategory(slug)
         sliderRef.current?.slickGoTo(0)

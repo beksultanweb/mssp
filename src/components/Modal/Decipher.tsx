@@ -1,10 +1,7 @@
-import React from 'react'
-
 import Modal from '.'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
 import ico from '../../assets/icons/decipher.svg'
 import Button from '../Button'
 

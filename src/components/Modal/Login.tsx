@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { navigate } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useEffect, LegacyRef, useRef, FormEvent } from 'react'
 
 import Modal from '.'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import usePersist from '../../hooks/usePersist'
 import AuthService from '../../services/auth'
@@ -18,36 +17,36 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: () => void, setRegisterOpen: () => void, setResetPwdOpen: () => void, authStore?: AuthStore}) => {
-    const emailRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
-    const errRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
+    const emailRef: LegacyRef<HTMLInputElement> = useRef(null)
+    const errRef: LegacyRef<HTMLInputElement> = useRef(null)
 
-    const [email, setEmail] = React.useState('')
-    const [validEmail, setValidEmail] = React.useState(false)
+    const [email, setEmail] = useState('')
+    const [validEmail, setValidEmail] = useState(false)
     const [persist, setPersist] = usePersist()
 
-    const [password, setPassword] = React.useState('')
-    const [validPassword, setValidPassword] = React.useState(false)
+    const [password, setPassword] = useState('')
+    const [validPassword, setValidPassword] = useState(false)
 
-    const [errMsg, setErrMsg] = React.useState('');
-    const [checkRun, setCheckRun] = React.useState(false);
+    const [errMsg, setErrMsg] = useState('');
+    const [checkRun, setCheckRun] = useState(false);
 
     const handlePersist = () => setPersist((prev: boolean) => !prev)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(emailRef.current) {
             emailRef.current.focus()
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidEmail(EMAIL_REGEX.test(email))
     }, [email])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidPassword(PWD_REGEX.test(password))
     }, [password])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setErrMsg('')
     }, [email, password])
 
@@ -61,7 +60,7 @@ const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: (
     //     setResetPwdOpen()
     // }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         setCheckRun(true)
         const v1 = EMAIL_REGEX.test(email)

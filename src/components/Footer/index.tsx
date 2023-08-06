@@ -1,6 +1,5 @@
-import { Link, navigate } from 'gatsby'
+import { Link } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
-import React from 'react'
 
 import styles from './styles.module.scss'
 

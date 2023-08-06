@@ -1,5 +1,5 @@
 import { inject, observer } from 'mobx-react'
-import React, { RefObject } from 'react'
+import { useEffect, useState } from 'react'
 
 import './styles.module.scss'
 import ClientsFrame from './main/ClientsFrame'
@@ -12,7 +12,6 @@ import PartnerLinkFrame from './main/PartnerLinkFrame'
 import PartnerLinkFrame2 from './main/PartnerLinkFrame2'
 import PenetrationTestFrame from './main/PenetrationTestFrame'
 import ProductsFrame from './main/ProductsFrame'
-import PromoFrame from './main/PromoFrame'
 
 import { Footer } from '../components/Footer'
 import Header from '../components/Header'
@@ -29,9 +28,9 @@ interface IndexProps extends PageProps {
 }
 
 const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
-  const [consultationOpen, setConsultationOpen] = React.useState(false)
+  const [consultationOpen, setConsultationOpen] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if(localStorage.getItem('token') && localStorage.getItem('persist') === 'true') {
       authStore?.checkAuth()
     }
@@ -41,7 +40,7 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
     setConsultationOpen(!consultationOpen)
   }
 
-  const [decipherOpen, setDecipherOpen] = React.useState(false)
+  const [decipherOpen, setDecipherOpen] = useState(false)
   const handleDecipherOpen = () => {
       setDecipherOpen(!decipherOpen)
   }
@@ -58,7 +57,6 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
       <PenetrationTestFrame handleConsultationOpen={handleConsultationOpen}/>
       <PartnerLinkFrame/>
       <DodgerFrame/>
-      {/* <PromoFrame/> */}
       <ClientsFrame/>
       <PartnerLinkFrame2/>
       <NewsFrame/>

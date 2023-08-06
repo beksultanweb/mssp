@@ -1,5 +1,3 @@
-import React from 'react'
-
 import styles from './styles.module.scss'
 
 import ico from '../../assets/icons/comment_vs.svg'

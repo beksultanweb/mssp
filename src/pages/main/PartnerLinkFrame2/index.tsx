@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import React from 'react'
 
 import PartnerLink from '../../../components/PartnerLink'
 

@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import React from 'react'
+
+import { useState } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -48,7 +49,7 @@ const AwardsFrame = () => {
   const award_img3 = getImage(awardFile3)
   const award_img4 = getImage(awardFile4)
 
-  const [active, setActive] = React.useState(0)
+  const [active, setActive] = useState(0)
   const handleClickAward = (key: number) => {
     setActive(key)
   }

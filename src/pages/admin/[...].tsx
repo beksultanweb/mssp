@@ -1,5 +1,4 @@
 import { Router } from '@reach/router'
-import React from 'react'
 
 import admin from '../../components/admin'
 import update from '../../components/admin/update'

@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import React, { useRef } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -29,7 +29,7 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
     const ref3 = useRef(null)
     if(typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger)
-        React.useEffect(() => {
+        useLayoutEffect(() => {
             if(window.innerWidth >= 600) {
             gsap.fromTo(ref1.current,
                 { y: 800 }, { x: -10, y: 600, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {

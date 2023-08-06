@@ -1,11 +1,11 @@
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import React, { useState } from 'react'
-import slugify from 'slugify'
+import { useState, useLayoutEffect } from 'react'
 
 import styles from './styles.module.scss'
 
 import Arrow from '../../assets/icons/arrow'
+import Button from '../../components/Button'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
@@ -13,7 +13,7 @@ import Layout from '../../components/Layout'
 import Consultation from '../../components/Modal/Consultation'
 
 import type { HeadFC, PageProps } from 'gatsby'
-import Button from '../../components/Button'
+
 
 const fetchData = graphql`
 query($selectedCategory: String) {
@@ -52,11 +52,11 @@ query($selectedCategory: String) {
 }`
 
 const ProductsPage: React.FC<PageProps> = ({ location }) => {
-  const [consultationOpen, setConsultationOpen] = React.useState(false)
+  const [consultationOpen, setConsultationOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('blue-team')
   const data = useStaticQuery(fetchData)
   const categoryData = data.allWpPost.nodes.filter((node: any) => node.categories.nodes.some((category: any) => category.slug === selectedCategory))
-  React.useEffect(() => {
+  useLayoutEffect(() => {
     location.state.product &&
     setSelectedCategory(location.state.product)
   }, [location.state?.product])

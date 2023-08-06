@@ -1,5 +1,4 @@
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import React from 'react'
 
 import styles from './styles.module.scss'
 

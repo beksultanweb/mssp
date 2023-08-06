@@ -1,12 +1,11 @@
 import axios from 'axios'
 import { inject, observer } from 'mobx-react'
-import React, { FormEvent } from 'react'
+import { useState, useEffect, LegacyRef, useRef, FormEvent, ChangeEvent } from 'react'
 
 import Modal from '.'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
@@ -17,49 +16,47 @@ const EMAIL_REGEX = /^(?!$)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 
 const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authStore?: AuthStore, setLoginOpen: () => void}) => {
-    const firstNameRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
+    const firstNameRef: LegacyRef<HTMLInputElement> = useRef(null)
 
-    const [email, setEmail] = React.useState('')
-    const [validEmail, setValidEmail] = React.useState(false)
+    const [email, setEmail] = useState('')
+    const [validEmail, setValidEmail] = useState(false)
 
-    const [password, setPassword] = React.useState('')
-    const [validPassword, setValidPassword] = React.useState(false)
+    const [password, setPassword] = useState('')
+    const [validPassword, setValidPassword] = useState(false)
 
-    const [matchPassword, setMatchPassword] = React.useState('')
-    const [validMatch, setValidMatch] = React.useState(false)
+    const [matchPassword, setMatchPassword] = useState('')
+    const [validMatch, setValidMatch] = useState(false)
 
-    const [firstName, setFirstName] = React.useState('')
-    const [validFirstName, setValidFirstName] = React.useState(false)
+    const [firstName, setFirstName] = useState('')
 
-    const [secondName, setSecondName] = React.useState('')
-    const [validSecondName, setValidSecondName] = React.useState(false)
+    const [secondName, setSecondName] = useState('')
 
-    const [checkboxChecked, setCheckboxChecked] = React.useState(false)
+    const [checkboxChecked, setCheckboxChecked] = useState(false)
 
-    const [errMsg, setErrMsg] = React.useState('');
-    const [checkRun, setCheckRun] = React.useState(false);
-    const [success, setSuccess] = React.useState(false);
+    const [errMsg, setErrMsg] = useState('');
+    const [checkRun, setCheckRun] = useState(false);
+    const [success, setSuccess] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(firstNameRef.current) {
             firstNameRef.current.focus()
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidEmail(EMAIL_REGEX.test(email))
     }, [email])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidPassword(PWD_REGEX.test(password))
         setValidMatch(password === matchPassword)
     }, [password, matchPassword])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setErrMsg('')
     }, [email, password, matchPassword])
 
-    const handleCheckBoxChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckBoxChecked = (e: ChangeEvent<HTMLInputElement>) => {
         if(e.target.checked) {
             setCheckboxChecked(true)
         }
@@ -80,7 +77,6 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
         }
         try {
             const response = await AuthService.registration(email, password, firstName, secondName)
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             setSuccess(true)
         } catch (error) {

@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import AwardsFrame from './AwardsFrame'
 import MainFrame from './MainFrame'
 import ResultsFrame from './ResultsFrame'

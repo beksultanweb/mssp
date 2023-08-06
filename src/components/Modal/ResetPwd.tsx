@@ -1,14 +1,11 @@
 import axios from 'axios'
-import { navigate } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 
 import Modal from '.'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
-import info from '../../assets/icons/info-circle.svg'
 import AuthService from '../../services/auth'
 import { AuthStore } from '../../store/AuthStore'
 import Button from '../Button'
@@ -16,16 +13,16 @@ import Button from '../Button'
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 const ResetPwd = ({ close, authStore }: {close: () => void, authStore?: AuthStore}) => {
-    const [email, setEmail] = React.useState('')
+    const [email, setEmail] = useState('')
 
-    const [errMsg, setErrMsg] = React.useState('');
-    const [success, setSuccess] = React.useState('');
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState('');
 
-    React.useEffect(() => {
+    useEffect(() => {
         setErrMsg('')
     }, [email])
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         const v1 = EMAIL_REGEX.test(email)
         if (!v1) {

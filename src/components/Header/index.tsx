@@ -1,6 +1,6 @@
 import { Link, navigate } from 'gatsby'
 import { observer, inject } from 'mobx-react'
-import React, { useState, useEffect } from 'react'
+import { useState, FC } from 'react'
 
 import { RemoveScroll } from 'react-remove-scroll';
 
@@ -10,19 +10,20 @@ import Arrow from '../../assets/icons/arrow'
 import Logo from '../../assets/icons/logo'
 import { routeElements } from '../../config/routeElements'
 import { AuthStore } from '../../store/AuthStore'
+import Button from '../Button';
 import Layout from '../Layout'
 
 import Login from '../Modal/Login'
 import Register from '../Modal/Register'
 import ResetPwd from '../Modal/ResetPwd';
-import Button from '../Button';
+
 
 interface HeaderProps {
     theme: string
     authStore?: AuthStore
 }
 
-const Header: React.FC<HeaderProps> = ({ theme, authStore }) => {
+const Header: FC<HeaderProps> = ({ theme, authStore }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [loginOpen, setloginOpen] = useState(false)
     const [registerOpen, setRegisterOpen] = useState(false)

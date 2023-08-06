@@ -1,5 +1,4 @@
 import { Router } from '@reach/router'
-import React from 'react'
 
 import PrivateRoute from '../../components/PrivateRoute'
 import profile from '../../components/profile'

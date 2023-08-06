@@ -1,9 +1,7 @@
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import React from 'react'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../../assets/icons/arrow'
 import { SimilarHead } from '../../../components/AdditionalTitle'
 import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'

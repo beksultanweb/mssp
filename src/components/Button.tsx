@@ -1,9 +1,9 @@
-import React from 'react'
+import { useState } from 'react'
 
 import Arrow from '../assets/icons/arrow'
 
 const Button = ({ handleConsultationOpen, handleSwithchToRegister, txt, className, theme, handleloginOpen, onClick }: {handleConsultationOpen?: () => void, handleSwithchToRegister?: () => void, txt: string, className?: string, theme: string, handleloginOpen?: () => void, onClick?: () => void}) => {
-    const [isHovered, setIsHovered] = React.useState(false)
+    const [isHovered, setIsHovered] = useState(false)
 
     const handleMouseEnter = () => {
         setIsHovered(true)

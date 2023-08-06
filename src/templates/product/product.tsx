@@ -1,7 +1,7 @@
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { PageProps } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import React from 'react'
+import { useState } from 'react'
 import slugify from 'slugify'
 
 import styles from './styles.module.scss'
@@ -17,7 +17,7 @@ import Consultation from '../../components/Modal/Consultation'
 
 
 const Product = ({ pageContext }: PageProps) => {
-    const [consultationOpen, setConsultationOpen] = React.useState(false)
+    const [consultationOpen, setConsultationOpen] = useState(false)
     const { product } = pageContext
     const { title, content } = product
     const { name } = product.categories.nodes[0]
@@ -33,6 +33,7 @@ const Product = ({ pageContext }: PageProps) => {
               }
             }
             title
+            slug
             categories {
               nodes {
                 name
@@ -92,7 +93,7 @@ const Product = ({ pageContext }: PageProps) => {
           <SimilarHead title="Похожие услуги" order="/002" buttonTxt="Все услуги"/>
             <div className={styles.tabs__like}>
             {categoryData.slice(0, 3).map(post =>
-              <Link key={post.title} to={`/products/${slugify(post.title, { lower: true })}`} className={styles.tabs__box}>
+              <Link key={post.title} to={`/products/${post.slug}`} className={styles.tabs__box}>
                   <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
                   <div className={styles.tabs__title}>{post.title}</div>
                   <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>

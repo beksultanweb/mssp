@@ -1,12 +1,11 @@
 import axios from 'axios'
-import { PageProps, navigate } from 'gatsby'
+import { PageProps } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, FC, useEffect } from 'react'
 
 import styles from './styles.module.scss'
 
 import Arrow from '../../assets/icons/arrow'
-import download from '../../assets/icons/download.svg'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
@@ -21,14 +20,14 @@ interface ProfileProps extends PageProps {
     requestsStore: RequestsStore
 }
 
-const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
-    const [dropdownOpened, setDropdownOpened] = React.useState(false)
-    const [fileData, setFileData] = React.useState<FileList | null>(null)
-    const [success, setSuccess] = React.useState('')
-    const [errMsg, setErrMsg] = React.useState('')
-    const [request, setRequest] = React.useState<RequestsResponse>()
+const Update: FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+    const [dropdownOpened, setDropdownOpened] = useState(false)
+    const [fileData, setFileData] = useState<FileList | null>(null)
+    const [success, setSuccess] = useState('')
+    const [errMsg, setErrMsg] = useState('')
+    const [request, setRequest] = useState<RequestsResponse>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(location.state) {
             requestsStore.getRequest(location.state.requestId)
             requestsStore.getUserInfo(location.state.author)
@@ -40,7 +39,7 @@ const Update: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) 
         setDropdownOpened(false)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         setRequest(requestsStore.request)
     }, [requestsStore.request])
 

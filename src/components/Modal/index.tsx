@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, MouseEvent, ReactNode } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -6,14 +6,14 @@ interface ModalProps {
     title?: string
     subtitle?: string
     close: () => void
-    children: React.ReactNode,
+    children: ReactNode,
     width?: number
     justifyEnd?: boolean,
     bgColor?: string
 }
 
-const Modal: React.FC<ModalProps> = ({ title, subtitle, close, children, width, justifyEnd, bgColor }) => {
-    const clickOutside = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+const Modal: FC<ModalProps> = ({ title, subtitle, close, children, width, justifyEnd, bgColor }) => {
+    const clickOutside = (event: MouseEvent<HTMLDivElement>) => {
         if(event.target === event.currentTarget) {
             close()
         }

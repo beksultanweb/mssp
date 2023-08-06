@@ -1,14 +1,13 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import React, { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useLayoutEffect } from 'react'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../../assets/icons/arrow'
+import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Button from '../../../components/Button'
 
 const query = graphql`
 {
@@ -24,7 +23,7 @@ const query = graphql`
 const CTAFrame = ({ setDecipherOpen, handleConsultationOpen }: {setDecipherOpen: () => void, handleConsultationOpen: () => void}) => {
     const data = useStaticQuery(query)
     const ref = useRef(null)
-    React.useEffect(() => {
+    useLayoutEffect(() => {
       gsap.registerPlugin(ScrollTrigger)
       gsap.to(ref.current, {
         scrollTrigger: {

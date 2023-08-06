@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { PageProps, navigate } from 'gatsby'
+import { PageProps } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useEffect, FC } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -19,10 +19,10 @@ interface ProfileProps extends PageProps {
     requestsStore: RequestsStore
 }
 
-const Request: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
-    const [errMsg, setErrMsg] = React.useState('')
+const Request: FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+    const [errMsg, setErrMsg] = useState('')
 
-    React.useEffect(() => {
+    useEffect(() => {
         location.state &&
         requestsStore.getRequest(location.state.requestId)
     }, [])

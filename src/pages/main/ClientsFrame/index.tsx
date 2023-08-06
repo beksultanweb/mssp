@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import React, { useRef } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -106,15 +106,15 @@ const partners4 = [
 
 const ClientsFrame = () => {
     const data = useStaticQuery(query)
-    const [counter1, setCounter1] = React.useState(0)
-    const [counter2, setCounter2] = React.useState(0)
-    const [counter3, setCounter3] = React.useState(0)
-    const [counter4, setCounter4] = React.useState(0)
+    const [counter1, setCounter1] = useState(0)
+    const [counter2, setCounter2] = useState(0)
+    const [counter3, setCounter3] = useState(0)
+    const [counter4, setCounter4] = useState(0)
 
     const ref = useRef<any>([])
 
     gsap.registerPlugin(ScrollTrigger)
-    React.useEffect(() => {
+    useLayoutEffect(() => {
         moveMe()
         moveMe2()
         moveMe3()

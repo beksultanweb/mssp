@@ -1,6 +1,6 @@
 import { Link, PageProps } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import styles from './styles.module.scss'
 

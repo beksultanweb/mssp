@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 
 import { RemoveScroll } from 'react-remove-scroll'
 
@@ -18,30 +18,30 @@ import Button from '../Button'
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
 const Consultation = ({ close, requestsStore }: {close: () => void, requestsStore?: RequestsStore}) => {
-    const [company, setCompany] = React.useState('')
-    const [phone, setPhone] = React.useState('')
-    const [validPhone, setValidPhone] = React.useState(false)
+    const [company, setCompany] = useState('')
+    const [phone, setPhone] = useState('')
+    const [validPhone, setValidPhone] = useState(false)
 
-    const [checkboxChecked, setCheckboxChecked] = React.useState(false)
-    const [errMsg, setErrMsg] = React.useState('');
-    const [success, setSuccess] = React.useState(false);
-    const [checkRun, setCheckRun] = React.useState(false);
+    const [checkboxChecked, setCheckboxChecked] = useState(false)
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [checkRun, setCheckRun] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidPhone(PHONE_REGEX.test(phone))
     }, [phone])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setErrMsg('')
     }, [phone])
 
-    const handleCheckBoxChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckBoxChecked = (e: ChangeEvent<HTMLInputElement>) => {
         if(e.target.checked) {
             setCheckboxChecked(true)
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         setCheckRun(true)
         const v1 = PHONE_REGEX.test(phone)

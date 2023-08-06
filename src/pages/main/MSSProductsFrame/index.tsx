@@ -1,7 +1,7 @@
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import React, { useEffect } from 'react'
+import { useEffect, useRef, useLayoutEffect } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -28,10 +28,10 @@ const MSSProductsFrame = () => {
         return b.title.length - a.title.length;
       });
 
-    const bubblesRef = React.useRef<any>([])
+    const bubblesRef = useRef<any>([])
     if(typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger)
-        useEffect(() => {
+        useLayoutEffect(() => {
             if(window.innerWidth >= 600) {
                 gsap.fromTo(bubblesRef.current[0], { x: 0, y: 100 }, { x: '+80px', duration: 5, repeat: -1, yoyo: true, scrollTrigger: {
                     trigger: bubblesRef.current,

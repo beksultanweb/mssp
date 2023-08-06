@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useRef, useEffect, LegacyRef, FormEvent } from 'react'
 
 import Modal from '.'
 
@@ -15,35 +15,35 @@ import Button from '../Button'
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
 const CreateRequest = ({ close, requestsStore }: {close: () => void, requestsStore?: RequestsStore}) => {
-    const emailRef: React.LegacyRef<HTMLInputElement> = React.useRef(null)
+    const emailRef: LegacyRef<HTMLInputElement> = useRef(null)
 
-    const [domain, setDomain] = React.useState('')
-    const [validDomain, setValidDomain] = React.useState(false)
+    const [domain, setDomain] = useState('')
+    const [validDomain, setValidDomain] = useState(false)
 
-    const [phone, setPhone] = React.useState('')
-    const [validPhone, setValidPhone] = React.useState(false)
+    const [phone, setPhone] = useState('')
+    const [validPhone, setValidPhone] = useState(false)
 
-    const [service, setService] = React.useState('')
+    const [service, setService] = useState('')
 
-    const [errMsg, setErrMsg] = React.useState('');
-    const [success, setSuccess] = React.useState(false);
-    const [checkRun, setCheckRun] = React.useState(false);
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [checkRun, setCheckRun] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(emailRef.current) {
             emailRef.current.focus()
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValidPhone(PHONE_REGEX.test(phone))
     }, [phone])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setErrMsg('')
     }, [phone])
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
             const response = await RequestsService.createRequest(service, domain, phone)

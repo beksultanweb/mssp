@@ -1,6 +1,5 @@
-import { graphql, useStaticQuery, PageProps } from 'gatsby'
-import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image'
-import React from 'react'
+import { PageProps } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import styles from './styles.module.scss'
 
@@ -11,7 +10,6 @@ import Header from '../../components/Header'
 
 import Layout from '../../components/Layout'
 import { NewsBox } from '../../components/NewsBox'
-
 
 
 

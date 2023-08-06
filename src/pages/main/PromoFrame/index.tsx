@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage, IGatsbyImageData, StaticImage } from 'gatsby-plugin-image'
 import { gsap } from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
-import React from 'react'
+import { useRef } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -43,8 +43,8 @@ const PromoFrame = () => {
     const data: PromoProps = useStaticQuery(query)
     const { promoTitle, promoSubtitle, promoBtn, promoLink, promoImg } = data.wpPage.promo
     const image = getImage(promoImg)
-    const ref1 = React.useRef(null)
-    const ref2 = React.useRef(null)
+    const ref1 = useRef(null)
+    const ref2 = useRef(null)
     gsap.registerPlugin(MotionPathPlugin)
     gsap.to(ref2.current, {
       repeat: -1,

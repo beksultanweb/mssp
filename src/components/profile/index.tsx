@@ -1,6 +1,6 @@
-import { navigate, Link, PageProps } from 'gatsby'
+import { Link, PageProps } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
+import { useState, useEffect, FC } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -20,11 +20,11 @@ interface ProfileProps extends PageProps {
     requestsStore: RequestsStore
 }
 
-const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
-    const [dropdownOpened, setOpenedDropdown] = React.useState(false)
-    const [modalOpen, setModalOpen] = React.useState(false)
-    const [currStatus, setCurrStatus] = React.useState('')
-    const [requests, setRequests] = React.useState<RequestsResponse[]>([])
+const Profile: FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
+    const [dropdownOpened, setOpenedDropdown] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [currStatus, setCurrStatus] = useState('')
+    const [requests, setRequests] = useState<RequestsResponse[]>([])
 
     const handleOpenedDropdown = () => {
         setOpenedDropdown(!dropdownOpened)
@@ -38,11 +38,11 @@ const Profile: React.FC<ProfileProps> = ({ authStore, requestsStore, location })
         setModalOpen(!modalOpen)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         requestsStore.getMyRequests(authStore.user.id, currStatus)
     }, [!modalOpen, currStatus, requestsStore, authStore.user.id])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setRequests(requestsStore.requests)
     }, [requestsStore.requests])
 

@@ -1,6 +1,5 @@
 import { navigate, PageProps } from 'gatsby'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
 
 import { AuthStore } from '../store/AuthStore'
 

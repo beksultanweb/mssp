@@ -19,4 +19,8 @@ export default class AuthService {
     static async resetPwd(email: string): Promise<AxiosResponse> {
         return $api.post<AuthResponse>('/password-reset', { email })
     }
+
+    static async newPwd(userId: string, token: string, password: string): Promise<AxiosResponse> {
+        return $api.post(`/password-reset/${userId}/${token}`, { password })
+    }
 }

@@ -55,10 +55,10 @@ const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: (
         setRegisterOpen()
     }
 
-    // const handleSwithchToResetPwd = () => {
-    //     close()
-    //     setResetPwdOpen()
-    // }
+    const handleSwithchToResetPwd = () => {
+        close()
+        setResetPwdOpen()
+    }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -108,7 +108,7 @@ const Login = ({ close, setRegisterOpen, setResetPwdOpen, authStore }: {close: (
                 </div>
                 <div className={styles.flex}>
                     <label><input onChange={handlePersist} type="checkbox" id="persist" checked={persist} />Запомнить меня</label>
-                    {/* <div onClick={handleSwithchToResetPwd} className={styles.forget}>Забыли пароль?</div> */}
+                    <div onClick={handleSwithchToResetPwd} className={styles.forget}>Забыли пароль?</div>
                 </div>
                 <div className={styles.buttons}>
                     <Button className={styles.btnLight} theme='light' txt='Войти'/>

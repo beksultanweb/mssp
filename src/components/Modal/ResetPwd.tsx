@@ -30,7 +30,8 @@ const ResetPwd = ({ close, authStore }: {close: () => void, authStore?: AuthStor
         }
         try {
             const response = await AuthService.resetPwd(email)
-            close()
+            setSuccess(response.data)
+            // close()
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
                 setErrMsg(error.response.data.message)
@@ -43,7 +44,7 @@ const ResetPwd = ({ close, authStore }: {close: () => void, authStore?: AuthStor
         <Modal title="Сброс пароля" subtitle="Для сброса пароля мы отправим письмо с ссылкой на эту почту." close={close}>
             <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <p className={success ? styles.success : styles.offscreen}>
-            Письмо успешно отправлено.
+            {success}
             </p>
             <form onSubmit={handleSubmit}>
                 <div className={styles.form__inputs}>

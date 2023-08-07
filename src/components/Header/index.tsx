@@ -1,6 +1,6 @@
-import { Link, navigate } from 'gatsby'
+import { Link, PageProps, navigate } from 'gatsby'
 import { observer, inject } from 'mobx-react'
-import { useState, FC } from 'react'
+import { useState, FC, useEffect } from 'react'
 
 import { RemoveScroll } from 'react-remove-scroll';
 
@@ -18,7 +18,7 @@ import Register from '../Modal/Register'
 import ResetPwd from '../Modal/ResetPwd';
 
 
-interface HeaderProps {
+interface HeaderProps extends PageProps {
     theme: string
     authStore?: AuthStore
 }
@@ -81,7 +81,7 @@ const Header: FC<HeaderProps> = ({ theme, authStore }) => {
             </Layout>
             {loginOpen && <Login setResetPwdOpen={handleResetPwdOpen} setRegisterOpen={handleRegisterOpen} close={handleloginOpen}/>}
             {registerOpen && <Register setLoginOpen={handleloginOpen} close={handleRegisterOpen}/>}
-            {/* {resetPwdOpen && <ResetPwd close={handleResetPwdOpen}/>} */}
+            {resetPwdOpen && <ResetPwd close={handleResetPwdOpen}/>}
         </RemoveScroll>
     )
 }

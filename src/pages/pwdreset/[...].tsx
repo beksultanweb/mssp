@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby';
+import { navigate, PageProps } from 'gatsby';
 import { useEffect } from 'react';
 
 import { Footer } from '../../components/Footer';
@@ -6,10 +6,10 @@ import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import NewPwd from '../../components/Modal/NewPwd';
 
-const PasswordReset = () => {
-
+const PasswordReset = (props: PageProps) => {
+    const { location } = props
     useEffect(() => {
-        if(typeof window !== 'undefined' && !location.pathname.split('/')[2] && !location.pathname.split('/')[3]) {
+        if(!location.pathname.split('/')[2] && !location.pathname.split('/')[3]) {
             navigate('/')
         }
     }, [])

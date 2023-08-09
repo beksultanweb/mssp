@@ -39,10 +39,6 @@ import partner31 from '../../../assets/icons/logo/Logo 31.svg'
 import partner32 from '../../../assets/icons/logo/Logo 32.svg'
 import partner33 from '../../../assets/icons/logo/Logo 33.svg'
 import partner34 from '../../../assets/icons/logo/Logo 34.svg'
-import partner35 from '../../../assets/icons/logo/Logo 35.svg'
-import partner36 from '../../../assets/icons/logo/Logo 36.svg'
-import partner37 from '../../../assets/icons/logo/Logo 37.svg'
-import partner38 from '../../../assets/icons/logo/Logo 38.svg'
 
 import Layout from '../../../components/Layout'
 
@@ -91,9 +87,7 @@ const partners2 = [
     partner15,
     partner16,
     partner17,
-    partner18,
-    partner19,
-    partner20
+    partner18
 ]
 
 const partners3 = [
@@ -104,9 +98,7 @@ const partners3 = [
   partner25,
   partner26,
   partner27,
-  partner28,
-  partner29,
-  partner30
+  partner28
 ]
 
 const partners4 = [
@@ -114,10 +106,10 @@ const partners4 = [
   partner32,
   partner33,
   partner34,
-  partner35,
-  partner36,
-  partner37,
-  partner38
+  partner29,
+  partner30,
+  partner19,
+  partner20
 ]
 
 const ClientsFrame = () => {

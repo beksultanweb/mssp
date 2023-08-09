@@ -24,6 +24,7 @@ const fetchMainBlockData = graphql`
 
 const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => void}) => {
     const data = useStaticQuery(fetchMainBlockData)
+    const refmain = useRef(null)
     const ref1 = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
@@ -33,37 +34,41 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
             if(window.innerWidth >= 600) {
             gsap.fromTo(ref1.current,
                 { y: 800 }, { x: -10, y: 600, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                    trigger: ref3.current,
-                    start: 'bottom bottom'
+                    trigger: refmain.current,
+                    toggleActions: 'play pause resume pause'
                 } })
             gsap.fromTo(ref2.current,
                 { x: 0, y: 0 }, { x: -100, y: -20, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                    trigger: ref2.current
+                    trigger: refmain.current,
+                    toggleActions: 'play pause resume pause'
                 } })
             gsap.fromTo(ref3.current,
                 { x: 0, y: 640 }, { x: +100, y: 650, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                    trigger: ref2.current
+                    trigger: refmain.current,
+                    toggleActions: 'play pause resume pause'
                 } })
             }
             else {
                 gsap.fromTo(ref1.current,
                     { y: 800 }, { y: 700, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                        trigger: ref3.current,
-                        start: 'bottom bottom'
+                        trigger: refmain.current,
+                        toggleActions: 'play pause resume pause'
                     } })
                 gsap.fromTo(ref2.current,
                     { x: 0, y: 350 }, { x: -40, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                        trigger: ref2.current
+                        trigger: refmain.current,
+                        toggleActions: 'play pause resume pause'
                     } })
                 gsap.fromTo(ref3.current,
                     { x: 0, y: 700 }, { x: 40, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
-                        trigger: ref2.current
+                        trigger: refmain.current,
+                        toggleActions: 'play pause resume pause'
                     } })
             }
         }, [])
     }
     return (
-        <div className={styles.main__content}>
+        <div className={styles.main__content} ref={refmain}>
         <div ref={ref1}>
             <StaticImage
             src="../../../assets/images/021A5938.jpg"

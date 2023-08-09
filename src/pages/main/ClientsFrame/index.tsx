@@ -31,10 +31,18 @@ import partner27 from '../../../assets/icons/logo/Logo 26.svg'
 import partner28 from '../../../assets/icons/logo/Logo 27.svg'
 import partner29 from '../../../assets/icons/logo/Logo 28.svg'
 import partner30 from '../../../assets/icons/logo/Logo 29.svg'
+import partner31 from '../../../assets/icons/logo/Logo 30.svg'
+import partner32 from '../../../assets/icons/logo/Logo 31.svg'
+import partner33 from '../../../assets/icons/logo/Logo 32.svg'
+import partner34 from '../../../assets/icons/logo/Logo 33.svg'
+import partner35 from '../../../assets/icons/logo/Logo 34.svg'
+import partner36 from '../../../assets/icons/logo/Logo 35.svg'
+import partner37 from '../../../assets/icons/logo/Logo 36.svg'
+import partner38 from '../../../assets/icons/logo/Logo 37.svg'
+import partner39 from '../../../assets/icons/logo/Logo 38.svg'
+import partner40 from '../../../assets/icons/logo/Logo 39.svg'
 import partner1 from '../../../assets/icons/logo/partner.svg'
-import partner2 from '../../../assets/icons/logo/partner1.svg'
 import partner3 from '../../../assets/icons/logo/partner2.svg'
-import partner4 from '../../../assets/icons/logo/partner3.svg'
 
 import Layout from '../../../components/Layout'
 
@@ -64,12 +72,15 @@ const query = graphql`
 
 const partners = [
     partner1,
-    partner2,
+    partner31,
     partner3,
-    partner4,
+    partner32,
     partner5,
     partner6,
-    partner7
+    partner7,
+    partner35,
+    partner37,
+    partner40
 ]
 
 const partners2 = [
@@ -79,7 +90,9 @@ const partners2 = [
     partner14,
     partner15,
     partner16,
-    partner17
+    partner17,
+    partner36,
+    partner38
 ]
 
 const partners3 = [
@@ -90,7 +103,8 @@ const partners3 = [
   partner25,
   partner26,
   partner27,
-  partner30
+  partner30,
+  partner39
 ]
 
 const partners4 = [
@@ -101,7 +115,9 @@ const partners4 = [
   partner19,
   partner20,
   partner28,
-  partner29
+  partner29,
+  partner33,
+  partner34
 ]
 
 const ClientsFrame = () => {

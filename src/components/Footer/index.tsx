@@ -28,10 +28,10 @@ const query = graphql`
         footer {
         address
         email
-        facebook
         instagram
         linkedin
         telephone
+        telephone2
         }
         Awards {
             requisites {
@@ -51,7 +51,6 @@ export const Footer = ({ theme } :{theme?: string}) => {
                     <div>
                         <Link className={styles.logo} to={'/'}><Logo theme={theme === 'light' ? 'dark' : 'light'}/></Link>
                         <div className={styles.socmedia}>
-                            <a href={data.wpPage.footer.facebook}>{theme === 'light' ? <img src={FbIconDark}/> : <img src={FbIcon}/>}</a>
                             <a href={data.wpPage.footer.instagram}>{theme === 'light' ? <img src={InstagramDark}/> : <img src={Instagram}/>}</a>
                             <a href={data.wpPage.footer.linkedin}>{theme === 'light' ? <img src={LinkedinDark}/> : <img src={Linkedin}/>}</a>
                         </div>
@@ -59,7 +58,10 @@ export const Footer = ({ theme } :{theme?: string}) => {
                     <div>
                         <div className={styles.contacts}>
                             <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.address}</div>
-                            <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone}</div>
+                            <div>
+                                <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone}</div>
+                                <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone2}</div>
+                            </div>
                         </div>
                         <div className={`${styles.email} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.email}</div>
                     </div>

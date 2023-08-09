@@ -59,7 +59,7 @@ const TeamFrame = () => {
       <Layout>
         <h2 className={styles.white_text}>Наша команда</h2>
         <div className={styles.flex}>
-          <span className={styles.white_text}>/002</span><p className={styles.white_text}>Надёжная защита ваших данных и бизнеса — наша главная задача!</p>
+          <span className={styles.white_text}>/002</span><p className={styles.white_text}>Сплоченный коллектив экспертов, вдохновленных решать сложные задачи вместе. Мы сочетаем опыт и творческий подход для достижения наилучших результатов.</p>
         </div>
       </Layout>
       <div className={styles.gallery}>

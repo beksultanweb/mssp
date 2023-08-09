@@ -61,7 +61,7 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
 
     return (
         <RemoveScroll enabled>
-            <Modal title="Консультация" subtitle="Оставляйте заявку на консультацию, мы поможем выявить решение" close={close}>
+            <Modal title="Консультация" subtitle="Оставляйте заявку на консультацию, и мы предложим наилучшее решение!" close={close}>
                 <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
                 <p className={success ? styles.success : styles.offscreen}>Заявка успешно отправлена</p>
                 <form onSubmit={handleSubmit}>

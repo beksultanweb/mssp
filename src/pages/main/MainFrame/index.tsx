@@ -45,6 +45,21 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
                     trigger: ref2.current
                 } })
             }
+            else {
+                gsap.fromTo(ref1.current,
+                    { y: 800 }, { y: 700, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                        trigger: ref3.current,
+                        start: 'bottom bottom'
+                    } })
+                gsap.fromTo(ref2.current,
+                    { x: 0, y: 350 }, { x: -40, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                        trigger: ref2.current
+                    } })
+                gsap.fromTo(ref3.current,
+                    { x: 0, y: 700 }, { x: 40, repeat: -1, yoyo: true, duration: 5, scrollTrigger: {
+                        trigger: ref2.current
+                    } })
+            }
         }, [])
     }
     return (

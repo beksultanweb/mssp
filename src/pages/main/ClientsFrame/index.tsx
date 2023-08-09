@@ -134,7 +134,7 @@ const ClientsFrame = () => {
         trigger: ref.current[0],
         toggleActions: 'play pause resume pause'
       } })
-      const dur = 2
+      const dur = 1.5
 
       tl.fromTo(ref.current[0], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter1((prev) => {
         if(prev === partners.length - 1) return 0
@@ -149,7 +149,7 @@ const ClientsFrame = () => {
             trigger: ref.current[1],
             toggleActions: 'play pause resume pause'
           } })
-        const dur = 3.25
+        const dur = 2.5
 
         tl.fromTo(ref.current[1], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter2((prev) => {
           if(prev === partners2.length - 1) return 0
@@ -164,7 +164,7 @@ const ClientsFrame = () => {
             trigger: ref.current[2],
             toggleActions: 'play pause resume pause'
           } })
-        const dur = 2.5
+        const dur = 2
 
         tl.fromTo(ref.current[2], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter3((prev) => {
           if(prev === partners3.length - 1) return 0
@@ -179,7 +179,7 @@ const ClientsFrame = () => {
             trigger: ref.current[3],
             toggleActions: 'play pause resume pause'
           } })
-        const dur = 4
+        const dur = 3
 
         tl.fromTo(ref.current[3], { alpha: 0 }, { alpha: 1, ease: 'power3.out', duration: 5, onStart: () => setCounter4((prev) => {
           if(prev === partners2.length - 1) return 0

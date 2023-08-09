@@ -130,7 +130,7 @@ const ClientsFrame = () => {
     }, [])
 
     const moveMe = () => {
-      const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([2, 6]), scrollTrigger: {
+      const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([0, 3]), scrollTrigger: {
         trigger: ref.current[0],
         toggleActions: 'play pause resume pause'
       } })
@@ -145,7 +145,7 @@ const ClientsFrame = () => {
     }
 
     const moveMe2 = () => {
-        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([2, 6]), scrollTrigger: {
+        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([0, 3]), scrollTrigger: {
             trigger: ref.current[1],
             toggleActions: 'play pause resume pause'
           } })
@@ -160,7 +160,7 @@ const ClientsFrame = () => {
     }
 
     const moveMe3 = () => {
-        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([2, 6]), scrollTrigger: {
+        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([0, 3]), scrollTrigger: {
             trigger: ref.current[2],
             toggleActions: 'play pause resume pause'
           } })
@@ -175,7 +175,7 @@ const ClientsFrame = () => {
     }
 
     const moveMe4 = () => {
-        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([2, 6]), scrollTrigger: {
+        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random([0, 3]), scrollTrigger: {
             trigger: ref.current[3],
             toggleActions: 'play pause resume pause'
           } })

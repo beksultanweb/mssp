@@ -48,7 +48,7 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
         }, [])
     }
     return (
-        <div>
+        <div className={styles.main__content}>
         <div ref={ref1}>
             <StaticImage
             src="../../../assets/images/021A5938.jpg"

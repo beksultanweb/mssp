@@ -47,8 +47,8 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
 
   return (
     <>
-      <Header theme="dark"/>
       <main>
+        <Header theme="dark"/>
         <MainFrame handleConsultationOpen={handleConsultationOpen}/>
       </main>
       <ProductsFrame/>

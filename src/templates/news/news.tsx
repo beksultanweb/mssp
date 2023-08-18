@@ -10,6 +10,7 @@ import Header from '../../components/Header'
 
 import Layout from '../../components/Layout'
 import { NewsBox } from '../../components/NewsBox'
+import BreadCrumb from '../../components/BreadCrumb'
 
 
 
@@ -21,6 +22,7 @@ const NewsItem = ({ pageContext }: PageProps) => {
         <section className={styles.news}>
             <Header theme="light"/>
             <Layout>
+                <BreadCrumb className={styles.breadcrumb} parent='Новости' parentLink='/news' current={title} />
                 <h1 className={styles.simple__title}>{title}</h1>
                 <div className={`${styles.news__addinfo} ${styles.centered}`}>
                     <div className={styles.news__author}>
@@ -38,7 +40,7 @@ const NewsItem = ({ pageContext }: PageProps) => {
                 <NewsBox data={newsData.slice(0, 3)}/>
                 <button className={styles.btn}>Все новости<Arrow theme="light"/></button>
             </Layout>
-            <Footer/>
+            <Footer theme='light'/>
         </section>
     )
 }

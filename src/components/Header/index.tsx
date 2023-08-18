@@ -56,7 +56,7 @@ const Header: FC<HeaderProps> = ({ theme, authStore }) => {
     }
 
     return (
-        <RemoveScroll enabled={isOpen || loginOpen || registerOpen}>
+        <>
             <Layout>
                 <header>
                     <div className={styles.nav}>
@@ -82,7 +82,7 @@ const Header: FC<HeaderProps> = ({ theme, authStore }) => {
             {loginOpen && <Login setResetPwdOpen={handleResetPwdOpen} setRegisterOpen={handleRegisterOpen} close={handleloginOpen}/>}
             {registerOpen && <Register setLoginOpen={handleloginOpen} close={handleRegisterOpen}/>}
             {resetPwdOpen && <ResetPwd close={handleResetPwdOpen}/>}
-        </RemoveScroll>
+        </>
     )
 }
 

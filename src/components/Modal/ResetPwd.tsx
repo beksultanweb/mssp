@@ -41,7 +41,7 @@ const ResetPwd = ({ close, authStore }: {close: () => void, authStore?: AuthStor
     }
 
     return (
-        <Modal title="Сброс пароля" subtitle="Для сброса пароля мы отправим письмо с ссылкой на эту почту." close={close}>
+        <Modal title="Сброс пароля" subtitle="Для сброса пароля мы отправим письмо с ссылкой на эту почту." close={close} removeScroll={true}>
             <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <p className={success ? styles.success : styles.offscreen}>
             {success}

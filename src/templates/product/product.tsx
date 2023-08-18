@@ -20,8 +20,8 @@ const Product = ({ pageContext }: PageProps) => {
     const [consultationOpen, setConsultationOpen] = useState(false)
     const { product } = pageContext
     const { title, content } = product
-    const { name } = product.categories.nodes[0]
-    const { yearOfProduction, deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3 } = product.ServiceInformation
+    const { name, slug } = product.categories.nodes[0]
+    const { deadlines, presentation, advantage1, advantage2, advantage3, iconAdvantage1, iconAdvantage2, iconAdvantage3 } = product.ServiceInformation
     const data = useStaticQuery(graphql`
     query MyQuery {
         allWpPost(filter: {categories: {nodes: {elemMatch: {slug: {eq: "blue-team"}}}}}) {
@@ -37,6 +37,7 @@ const Product = ({ pageContext }: PageProps) => {
             categories {
               nodes {
                 name
+                slug
               }
             }
           }
@@ -50,19 +51,13 @@ const Product = ({ pageContext }: PageProps) => {
         <section className={styles.top}>
             <Header theme="light"/>
             <Layout>
-                <BreadCrumb className={styles.breadcrumb} parent={name} current={title} />
+                <BreadCrumb className={styles.breadcrumb} parent='Продукты и услуги' parentLink='/products' category={name} categorySlug={slug} current={title} />
                 <div className={styles.top__content}>
                   <div>
                     <h1 className={styles.title}>{title}</h1>
                     <div className={styles.top__addinfo}>
-                      <div>
-                        <div className={styles.top__title}>Год выпуска</div>
-                        <div className={styles.top__subtitle}>{yearOfProduction}</div>
-                      </div>
-                      <div>
-                        <div className={styles.top__title}>Срок исполнения</div>
-                        <div className={styles.top__subtitle}>{deadlines}</div>
-                      </div>
+                      <div className={styles.top__title}>Срок исполнения</div>
+                      <div className={styles.top__subtitle}>{deadlines}</div>
                     </div>
                   </div>
                   <div className={styles.top__btns}>

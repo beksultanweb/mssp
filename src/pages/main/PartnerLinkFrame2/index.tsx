@@ -14,6 +14,7 @@ const query = graphql`
         }
         additionalLink2
         additionalTitle2
+        additionalOn2
       }
     }
   }`
@@ -28,14 +29,18 @@ interface PartnerLinkProps {
       }
       additionalLink2: string
       additionalTitle2: string
+      additionalOn2: boolean
     }
   }
 }
 
 const PartnerLinkFrame2 = () => {
     const data: PartnerLinkProps = useStaticQuery(query)
-    const { additionalImg2, additionalTitle2, additionalDescr2, additionalBtn2, additionalLink2 } = data.wpPage.Additional_resources2
+    const { additionalImg2, additionalTitle2, additionalDescr2, additionalBtn2, additionalLink2, additionalOn2 } = data.wpPage.Additional_resources2
     const image = getImage(additionalImg2)
+    if(!additionalOn2) {
+      return
+    }
     return (
         image ? <PartnerLink image={image} title={additionalTitle2} description={additionalDescr2} link={additionalLink2} btn={additionalBtn2}/>
         : null

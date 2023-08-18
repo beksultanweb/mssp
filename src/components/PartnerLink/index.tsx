@@ -23,7 +23,7 @@ const PartnerLink = (props: PartnerLinkProps) => {
                 <div className={styles.partner__content}>
                     <h2 className={styles.title}>{title}</h2>
                     <p className={styles.paragraph}>{description}</p>
-                    <a href={link} className={styles.link}>
+                    <a href={link} target='_blank' rel='noreferrer' className={styles.link}>
                         <Button txt={btn} theme='light' className={styles.btn}/>
                     </a>
                 </div>

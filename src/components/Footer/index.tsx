@@ -3,8 +3,6 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import styles from './styles.module.scss'
 
-import FbIconDark from '../../assets/icons/fb-dark.svg'
-import FbIcon from '../../assets/icons/fb.svg'
 import InstagramDark from '../../assets/icons/instagram-dark.svg'
 import Instagram from '../../assets/icons/instagram.svg'
 import LinkedinDark from '../../assets/icons/linkedin-dark.svg'
@@ -51,25 +49,25 @@ export const Footer = ({ theme } :{theme?: string}) => {
                     <div>
                         <Link className={styles.logo} to={'/'}><Logo theme={theme === 'light' ? 'dark' : 'light'}/></Link>
                         <div className={styles.socmedia}>
-                            <a href={data.wpPage.footer.instagram}>{theme === 'light' ? <img src={InstagramDark}/> : <img src={Instagram}/>}</a>
-                            <a href={data.wpPage.footer.linkedin}>{theme === 'light' ? <img src={LinkedinDark}/> : <img src={Linkedin}/>}</a>
+                            <a href={data.wpPage.footer.instagram} target='_blank' rel='noreferrer'>{theme === 'light' ? <img src={InstagramDark}/> : <img src={Instagram}/>}</a>
+                            <a href={data.wpPage.footer.linkedin} target='_blank' rel='noreferrer'>{theme === 'light' ? <img src={LinkedinDark}/> : <img src={Linkedin}/>}</a>
                         </div>
                     </div>
                     <div>
                         <div className={styles.contacts}>
                             <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.address}</div>
                             <div>
-                                <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone}</div>
-                                <div className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone2}</div>
+                                <a href={`tel:${data.wpPage.footer.telephone}`} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone}</a>
+                                <a href={`tel:${data.wpPage.footer.telephone2}`} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.telephone2}</a>
                             </div>
                         </div>
-                        <div className={`${styles.email} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.email}</div>
+                        <a href={`mailto:${data.wpPage.footer.email}`} className={`${styles.email} ${theme === 'light' && styles.light}`}>{data.wpPage.footer.email}</a>
                     </div>
                     <div className={styles.routes}>
                         {routeElements.map(route => (
                             <Link key={route.url} to={route.url} className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>{route.text[0].toUpperCase()}{route.text.slice(1)}</Link>
                         ))}
-                        <a href='https://astana.hh.kz/employer/5560612' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</a>
+                        <a href='https://astana.hh.kz/employer/5560612' target='_blank' rel='noreferrer' className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Вакансии</a>
                         <a href={data.wpPage.Awards.requisites.mediaItemUrl} download className={`${styles.footer__item} ${theme === 'light' && styles.light}`}>Наши реквизиты</a>
                     </div>
                     <div className={styles.routes}>

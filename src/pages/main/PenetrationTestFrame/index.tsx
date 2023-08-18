@@ -5,7 +5,7 @@ import styles from './styles.module.scss'
 import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 
-const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => void}) => {
+const PenetrationTestFrame = ({ handleLoginOpen }: {handleLoginOpen: () => void}) => {
     return (
         <section className={styles.penetration}>
             <div className={styles.report}>Report</div>
@@ -34,7 +34,7 @@ const PenetrationTestFrame = ({ handleConsultationOpen }: {handleConsultationOpe
                         <div className={styles.country}>Казахстан</div>
                     </div>
                 </div>
-                <Button txt='Оставить заявку' handleConsultationOpen={handleConsultationOpen} theme='dark'/>
+                <Button txt='Оставить заявку' handleConsultationOpen={handleLoginOpen} theme='dark'/>
             </Layout>
             <StaticImage src="../../../assets/images/021A5908.jpg" width={651} height={620} alt="penetration" objectPosition={'40% 40%'} imgStyle={{ borderRadius: '24px 0 0 24px' }} className={styles.penetration__img}/>
         </section>

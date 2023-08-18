@@ -26,7 +26,7 @@ const News: React.FC<PageProps> = ({ pageContext }) => {
             <Header theme="light"/>
             <Layout>
                 <h1 className={styles.title}>Новости</h1>
-                <GatsbyImage image={arrayImage[0]} className={styles.main__img} imgStyle={{ borderRadius: '12px' }} alt="" />
+                <Link className={styles.a_link} to={`/news/${newsData[0].slug}`}><GatsbyImage image={arrayImage[0]} className={styles.main__img} imgStyle={{ borderRadius: '12px' }} alt="" /></Link>
                 <div className={styles.news__info}>
                   <div>
                     <Link className={styles.a_link} to={`/news/${newsData[0].slug}`}><h3 className={styles.news__title}>{newsData[0].title}</h3></Link>
@@ -43,7 +43,7 @@ const News: React.FC<PageProps> = ({ pageContext }) => {
                 </div>
                 {newsData.slice(1, sliceNum).map((post: any, index: number) =>
                   <div key={post.title} className={styles.news__box}>
-                      <GatsbyImage image={arrayImage[index]} className={styles.news__img} imgStyle={{ borderRadius: '12px' }} alt="news" />
+                      <Link className={styles.a_link} to={`/news/${post.slug}`}><GatsbyImage image={arrayImage[index]} className={styles.news__img} imgStyle={{ borderRadius: '12px' }} alt="news" /></Link>
                       <div>
                         <Link className={styles.a_link} to={`/news/${post.slug}`}><h3 className={styles.news__title}>{post.title}</h3></Link>
                         <p className={`${styles.news__subtitle} ${styles.news__subtitle_margin}`}>{post.news.newsSubtitle}</p>

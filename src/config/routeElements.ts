@@ -13,6 +13,6 @@ export const routeElements = [
   },
   {
     text: 'контакты',
-    url: '#footer'
+    url: '/contacts'
   }
 ]

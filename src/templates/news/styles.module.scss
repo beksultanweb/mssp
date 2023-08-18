@@ -7,8 +7,13 @@
     margin-top: 115px;
     margin-bottom: 40px;
 }
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
 .news {
-    background-color: $secondary-black;
+    background-color: $primary-black;
     &__more {
         text-decoration: underline;
         background-color: inherit;

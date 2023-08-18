@@ -1,0 +1,42 @@
+@import "../../assets/styles/variables.scss";
+
+.title {
+    font-size: 40px;
+    color: $primary-white;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+.contacts {
+    background-color: $primary-black;
+    &__content {
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        gap: 20px;
+        align-items: center;
+        margin-top: 100px;
+    }
+    &__text {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 24px;
+        color: $primary-white;
+        text-decoration: none;
+        display: block;
+    }
+    &__phone {
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 1000px) {
+    .contacts__content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .title {
+        font-size: 24px;
+    }
+    .contacts__text {
+        font-size: 20px;
+    }
+}

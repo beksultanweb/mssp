@@ -28,6 +28,9 @@ footer {
     color: #fff;
     text-decoration: none;
 }
+.footer__item, .email {
+    display: block;
+}
 .socmedia {
     display: flex;
     align-items: center;

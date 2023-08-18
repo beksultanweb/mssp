@@ -21,6 +21,7 @@ const query = graphql`
         promoLink
         promoSubtitle
         promoTitle
+        promoOn
       }
     }
   }`
@@ -35,13 +36,14 @@ interface PromoProps {
       promoLink: string
       promoTitle: string
       promoSubtitle: string
+      promoOn: boolean
     }
   }
 }
 
 const PromoFrame = () => {
     const data: PromoProps = useStaticQuery(query)
-    const { promoTitle, promoSubtitle, promoBtn, promoLink, promoImg } = data.wpPage.promo
+    const { promoTitle, promoSubtitle, promoBtn, promoLink, promoImg, promoOn } = data.wpPage.promo
     const image = getImage(promoImg)
     const ref1 = useRef(null)
     const ref2 = useRef(null)
@@ -53,6 +55,9 @@ const PromoFrame = () => {
       motionPath: 'm 1.000003,76.015001 a 75.000001,75.000001 0 1 1 149.999997,0 75.000001,75.000001 0 1 1 -149.999997,0 m 74.999999,0'
     })
 
+    if(!promoOn) {
+      return
+    }
     return (
       <section className={styles.promo}>
         <div ref={ref1}><StaticImage  className={styles.svg} src="../../../assets/icons/Linergradient.png" alt=""/></div>

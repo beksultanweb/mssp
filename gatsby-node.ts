@@ -44,7 +44,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
               slug
               title
               ServiceInformation {
-                yearOfProduction
                 iconAdvantage1 {
                   gatsbyImage(width: 72, formats: WEBP, quality: 100)
                 }

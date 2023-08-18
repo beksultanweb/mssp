@@ -27,9 +27,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
     const [matchPassword, setMatchPassword] = useState('')
     const [validMatch, setValidMatch] = useState(false)
 
-    const [firstName, setFirstName] = useState('')
-
-    const [secondName, setSecondName] = useState('')
+    const [name, setName] = useState('')
 
     const [checkboxChecked, setCheckboxChecked] = useState(false)
 
@@ -76,7 +74,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
             return
         }
         try {
-            const response = await AuthService.registration(email, password, firstName, secondName)
+            const response = await AuthService.registration(email, password, name)
             localStorage.setItem('token', response.data.accessToken)
             setSuccess(true)
         } catch (error) {
@@ -88,15 +86,14 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
     }
 
     return (
-        <Modal title="Регистрация" subtitle="Для того чтобы отслеживать статус вашей заявки, необходимо зарегистрироваться." close={close}>
+        <Modal title="Регистрация" subtitle="Для того чтобы отслеживать статус вашей заявки, необходимо зарегистрироваться." close={close} removeScroll={true}>
             <p className={errMsg ? styles.errmsg : styles.offscreen}>{errMsg}</p>
             <p className={success ? styles.success : styles.offscreen}>
                 Регистрация прошла успешно! Можете <p className={styles.success__link} onClick={handleSwithchToLogin}>войти в личный кабинет</p>.
             </p>
             <form onSubmit={handleSubmit}>
                 <div className={styles.form__inputs}>
-                    <input className={styles.input} ref={firstNameRef} value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" name="name" placeholder="Имя" />
-                    <input className={styles.input} value={secondName} onChange={(e) => setSecondName(e.target.value)} type="text" name="surname" placeholder="Фамилия" />
+                    <input className={styles.input} ref={firstNameRef} value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="Как к Вам обращаться?" />
                     <input className={styles.input} aria-invalid={validEmail ? false : true} aria-describedby="emailnote" value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="email" placeholder="Email" />
                     <p className={!email && checkRun ? styles.instructions : styles.offscreen}>
                         <img src={info} alt="" />Email обязателен к заполнению

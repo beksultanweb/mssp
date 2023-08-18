@@ -43,7 +43,7 @@ const Update: FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
         setRequest(requestsStore.request)
     }, [requestsStore.request])
 
-    const { email, firstName, secondName } = requestsStore.user
+    const { email, name } = requestsStore.user
 
     const color = `${request?.status === 'новая'?styles.blue:request?.status === 'в работе'?styles.green:request?.status === 'исполнено'?styles.fiolet:request?.status === 'закрыта'?styles.black:request?.status==='отменена'?styles.red:''}`
 
@@ -118,9 +118,9 @@ const Update: FC<ProfileProps> = ({ authStore, requestsStore, location }) => {
                             <div className={styles.title}>Email клиента</div>
                             <div className={`${styles.status} ${styles.status__light}`}>{email}</div>
                         </div>}
-                        {firstName && <div className={styles.request__status_item}>
-                            <div className={styles.title}>Фамилия Имя</div>
-                            <div className={`${styles.status} ${styles.status__light}`}>{firstName} {secondName}</div>
+                        {name && <div className={styles.request__status_item}>
+                            <div className={styles.title}>Контактное лицо</div>
+                            <div className={`${styles.status} ${styles.status__light}`}>{name}</div>
                         </div>}
                     </div>
                 </div>

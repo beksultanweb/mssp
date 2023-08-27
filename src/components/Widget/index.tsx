@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 
-import ico from '../../assets/icons/comment_vs.svg'
+import ico from '../../assets/icons/warning_outlined.svg'
 
 
 const Widget = ({ handleDecipherOpen }: {handleDecipherOpen: () => void}) => {

@@ -1,5 +1,4 @@
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLayoutEffect, useRef, useState } from 'react'
@@ -41,7 +40,7 @@ query($selectedCategory: String) {
           ServiceInformation {
             description
             icon {
-                gatsbyImage(width: 72, formats: WEBP, quality: 100)
+                sourceUrl
             }
           }
           title
@@ -153,7 +152,7 @@ const ProductsFrame = () => {
                 <Slider ref={sliderRef} className={styles.tabs__content} {...settings}>
                     {categoryData.map((post: any) =>
                         <Link key={post.slug} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                            <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="product_icon" />
+                            <img src={post.ServiceInformation.icon.sourceUrl} alt="" />
                             <div className={styles.tabs__title}>{post.title}</div>
                             <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
                         </Link>

@@ -75,6 +75,7 @@ const Header: FC<HeaderProps> = ({ theme, authStore }) => {
                             <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}
+                    <div>Қазақша</div>
                     {!authStore?.isAuth && <Button className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`} theme={theme} handleloginOpen={handleloginOpen} txt='Войти'/>}
                     <button onClick={handleMenuOpen} className={`${theme === 'light' ? styles.light : styles.dark} ${isOpen ? styles.mobile__burger_open : styles.mobile__burger}`}>{!isOpen && 'Меню'}<Arrow theme={theme === 'light' ? 'dark' : 'light'}/></button>
                 </header>

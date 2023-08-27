@@ -45,13 +45,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
               title
               ServiceInformation {
                 iconAdvantage1 {
-                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
+                  sourceUrl
                 }
                 iconAdvantage2 {
-                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
+                  sourceUrl
                 }
                 iconAdvantage3 {
-                  gatsbyImage(width: 72, formats: WEBP, quality: 100)
+                  sourceUrl
                 }
                 advantage1
                 advantage2
@@ -93,10 +93,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
     }
   }`)
 
-
   const productTemplate = path.join(__dirname, '/src/templates/product/product.tsx');
   const newsTemplate = path.join(__dirname, '/src/templates/news/news.tsx');
   const allNewsTemplate = path.join(__dirname, '/src/templates/news/index.tsx');
+
   news.data.allWpPost.nodes.forEach((node: any) => {
     createPage({
       path: `/news/${node.slug}`,
@@ -107,6 +107,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }
     });
   });
+
   products.data.allWpPost.nodes.forEach((node: any) => {
     createPage({
       path: `/products/${node.slug}`,
@@ -116,11 +117,21 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }
     });
   });
-  createPage({
-    path: '/news',
-    component: allNewsTemplate,
-    context: {
-      news: news
-    }
+
+  const newsPosts = news.data.allWpPost.nodes
+  const postsPerPage = 2
+  const numPages = Math.ceil(newsPosts.length / postsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? '/news' : `/news/${i + 1}`,
+      component: allNewsTemplate,
+      context: {
+        newsPosts,
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1
+      }
+    })
   })
 };

@@ -1,8 +1,6 @@
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { PageProps } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useState } from 'react'
-import slugify from 'slugify'
 
 import styles from './styles.module.scss'
 
@@ -29,7 +27,7 @@ const Product = ({ pageContext }: PageProps) => {
             ServiceInformation {
               description
               icon {
-                gatsbyImage(width: 72, formats: WEBP, quality: 100)
+                sourceUrl
               }
             }
             title
@@ -77,9 +75,18 @@ const Product = ({ pageContext }: PageProps) => {
               <div className={styles.about_service__content} dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
             <div className={styles.about_service__advantages}>
-              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage1)} alt="advantage" />{advantage1}</div>
-              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage2)} alt="advantage" />{advantage2}</div>
-              <div className={styles.about_service__advantage}><GatsbyImage image={getImage(iconAdvantage3)} alt="advantage" />{advantage3}</div>
+              <div className={styles.about_service__advantage}>
+                <img src={iconAdvantage1?.sourceUrl} alt="advantage" />
+                {advantage1}
+              </div>
+              <div className={styles.about_service__advantage}>
+                <img src={iconAdvantage2?.sourceUrl} alt="advantage" />
+                {advantage2}
+              </div>
+              <div className={styles.about_service__advantage}>
+                <img src={iconAdvantage3?.sourceUrl} alt="advantage" />
+                {advantage3}
+              </div>
             </div>
           </Layout>
         </section>
@@ -89,7 +96,7 @@ const Product = ({ pageContext }: PageProps) => {
             <div className={styles.tabs__like}>
             {categoryData.slice(0, 3).map(post =>
               <Link key={post.title} to={`/products/${post.slug}`} className={styles.tabs__box}>
-                  <GatsbyImage image={getImage(post.ServiceInformation.icon)} alt="" />
+                  <img src={post.ServiceInformation.icon.sourceUrl} alt="ico" />
                   <div className={styles.tabs__title}>{post.title}</div>
                   <div className={styles.tabs__descr}>{post.ServiceInformation.description}</div>
               </Link>

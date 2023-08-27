@@ -14,6 +14,7 @@ import RequestsService from '../../services/requests'
 import { RequestsStore } from '../../store/RequestsStore'
 
 import Button from '../Button'
+import { Link } from 'gatsby'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
@@ -75,7 +76,7 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
                     </p>
                 </div>
                 <div className={styles.flex}>
-                    <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
+                    <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" /><div>Я принимаю <Link to='/privacy-policy' className={styles.privacy_policy}>политику конфиденциальности</Link></div></label>
                 </div>
                 <p className={validPhone && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
                 <Button className={styles.btnLight} txt='Отправить' theme='light'/>

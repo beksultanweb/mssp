@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Link } from 'gatsby'
 import { inject, observer } from 'mobx-react'
 import { useState, useEffect, LegacyRef, useRef, FormEvent, ChangeEvent } from 'react'
 
@@ -116,7 +117,7 @@ const Register = ({ close, authStore, setLoginOpen }: {close: () => void, authSt
                     </p>
                 </div>
                 <div className={styles.flex}>
-                    <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" />Я принимаю политику конфиденциальности</label>
+                    <label><input onChange={handleCheckBoxChecked} type="checkbox" name="save" /><div>Я принимаю <Link to='/privacy-policy' className={styles.privacy_policy}>политику конфиденциальности</Link></div></label>
                 </div>
                 <p className={validPassword && validEmail && validMatch && !checkboxChecked ? styles.instructions : styles.offscreen}>Чтобы зарегистрироваться, примите политику конфиденциальности</p>
                 <Button className={styles.btnLight} txt='Зарегистрироваться' theme='light'/>

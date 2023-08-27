@@ -180,6 +180,9 @@ label {
     gap: 10px;
     align-items: center;
 }
+.privacy_policy {
+    color: $primary-white;
+}
 
 @media (max-width: 600px) {
     .outside {

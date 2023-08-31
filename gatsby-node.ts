@@ -119,7 +119,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   });
 
   const newsPosts = news.data.allWpPost.nodes
-  const postsPerPage = 2
+  const postsPerPage = 5
   const numPages = Math.ceil(newsPosts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({

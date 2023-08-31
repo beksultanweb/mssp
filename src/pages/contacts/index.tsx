@@ -16,16 +16,9 @@ const query = graphql`
         footer {
         address
         email
-        instagram
-        linkedin
         telephone
         telephone2
         }
-        Awards {
-            requisites {
-              mediaItemUrl
-            }
-          }
     }
 }`
 

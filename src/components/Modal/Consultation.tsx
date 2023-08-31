@@ -1,22 +1,19 @@
 import axios from 'axios'
+import { Link } from 'gatsby'
 import { inject, observer } from 'mobx-react'
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
-
-import { RemoveScroll } from 'react-remove-scroll'
 
 import Modal from '.'
 
 import styles from './styles.module.scss'
 
-import Arrow from '../../assets/icons/arrow'
 import info from '../../assets/icons/info-circle.svg'
-import RequestsService from '../../services/requests'
 import { RequestsStore } from '../../store/RequestsStore'
-
 import Button from '../Button'
-import { Link } from 'gatsby'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
+
+const bitrixWebhookUrl = 'https://mssp-global.bitrix24.kz/rest/36/wwghuuo5dimrdkvi/crm.lead.add.json'
 
 const Consultation = ({ close, requestsStore }: {close: () => void, requestsStore?: RequestsStore}) => {
     const [company, setCompany] = useState('')
@@ -50,8 +47,8 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
             return
         }
         try {
-            // const response = await RequestsService.createRequest(service, domain, phone)
-            // setSuccess(true)
+            const response = await axios.post(bitrixWebhookUrl, { company, phone })
+            console.log(response)
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
                 setErrMsg(error.response.data.message)

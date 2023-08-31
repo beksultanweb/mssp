@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 
 import styles from './styles.module.scss'
@@ -5,7 +6,19 @@ import styles from './styles.module.scss'
 import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 
+
+const query = graphql`
+{
+    wpPage {
+        penetrationTest {
+            penetrationTitle
+            penetrationDescr
+        }
+    }
+}`
+
 const PenetrationTestFrame = ({ handleLoginOpen }: {handleLoginOpen: () => void}) => {
+    const data = useStaticQuery(query)
     return (
         <section className={styles.penetration}>
             <div className={styles.report}>Report</div>
@@ -13,8 +26,8 @@ const PenetrationTestFrame = ({ handleLoginOpen }: {handleLoginOpen: () => void}
             <div className={styles.invest}>Invest</div>
             <div className={styles.security}>Security</div>
             <Layout>
-                <h2>Penetration test (Sentest)</h2>
-                <span>/004</span><p className={styles.paragraph}>Sentest – идеальный инструмент для укрепления репутации вашей компании среди инвесторов и клиентов. Наш сервис позволяет демонстрировать ваше ответственное отношение к защите данных и конфиденциальности, что поможет улучшить восприятие вашего бренда и повысить доверие к вашей компании.</p>
+                <h2>{data.wpPage.penetrationTest.penetrationTitle}</h2>
+                <span>/004</span><p className={styles.paragraph}>{data.wpPage.penetrationTest.penetrationDescr}</p>
                 <div className={styles.countries}>У нас есть клиенты (стартапы) из разных стран</div>
                 <div className={styles.countries__flags}>
                     <div className={styles.countries__flags_item}>

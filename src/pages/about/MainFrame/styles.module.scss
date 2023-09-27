@@ -8,38 +8,25 @@
 }
 .about_image {
     border-radius: 12px;
-    display: block;
-    margin: 0 auto;
+    float: right;
+    filter: brightness(80%);
 }
 .about__content {
-    display: grid;
-    grid-area: "container";
-    place-items: center;
-    place-content: center;
-    & > * {
-        grid-area: container;
-    }
+    position: relative;
 }
 .title {
     color: $primary-white;
-    text-align: center;
-    margin: 0 auto;
-    width: 70%;
-    z-index: 1;
+    position: absolute;
+    z-index: 100;
+    width: 50%;
 }
 
 @media (max-width: 550px) {
     .about_image {
         width: 100%;
-        height: 100%;
-    }
-    .about__content {
-        height: 635px;
-        place-items: start;
     }
     .title {
-        position: absolute;
+        position: static;
         width: 100%;
-        left: 0;
     }
 }

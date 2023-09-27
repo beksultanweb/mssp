@@ -2,13 +2,13 @@ import { Link, PageProps, navigate } from 'gatsby'
 import { observer, inject } from 'mobx-react'
 import { useState, FC, useEffect } from 'react'
 
-import { RemoveScroll } from 'react-remove-scroll';
-
 import styles from './styles.module.scss'
 
 import Arrow from '../../assets/icons/arrow'
+import LangArrow from '../../assets/icons/langarrow'
 import Logo from '../../assets/icons/logo'
 import { routeElements } from '../../config/routeElements'
+import { LANGUAGES } from '../../constants/languages'
 import { AuthStore } from '../../store/AuthStore'
 import Button from '../Button';
 import Layout from '../Layout'
@@ -25,10 +25,21 @@ interface HeaderProps extends PageProps {
 
 const Header: FC<HeaderProps> = ({ theme, authStore }) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [langMenuOpen, setLangMenuOpen] = useState(false)
     const [loginOpen, setloginOpen] = useState(false)
     const [registerOpen, setRegisterOpen] = useState(false)
     const [resetPwdOpen, setResetPwdOpen] = useState(false)
     const [userDropdownOpen, setUserDropdownOpen] = useState(false)
+
+    const [currentLang, setCurrentLang] = useState('Русский')
+
+    const handleChangeLang = (label: string) => {
+        setCurrentLang(label)
+    }
+
+    const handleLangMenuOpen = () => {
+        setLangMenuOpen(!langMenuOpen)
+    }
 
     const handleMenuOpen = () => {
         setIsOpen(!isOpen)
@@ -75,7 +86,17 @@ const Header: FC<HeaderProps> = ({ theme, authStore }) => {
                             <button onClick={handleQuit} className={styles.logout__btn}>Выйти<Arrow theme="light"/></button>
                         </div>}
                     </div>}
-                    <div>Қазақша</div>
+                    <div>
+                        <div className={`${theme === 'light' ? styles.light : ''} ${styles.lang}`} onClick={handleLangMenuOpen}>{currentLang} <LangArrow theme={theme} rotate={langMenuOpen}/></div>
+                        {langMenuOpen &&
+                        <div className={styles.lang__menu}>
+                            <ul>
+                                {LANGUAGES.map(({ code, label }) => (
+                                    <li key={code} onChange={() => handleChangeLang(label)} className={styles.kaz}>{label}</li>
+                                ))}
+                            </ul>
+                        </div>}
+                    </div>
                     {!authStore?.isAuth && <Button className={`${theme === 'light' ? styles.btnLight : ''} ${styles.btn}`} theme={theme} handleloginOpen={handleloginOpen} txt='Войти'/>}
                     <button onClick={handleMenuOpen} className={`${theme === 'light' ? styles.light : styles.dark} ${isOpen ? styles.mobile__burger_open : styles.mobile__burger}`}>{!isOpen && 'Меню'}<Arrow theme={theme === 'light' ? 'dark' : 'light'}/></button>
                 </header>

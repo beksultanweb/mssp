@@ -92,8 +92,36 @@ header {
         background-color: inherit;
     }
 }
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.lang__menu {
+    position: absolute;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #000;
+    z-index: 2;
+    background-color: $secondary-white;
+    ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        display: grid;
+        gap: 16px;
+    }
+    li {
+        cursor: pointer;
+    }
+}
 
 @media (max-width: 965px) {
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
     .logout__btn {
         width: 200px;
     }

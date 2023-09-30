@@ -13,7 +13,7 @@ import Button from '../Button'
 
 const PHONE_REGEX = /^\+?[0-9]{1,3}-?[0-9]{1,}-?[0-9]{1,}$/
 
-const bitrixWebhookUrl = 'https://mssp-global.bitrix24.kz/rest/36/wwghuuo5dimrdkvi/crm.lead.add.json'
+const bitrixWebhookUrl = 'https://mssp-global.bitrix24.kz/rest/36/wwghuuo5dimrdkvi'
 
 const Consultation = ({ close, requestsStore }: {close: () => void, requestsStore?: RequestsStore}) => {
     const [company, setCompany] = useState('')
@@ -47,8 +47,17 @@ const Consultation = ({ close, requestsStore }: {close: () => void, requestsStor
             return
         }
         try {
-            const response = await axios.post(bitrixWebhookUrl, { company, phone })
-            console.log(response)
+            const leadData = {
+                fields: {
+                    TITLE: company,
+                    PHONE: [{ VALUE: phone }]
+                }
+            }
+
+            const response = await axios.post(bitrixWebhookUrl + '/crm.lead.add.json', leadData)
+            if(response.data.result) {
+                setSuccess(true)
+            }
         } catch (error) {
             if(axios.isAxiosError(error) && error.response) {
                 setErrMsg(error.response.data.message)

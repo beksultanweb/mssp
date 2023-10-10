@@ -24,7 +24,7 @@ const config: GatsbyConfig = {
         includePaths: ['src']
       }
     }
-  }, 'gatsby-plugin-image', 'gatsby-transformer-sharp', {
+  }, 'gatsby-plugin-image', 'gatsby-transformer-sharp', 'gatsby-plugin-netlify', {
     resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.GATSBY_WORDPRESS_URL

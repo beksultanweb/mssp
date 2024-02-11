@@ -8,17 +8,17 @@ import ico from '../../assets/icons/decipher.svg'
 import Button from '../Button'
 
 
-const query = graphql`query {
-    wpPage {
-      decipher {
-        decipherSubtitle
-        decipherTitle
-      }
-    }
-  }`
+// const query = graphql`query {
+//     wpPage {
+//       decipher {
+//         decipherSubtitle
+//         decipherTitle
+//       }
+//     }
+//   }`
 
 const Decipher = ({ close, handleConsultationOpen }: {close: () => void, handleConsultationOpen: () => void }) => {
-    const data = useStaticQuery(query)
+    // const data = useStaticQuery(query)
     const handleConsult = () => {
         close()
         handleConsultationOpen()
@@ -26,8 +26,8 @@ const Decipher = ({ close, handleConsultationOpen }: {close: () => void, handleC
     return (
         <Modal close={close} width={256} justifyEnd={true} bgColor={'#142C40'} removeScroll={false}>
             <div className={styles.decipher__title} style={{ marginBottom: '10px' }}><img src={ico} />Привет!</div>
-            <div className={styles.decipher__title}>{data.wpPage.decipher.decipherTitle}</div>
-            <p className={styles.decipher__subtitle}>{data.wpPage.decipher.decipherSubtitle}</p>
+            <div className={styles.decipher__title}>Нужно сообщить об инциденте?</div>
+            <p className={styles.decipher__subtitle}>Зашифровали 1С? Мы поможем без выплаты выкупа!</p>
             <Button className={styles.btnLight} handleConsultationOpen={handleConsult} txt='Консультация' theme='light'/>
         </Modal>
     )

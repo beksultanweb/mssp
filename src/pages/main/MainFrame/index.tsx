@@ -77,6 +77,7 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
             alt="bgphoto"
             imgStyle={{ borderRadius: '24px' }}
             className={styles.main3}
+            placeholder='none'
             />
         </div>
         <div ref={ref2}>
@@ -87,6 +88,7 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
             alt="bgphoto"
             imgStyle={{ borderRadius: '24px' }}
             className={styles.main1}
+            placeholder='none'
             />
         </div>
         <div ref={ref3}>
@@ -97,6 +99,7 @@ const MainFrame = ({ handleConsultationOpen }: {handleConsultationOpen: () => vo
             alt="bgphoto"
             imgStyle={{ borderRadius: '24px' }}
             className={styles.main2}
+            placeholder='none'
             />
         </div>
         <Layout>

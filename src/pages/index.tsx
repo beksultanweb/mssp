@@ -12,7 +12,7 @@ import PartnerLinkFrame from './main/PartnerLinkFrame'
 import PartnerLinkFrame2 from './main/PartnerLinkFrame2'
 import PenetrationTestFrame from './main/PenetrationTestFrame'
 import ProductsFrame from './main/ProductsFrame'
-import PromoFrame from './main/PromoFrame'
+
 
 import { Footer } from '../components/Footer'
 import Header from '../components/Header'
@@ -74,7 +74,6 @@ const IndexPage: React.FC<IndexProps> = ({ authStore }) => {
       <PenetrationTestFrame handleLoginOpen={handleLoginOpen}/>
       <PartnerLinkFrame/>
       <DodgerFrame/>
-      <PromoFrame/>
       <ClientsFrame/>
       <PartnerLinkFrame2/>
       <NewsFrame/>

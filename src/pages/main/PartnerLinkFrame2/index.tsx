@@ -14,7 +14,7 @@ const query = graphql`
         }
         additionalLink2
         additionalTitle2
-        additionalOn2
+        
       }
     }
   }`
@@ -38,11 +38,11 @@ const PartnerLinkFrame2 = () => {
     const data: PartnerLinkProps = useStaticQuery(query)
     const { additionalImg2, additionalTitle2, additionalDescr2, additionalBtn2, additionalLink2, additionalOn2 } = data.wpPage.Additional_resources2
     const image = getImage(additionalImg2)
-    if(!additionalOn2) {
-      return
-    }
+    // if(!additionalOn2) {
+    //   return
+    // }
     return (
-        image ? <PartnerLink image={image} title={additionalTitle2} description={additionalDescr2} link={additionalLink2} btn={additionalBtn2}/>
+        image ? <PartnerLink image={image} title="CloudTek.kz - защищённый облачный провайдер на территории Казахстана." description="Наш партнёр помогает организовать защищённую инфраструктуру без необходимости приобретения СЗИ и серверного оборудования, а также прохождения сертификации. Fintech и E-commerce компании могут получить виртуальный дата-центр, соответствующий стандарту PCI DSS, сэкономив при этом деньги и работая напрямую с финансовыми учреждениями." link="https://cloudtek.kz" btn="Посетить сайт компании"/>
         : null
     )
 }

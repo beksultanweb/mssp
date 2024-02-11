@@ -9,13 +9,15 @@ import Button from '../../../components/Button'
 import Layout from '../../../components/Layout'
 import productsStyles from '../ProductsFrame/styles.module.scss'
 
+// wpPage {
+//     mssservices {
+//         mssservicesDescr
+//     }
+// }
+
 const query = graphql`
 {
-    wpPage {
-        mssservices {
-            mssservicesDescr
-        }
-    }
+    
     wpCategory(slug: {eq: "mssp-services"}) {
       slug
       posts {
@@ -143,7 +145,7 @@ const MSSProductsFrame = () => {
             </div>
             <div className={styles.flex}>
                 <span className={productsStyles.white_text}>/003</span>
-                <p className={styles.paragraph}>{data.wpPage.mssservices.mssservicesDescr}</p>
+                <p className={styles.paragraph}>Приобретайте средства защиты информации по подписке и платите так, как вам удобно</p>
             </div>
             <div className={styles.bubbles}>
             {sortedNodes.slice(0, 6).map((node: any) => (
